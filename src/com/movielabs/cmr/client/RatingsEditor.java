@@ -175,7 +175,7 @@ public class RatingsEditor {
 		// } catch ( Exception e) {
 		// e.printStackTrace();
 		// }
-		String langBase = "/com/callc/movielab/ratings/client/resources/language/";
+		String langBase = "/com/movielabs/cmr/client/resources/language/";
 		String langRsrc = langBase + "english.properties";
 		InputStream in = this.getClass().getResourceAsStream(langRsrc);
 		try {

@@ -25,7 +25,7 @@ import com.movielabs.cmr.client.util.ui.AboutDialog;
 public class AboutEditorDialog extends AboutDialog {
 
     protected static String COPYRIGHT_MLABS = "<html><br>� 2014 Motion Picture Laboratories, Inc. All rights reserved.<br>http://www.MovieLabs.com/</html>";
-    private static String appLogoPath = "/com/callc/movielab/ratings/client/images/logo_movielabs.jpg";
+    private static String appLogoPath = "/com/movielabs/cmr/client/images/logo_movielabs.jpg";
 
 	/**
 	 * @param title

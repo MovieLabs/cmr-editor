@@ -32,7 +32,7 @@ import java.awt.SystemColor;
  * 
  */
 public class HeaderPanel extends JPanel {
-	public static final String imgLoc = "/com/callc/movielab/ratings/client/images/";
+	public static final String imgLoc = "/com/movielabs/cmr/client/images/";
 	private EditorMenuBar menuBar;
 	private JLabel logoLabel;
 	private JLabel bannerLabel;

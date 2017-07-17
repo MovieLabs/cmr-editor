@@ -8,7 +8,6 @@ echo Building CLASSPATH.......
 
 set CJD=.\lib\
 set JARS=%CJD%CMR_Editor.jar
-set JARS=%JARS%;%CJD%critArchUtilities.jar
 set JARS=%JARS%;%CJD%jdom-2.0.5.jar%
 set JARS=%JARS%;%CJD%jhall.jar%
 set JARS=%JARS%;%CJD%saxon9pe.jar%
