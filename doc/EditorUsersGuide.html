@@ -1,0 +1,782 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <title>
+      CMRatingsEditor
+    </title>
+    <meta name="DC.title" content="CMRatingsEditor" />
+    <meta name="DC.creator" content="author???" />
+    <meta name="keywords" content="keywords???" />
+    <meta name="DC.subject" content="CMRatingsEditor" />
+    <meta name="DC.publisher" content="Helen 2.0" />
+  </head>
+  <body>
+    <div id="toc">
+      <h1>
+        Table of Contents
+      </h1>
+      <ul>
+        <li>
+          <a href="#0.">
+            Welcome
+          </a>
+          <?s7 page-number-citation ref-id="0."?>
+        </li>
+        <li>
+          <a href="#1.">
+            Installation
+          </a>
+          <?s7 page-number-citation ref-id="1."?>
+        </li>
+        <li>
+          <a href="#2.">
+            QuickStart
+          </a>
+          <?s7 page-number-citation ref-id="2."?>
+          <ul>
+            <li>
+              <a href="#3.">
+                Starting the Editor
+              </a>
+              <?s7 page-number-citation ref-id="3."?>
+            </li>
+            <li>
+              <a href="#4.">
+                Creating a new Rating System
+              </a>
+              <?s7 page-number-citation ref-id="4."?>
+            </li>
+            <li>
+              <a href="#5.">
+                Adding and Deleting Ratings
+              </a>
+              <?s7 page-number-citation ref-id="5."?>
+            </li>
+            <li>
+              <a href="#6.">
+                Rating Descriptors
+              </a>
+              <?s7 page-number-citation ref-id="6."?>
+            </li>
+            <li>
+              <a href="#7.">
+                Reasons and Criteria
+              </a>
+              <?s7 page-number-citation ref-id="7."?>
+            </li>
+            <li>
+              <a href="#8.">
+                Adding and Deleting Reasons
+              </a>
+              <?s7 page-number-citation ref-id="8."?>
+            </li>
+            <li>
+              <a href="#9.">
+                Specifying Criteria
+              </a>
+              <?s7 page-number-citation ref-id="9."?>
+            </li>
+            <li>
+              <a href="#10.">
+                Saving
+              </a>
+              <?s7 page-number-citation ref-id="10."?>
+            </li>
+            <li>
+              <a href="#11.">
+                Generating Products
+              </a>
+              <?s7 page-number-citation ref-id="11."?>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#index">
+            Index
+          </a>
+          <?s7 page-number-citation ref-id="index"?>
+        </li>
+      </ul>
+    </div>
+    <div id="0.">
+      <h1>
+        <img src="EditorUsersGuide_files/logo_movielabs.jpg" alt="logo" /><img src="EditorUsersGuide_files/home_banner.jpg" alt="banner" />
+      </h1>
+      <h2>
+        Introduction
+      </h2>
+      <p>
+        This is the on-line help documentation for the Movie Labs <strong>Common Metadata Ratings Editor</strong>. The editor may be used to:
+      </p>
+      <ul>
+        <li>
+          create or modify a formal XML specification of a content rating systems,
+        </li>
+        <li>
+          validate an XML&#160;specification created by a 3rd party
+        </li>
+        <li>
+          generate from a set of specification HTML&#160;and XML&#160;products intended for usage by parental control systems, content distribution channels, and other external parties.
+        </li>
+      </ul>
+      <p>
+        Individuals not familiar with the Movie Labs Common Metadata Ratings, the associated schema, or the intended usage, should consult the documentation available at <a href="http://www.movielabs.com/md/ratings/index.html">http://www.movielabs.com/md/ratings/index.html</a> before proceeding.
+      </p>
+      <h2>
+        Available Documentation
+      </h2>
+      <ul>
+        <li>
+          Installation instructions are covered <a href="#1.">here</a>.
+        </li>
+        <li>
+          Usage of the Editor is covered in the <a href="#2.">Quick Start guide</a>.
+        </li>
+      </ul>
+      <p>
+        &#160;
+      </p>
+    </div>
+    <div id="1.">
+      <h1>
+        <img src="EditorUsersGuide_files/logo_movielabs.jpg" alt="logo" /><img src="EditorUsersGuide_files/home_banner.jpg" alt="banner" />
+      </h1>
+      <h2>
+        Installation
+      </h2>
+      <h3>
+        Requirements
+      </h3>
+      <p>
+        The Editor is Java-based. The user&#39;s runtime environment must, therefore, include a Java JRE in the path. The minimum recommended JRE&#160;is 1.6.
+      </p>
+      <p>
+        All required supporting jars are provided with the distribution. Generation of HTML&#160;from the XML specifications does, however, require that the user obtain a valid license for Saxon. This is available at <a href="http://www.saxonica.com/">http://www.saxonica.com/</a>. &#160;Either the Professional&#160;(PE)&#160;or Enterprise (EE) license may be used. The minimum required version is 9.5.
+      </p>
+      <p>
+        The Editor may be used in either a Windows or Linux environment and both BAT and BASH scripts have been provided for starting and running the editor.
+      </p>
+      <h3>
+        Installing
+      </h3>
+      <p>
+        Unpack the distribution into any directory. To run the editor, simply cd to the install directory and run either the BAT or BASH script.
+      </p>
+    </div>
+    <div id="2.">
+      <h1>
+        <img alt="logo" src="EditorUsersGuide_files/logo_movielabs.jpg" /><img alt="banner" src="EditorUsersGuide_files/home_banner.jpg" />
+      </h1>
+      <h2>
+        Quick-Start Guide
+      </h2>
+      <h3>
+        <a name="QS_Starting" id="2.QS_Starting">Starting the Editor</a>
+      </h3>
+      <p>
+        If you have not already installed the software, do so by following the <a href="#1.">instructions provided on the Installation page</a>. Once successfully started, you will see the editor with a blank screen:
+      </p>
+      <p>
+        &#160;
+      </p>
+      <p>
+        <img width="786" src="EditorUsersGuide_files/Figure01.jpg" height="637" alt="Initial screen" />
+      </p>
+      <p style="text-align: left">
+        &#160;&#160;
+      </p>
+      <table cellpadding="0" width="100%" border="1" cellspacing="0">
+        <colgroup>
+          <col width="34%" />
+          <col width="33%" />
+          <col width="33%" />
+        </colgroup>
+        <tr>
+          <td width="34%" align="left">
+            <a href="#1.">&lt; Previous</a>
+          </td>
+          <td width="33%" align="center">
+            <a href="#0.">Top</a>
+          </td>
+          <td width="33%" align="right">
+            <a href="#4.">Next &gt;</a>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id="3.">
+      <h1>
+        <img alt="logo" src="EditorUsersGuide_files/logo_movielabs.jpg" /><img alt="banner" src="EditorUsersGuide_files/home_banner.jpg" />
+      </h1>
+      <h2>
+        Quick-Start Guide
+      </h2>
+      <h3>
+        <a name="QS_Starting" id="3.QS_Starting">Starting the Editor</a>
+      </h3>
+      <p>
+        If you have not already installed the software, do so by following the <a href="#1.">instructions provided on the Installation page</a>. Once successfully started, you will see the editor with a blank screen:
+      </p>
+      <p>
+        &#160;
+      </p>
+      <p>
+        <img width="786" src="EditorUsersGuide_files/Figure01.jpg" height="637" alt="Initial screen" />
+      </p>
+      <p style="text-align: left">
+        &#160;&#160;
+      </p>
+      <table cellpadding="0" width="100%" border="1" cellspacing="0">
+        <colgroup>
+          <col width="34%" />
+          <col width="33%" />
+          <col width="33%" />
+        </colgroup>
+        <tr>
+          <td width="34%" align="left">
+            <a href="#1.">&lt; Previous</a>
+          </td>
+          <td width="33%" align="center">
+            <a href="#0.">Top</a>
+          </td>
+          <td width="33%" align="right">
+            <a href="#4.">Next &gt;</a>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id="4.">
+      <p>
+        &#160;
+      </p>
+      <h1>
+        <img alt="logo" src="EditorUsersGuide_files/logo_movielabs.jpg" /><img alt="banner" src="EditorUsersGuide_files/home_banner.jpg" />
+      </h1>
+      <h3>
+        Creating a New Rating System
+      </h3>
+      <p>
+        Use the File _&gt; New.. menu item to create a new Rating System. The initial display will show an empty Rating Systems Properties panel:
+      </p>
+      <p>
+        <img alt="New Rating System" src="EditorUsersGuide_files/Figure02.jpg" />
+      </p>
+      <p>
+        This panel is used to enter the information pertaining to :
+      </p>
+      <ul>
+        <li>
+          the intended scope of usage (e.g., type of media, viewing environment, etc.)
+        </li>
+        <li>
+          the organization responsible for the specification, and
+        </li>
+        <li>
+          the regions in which the rating system is in use.
+        </li>
+      </ul>
+      <p>
+        One of the field shown, the <strong>URI</strong>, <em><u>is not editable</u></em>. This field is automatically generated using the data specified for other fields.
+      </p>
+      <h4>
+        Specifying a System ID:
+      </h4>
+      <p>
+        The first step in filling in the required information is to enter a System ID (e.g., MPAA, OFLC, BBFA). Special characters should be avoided. Upon pressing Enter the new information is used to update both the URI field and navigation tree shown in the left-hand panel:
+      </p>
+      <p>
+        <img alt="Fig 2a" src="EditorUsersGuide_files/Figure02a.png" />
+        <br />
+      </p>
+      <h4>
+        Regions of Usage:
+      </h4>
+      <p>
+        The next step is to enter at least one Region of usage. Up to three regions may be specified using the editor. If additional Regions are required they must be added by directly editing the XML&#160;file. Additional points to note are:
+      </p>
+      <ul>
+        <li>
+          The first Region entered will be considered the primary and will be included as part of the auto-generated URI.
+        </li>
+        <li>
+          Sub-regions may be specified (e.g., a state or provence within a country).The usage of sub-regions has no effect on the generation of the URI
+        </li>
+        <li>
+          Two special Regions are included in the drop-down menus: Global and European Union
+        </li>
+      </ul>
+      <p>
+        The figure below shows the result of specifying three regions of adoption, the first of which is limited to a specific sub-region (i.e., Alaska). Note that the URI&#160;has been modified to include the designator &#39;US&#39; due to the specification of the United States as the first, and therefore primary, Region.&#160;
+      </p>
+      <p>
+        &#160;<img alt="Fig 2b" src="EditorUsersGuide_files/Figure02b.jpg" />
+      </p>
+      <h4>
+        Scope of Usage
+      </h4>
+      <p>
+        The &quot;scope of usage&quot; indicates the types of media the Rating System covers, as well as the applicable distribution modes. For example, one Rating System might be intended solely for broadcast TV while another is intended to apply to the retail sale of DVDs, games, and music. Selection is via the provided checkboxes and multiple selections may be made in either category.
+      </p>
+      <h4>
+        Organizational Information
+      </h4>
+      <p>
+        The last step is to fill in information regarding the organization responsible for a system. This is optional but highly recommended. The following picture shows the entry for the MPAA:
+      </p>
+      <p>
+        <img alt="Fig 2c - MPAA" src="EditorUsersGuide_files/Figure02c.jpg" />
+      </p>
+      <p>
+        &#160;
+      </p>
+      <table width="100%" border="1">
+        <colgroup>
+          <col width="34%" />
+          <col width="33%" />
+          <col width="33%" />
+        </colgroup>
+        <tr>
+          <td width="34%" align="left">
+            <a href="#2.">&lt; Previous</a>
+          </td>
+          <td width="33%" align="center">
+            <a href="#0.">Top</a>
+          </td>
+          <td width="33%" align="right">
+            <a href="#5.">Next &gt;</a>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id="5.">
+      <h1>
+        <img alt="logo" src="EditorUsersGuide_files/logo_movielabs.jpg" /><img alt="banner" src="EditorUsersGuide_files/home_banner.jpg" />
+      </h1>
+      <h3>
+        Adding or Deleting a Rating
+      </h3>
+      <p>
+        To add a new Rating to a system, use the navigation tree shown in the left-hand panel. Right-click on the &#39;ratings&#39; node and then select &quot;add new rating&quot; from the popup menu. A new Rating will be added to the tree and an empty Rating panel will be displayed. The panel is shown here with the information used to specify the MPAA&#160;PG-13 rating:
+      </p>
+      <p>
+        <img alt="Fig 3a" src="EditorUsersGuide_files/Figure03a.jpg" />
+      </p>
+      <p>
+        Key points to note are:
+      </p>
+      <ul>
+        <li>
+          all fields and labels have tooltips so a brief&#160;explanation of specific field&#39;s purpose can easily be obtained. More detailed help may be obtained by accessing this document via the Help menu item.
+        </li>
+        <li>
+          the URI&#160;is auto-generated and may not be directly edited.
+        </li>
+      </ul>
+      <p>
+        &#160;A Rating may also be created by copying an existing Rating. To do so, first select use the navigation tree to select an existing Rating, than use the right-click to access the popup menu:
+      </p>
+      <p>
+        <img alt="Fig 3b" src="EditorUsersGuide_files/Figure03b.jpg" />
+      </p>
+      <p>
+        Use the&#160;duplicate menu item to insert an exact copy immediately before the selected Rating. To insert a new Rating elsewhere,
+      </p>
+      <ol>
+        <li>
+          first select and copy a Rating
+        </li>
+        <li>
+          next select the rating you wish to insert the copy before.
+        </li>
+        <li>
+          finally, paste the copy in the selected location.
+        </li>
+      </ol>
+      <p>
+        Note that this same popup menu mechanism is used to delete a Rating.
+      </p>
+      <p>
+        &#160;
+      </p>
+      <table width="100%" border="1">
+        <colgroup>
+          <col width="34%" />
+          <col width="33%" />
+          <col width="33%" />
+        </colgroup>
+        <tr>
+          <td width="34%" align="left">
+            <a href="#4.">&lt; Previous</a>
+          </td>
+          <td width="33%" align="center">
+            <a href="#0.">Top</a>
+          </td>
+          <td width="33%" align="right">
+            <a href="#6.">Next &gt;</a>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id="6.">
+      <h1>
+        <img alt="logo" src="EditorUsersGuide_files/logo_movielabs.jpg" /><img alt="banner" src="EditorUsersGuide_files/home_banner.jpg" />
+      </h1>
+      <h3>
+        Rating Descriptors
+      </h3>
+      <p>
+        The Rating Descriptor is used to define human-readable labels, definitions, and explanatory text for each Rating. A Rating element may provide multilingual support via the incorporation more than one Descriptor. (e.g., one in English and another in French). &#160;The figure below shows an example of just this type of bilingual support.
+      </p>
+      <p>
+        <img alt="4a" src="EditorUsersGuide_files/Figure04a.jpg" />
+      </p>
+      <p>
+        At least one Descriptor must be specified for each Rating. Adding (or deleting) a Descriptor is handled via the same popup menu used to copy and paste a rating:
+      </p>
+      <p>
+        <img alt="Fig 3b" src="EditorUsersGuide_files/Figure03b.jpg" />
+      </p>
+      <p>
+        Adding a Descriptor will result in a popup dialog be displayed that allows the user to specify the language that will be used. Descriptors&#160;are displayed in an accordion pane If multiple Descriptors are defined, they will be listed one above the other in the order in which they are added. To select one simply click on the appropriate header. For example, in the case of the French and English descriptors shown above, clicking on the bar labeled &quot;English&quot; will collapse the French Descriptor and open up the English one.
+      </p>
+      <p>
+        &#160;
+      </p>
+      <table width="100%" border="1">
+        <colgroup>
+          <col width="34%" />
+          <col width="33%" />
+          <col width="33%" />
+        </colgroup>
+        <tr>
+          <td width="34%" align="left">
+            <a href="#5.">&lt; Previous</a>
+          </td>
+          <td width="33%" align="center">
+            <a href="#0.">Top</a>
+          </td>
+          <td width="33%" align="right">
+            <a href="#7.">Next &gt;</a>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id="7.">
+      <h1>
+        <img alt="logo" src="EditorUsersGuide_files/logo_movielabs.jpg" /><img alt="banner" src="EditorUsersGuide_files/home_banner.jpg" />
+      </h1>
+      <h3>
+        Reasons &amp; Criteria
+      </h3>
+      <p>
+        Rating agencies assess media using a variety of criteria such as the use of language or the amount and type of violence or sexual behavior that is shown. This means we wish&#160;differentiate between the general categories (e.g., sex, violence) and the assessment criteria as to what is or is not acceptable for a given rating (e.g., full frontal nudity is only justification for a minimum rating of R). The former are defined via the Reason element and the later via the Criteria element.
+      </p>
+      <p>
+        The distinctions, as well as the applicable Editor interfaces, are illustrated in the following two screen captures. The example is taken from the PEGI&#160;Rating System and describes how violence in video games is assessed. The first screen shows the data entered for the overall category of &quot;Violence&#39;. This includes the general description of what this category is about, as well as an (optional) URL pointing to the symbol used to denote this category.
+      </p>
+      <p>
+        <img src="EditorUsersGuide_files/Figure05.jpg" />
+      </p>
+      <p>
+        The second screen, shown below, indicates the level and types of violence that will result in a PEGI-7 rating:
+      </p>
+      <p>
+        <img src="EditorUsersGuide_files/Figure05a.jpg" />
+      </p>
+      <p>
+        &#160;
+      </p>
+      <table width="100%" border="1">
+        <colgroup>
+          <col width="34%" />
+          <col width="33%" />
+          <col width="33%" />
+        </colgroup>
+        <tr>
+          <td width="34%" align="left">
+            <a href="#6.">&lt; Previous</a>
+          </td>
+          <td width="33%" align="center">
+            <a href="#0.">Top</a>
+          </td>
+          <td width="33%" align="right">
+            <a href="#8.">Next &gt;</a>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id="8.">
+      <h1>
+        <img alt="logo" src="EditorUsersGuide_files/logo_movielabs.jpg" /><img alt="banner" src="EditorUsersGuide_files/home_banner.jpg" />
+      </h1>
+      <h3>
+        Adding or Deleting a Reason
+      </h3>
+      <p>
+        The mechanism used to add a new Reason to a system is identical to the one used to add a Rating. Use the navigation tree shown in the left-hand panel. Right-click on the &#39;reasons&#39; node and then select &quot;add new reason&quot; from the popup menu. A new Reason will be added to the tree and an empty Reason panel will be displayed. Copying, pasting, or deleting of a Reason is also handled in a manner identical to that used for Ratings.
+      </p>
+      <p>
+        &#160;
+      </p>
+      <table width="100%" border="1">
+        <colgroup>
+          <col width="34%" />
+          <col width="33%" />
+          <col width="33%" />
+        </colgroup>
+        <tr>
+          <td width="34%" align="left">
+            <a href="#7.">&lt; Previous</a>
+          </td>
+          <td width="33%" align="center">
+            <a href="#0.">Top</a>
+          </td>
+          <td width="33%" align="right">
+            <a href="#9.">Next &gt;</a>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id="9.">
+      <h1>
+        <img alt="logo" src="EditorUsersGuide_files/logo_movielabs.jpg" /><img alt="banner" src="EditorUsersGuide_files/home_banner.jpg" />
+      </h1>
+      <h3>
+        Specifying Criteria
+      </h3>
+      <p>
+        As was previously noted, Criteria elements are used to provide information about how a Reason (i.e., classification factor) is assessed in the context of a specific level of Rating. Another way to view Criteria is as an <em>association</em> between a specific Rating and a specific Reason. For this reason, the mechanisms for adding and deleting Criteria are different from the ones used to work with Ratings and Reasons:
+      </p>
+      <ul>
+        <li>
+          A Criteria linking a Reason to a Rating may only be added <em>after</em> both the Reason and Rating have been added.
+        </li>
+        <li>
+          Criteria may not be copied and pasted.
+        </li>
+      </ul>
+      <p>
+        To add a new Criteria you need to first select the appropriate Reason, then select the Rating from the list shown in the popup menu. For example, the following shows the navigation tree for the PEGI&#160;Rating System:
+      </p>
+      <p>
+        <img src="EditorUsersGuide_files/Figure07a.jpg" />
+      </p>
+      <p>
+        The tree has been expanded to display the list of defined Ratings, as well as sub-section specific to the &#39;Drugs&#39; category. At this point only two criteria have been specified: one mapping the category to the PEGI-16 rating and another mapping to the PEGI-18 rating. Right-clicking on the Drugs node will display the following popup menu:
+      </p>
+      <p>
+        <img src="EditorUsersGuide_files/Figure07b.jpg" />
+      </p>
+      <p>
+        Only those Ratings that have not yet been mapped to the selected Reason are enabled for selection. Selecting one of these will result in a new node being added to the tree. At this point the Criteria editing panel will be shown in the Editor&#39;s main pane and a definitions and explanatory text may be entered. Note, however, that neither the ID&#160;nor the URI fields of a Criteria are editable by the user.
+      </p>
+      <p>
+        &#160;
+      </p>
+      <table width="100%" border="1">
+        <colgroup>
+          <col width="34%" />
+          <col width="33%" />
+          <col width="33%" />
+        </colgroup>
+        <tr>
+          <td width="34%" align="left">
+            <a href="#8.">&lt; Previous</a>
+          </td>
+          <td width="33%" align="center">
+            <a href="#0.">Top</a>
+          </td>
+          <td width="33%" align="right">
+            <a href="#10.">Next &gt;</a>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id="10.">
+      <h1>
+        <img alt="logo" src="EditorUsersGuide_files/logo_movielabs.jpg" /><img alt="banner" src="EditorUsersGuide_files/home_banner.jpg" />
+      </h1>
+      <h3>
+        Saving a Specification
+      </h3>
+      <p>
+        Save a specification using the standard File -&gt; Save... menu item. By default a new specification is assigned a file name based on it&#39;s System ID and primary Region. For example, the MPAA&#160;specification identifies the primary region as the United States so the default file name is US_MPAA_Ratings.xml. While the file name&#160;may be changed by the user, doing so may cause unforeseen problems in the downstream products generated from the specifications.
+      </p>
+      <p>
+        &#160;Equally important to the product generation process is <em>where</em> files get saved. By default, this will be the {<em>install-dir</em>}/resources/xml sub-directory. While the XML specification may be saved in any directory you wish, only the XML&#160;files in the default location will be used when generating downstream products.
+      </p>
+      <table width="100%" border="1">
+        <colgroup>
+          <col width="34%" />
+          <col width="33%" />
+          <col width="33%" />
+        </colgroup>
+        <tr>
+          <td width="34%" align="left">
+            <a href="#9.">&lt; Previous</a>
+          </td>
+          <td width="33%" align="center">
+            <a href="#0.">Top</a>
+          </td>
+          <td width="33%" align="right">
+            <a href="#11.">Next &gt;</a>
+          </td>
+        </tr>
+      </table>
+      <p>
+        &#160;
+      </p>
+    </div>
+    <div id="11.">
+      <h1>
+        <img alt="logo" src="EditorUsersGuide_files/logo_movielabs.jpg" /><img alt="banner" src="EditorUsersGuide_files/home_banner.jpg" />
+      </h1>
+      <h3>
+        Generating Products
+      </h3>
+      <p>
+        The Editor will generate the various HTML&#160;and XML &quot;products&quot; that are provided on the Movie Labs web site. To do so, you use the Generate HTML menu item provided in the Tools menu. You will be prompted to select a directory in which the generated files will be saved..
+      </p>
+      <p>
+        &#160;
+      </p>
+      <table width="100%" border="1">
+        <colgroup>
+          <col width="34%" />
+          <col width="33%" />
+          <col width="33%" />
+        </colgroup>
+        <tr>
+          <td width="34%" align="left">
+            <a href="#10.">&lt; Previous</a>
+          </td>
+          <td width="33%" align="center">
+            <a href="#0.">Top</a>
+          </td>
+          <td width="33%" align="right">
+            &#160;
+          </td>
+        </tr>
+      </table>
+      <p>
+        &#160;
+      </p>
+    </div>
+    <div id="index">
+      <h1>
+        Index
+      </h1>
+      <ul>
+        <li>
+          <a href="#4.">
+            C
+          </a>
+          <?s7 page-number-citation ref-id="4."?>
+          <ul>
+            <li>
+              <a href="#4.">
+                Creating a new Rating System
+              </a>
+              <?s7 page-number-citation ref-id="4."?>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#1.">
+            I
+          </a>
+          <?s7 page-number-citation ref-id="1."?>
+          <ul>
+            <li>
+              <a href="#1.">
+                Installation
+              </a>
+              <?s7 page-number-citation ref-id="1."?>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#3.">
+            Q
+          </a>
+          <?s7 page-number-citation ref-id="3."?>
+          <ul>
+            <li>
+              <a href="#3.">
+                Quick Start
+              </a>
+              <?s7 page-number-citation ref-id="3."?>
+            </li>
+            <li>
+              <a href="#6.">
+                QuickStart_3
+              </a>
+              <?s7 page-number-citation ref-id="6."?>
+            </li>
+            <li>
+              <a href="#7.">
+                QuickStart_3
+              </a>
+              <?s7 page-number-citation ref-id="7."?>
+            </li>
+            <li>
+              <a href="#8.">
+                QuickStart_3
+              </a>
+              <?s7 page-number-citation ref-id="8."?>
+            </li>
+            <li>
+              <a href="#9.">
+                QuickStart_3
+              </a>
+              <?s7 page-number-citation ref-id="9."?>
+            </li>
+            <li>
+              <a href="#10.">
+                QuickStart_3
+              </a>
+              <?s7 page-number-citation ref-id="10."?>
+            </li>
+            <li>
+              <a href="#11.">
+                QuickStart_3
+              </a>
+              <?s7 page-number-citation ref-id="11."?>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#5.">
+            R
+          </a>
+          <?s7 page-number-citation ref-id="5."?>
+          <ul>
+            <li>
+              <a href="#5.">
+                Ratings, adding
+              </a>
+              <?s7 page-number-citation ref-id="5."?>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#0.">
+            W
+          </a>
+          <?s7 page-number-citation ref-id="0."?>
+          <ul>
+            <li>
+              <a href="#0.">
+                Welcome
+              </a>
+              <?s7 page-number-citation ref-id="0."?>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
+

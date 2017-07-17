@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<!DOCTYPE toc PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp TOC Version 2.0//EN"
+                     "http://java.sun.com/products/javahelp/toc_2_0.dtd">
+
+<toc version="2.0">
+	<tocitem text="Welcome" target="Welcome" />
+	<tocitem text="Installation" target="Installation" />
+	<tocitem text="QuickStart" target="QuickStart">
+		<tocitem text="Starting the Editor" target="QuickStart" />
+		<tocitem text="Creating a new Rating System" target="QuickStart_2" />
+		<tocitem text="Adding and Deleting Ratings" target="QuickStart_3" />
+		<tocitem text="Rating Descriptors" target="QuickStart_4" />
+		<tocitem text="Reasons and Criteria" target="QuickStart_5" />
+		<tocitem text="Adding and Deleting Reasons" target="QuickStart_6" />
+		<tocitem text="Specifying Criteria" target="QuickStart_7" />
+		<tocitem text="Saving" target="QuickStart_8" />
+		<tocitem text="Generating Products" target="QuickStart_9" />
+	</tocitem>
+	<tocitem text="Developer's Notes" target="DevNotes_01">
+		<tocitem text="Schema" target="DevNotes_02" />
+	</tocitem>
+</toc>

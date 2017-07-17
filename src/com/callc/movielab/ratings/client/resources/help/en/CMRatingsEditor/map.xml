@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<!DOCTYPE map PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp Map Version 2.0//EN"
+                     "http://java.sun.com/products/javahelp/map_2_0.dtd">
+
+<map version="1.0">
+	<mapID target="Welcome" url="Intro.html"/>
+	<mapID target="Installation" url="Installation.html"/>
+	<mapID target="QuickStart" url="QuickStart_1.html"/>
+	<mapID target="Figure01" url="images/Figure01.jpg"/>
+	<mapID target="QuickStart_2" url="QuickStart_2.html"/>
+	<mapID target="Figure02" url="images/Figure02.jpg"/>
+	<mapID target="Figure02a" url="images/Figure02a.jpg"/>
+	<mapID target="Figure02a1" url="images/Figure02a.png"/>
+	<mapID target="Figure02b" url="images/Figure02b.jpg"/>
+	<mapID target="Figure02c" url="images/Figure02c.jpg"/>
+	<mapID target="QuickStart_3" url="QuickStart_3.html"/>
+	<mapID target="Figure03a" url="images/Figure03a.jpg"/>
+	<mapID target="Figure03b" url="images/Figure03b.jpg"/>
+	<mapID target="QuickStart_4" url="QuickStart_4.html"/>
+	<mapID target="Figure04a" url="images/Figure04a.jpg"/>
+	<mapID target="QuickStart_5" url="QuickStart_5.html"/>
+	<mapID target="Figure05a" url="images/Figure05a.jpg"/>
+	<mapID target="Figure05" url="images/Figure05.jpg"/>
+	<mapID target="QuickStart_6" url="QuickStart_6.html"/>
+	<mapID target="QuickStart_7" url="QuickStart_7.html"/>
+	<mapID target="Figure07a" url="images/Figure07a.jpg"/>
+	<mapID target="Figure07b" url="images/Figure07b.jpg"/>
+	<mapID target="QuickStart_8" url="QuickStart_8.html"/>
+	<mapID target="QuickStart_9" url="QuickStart_9.html"/>
+	<mapID target="DevNotes_01" url="DevNotes_01.html"/>
+	<mapID target="DevNotes_02" url="DevNotes_02.html"/>
+</map>

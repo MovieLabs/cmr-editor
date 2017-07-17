@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<!DOCTYPE index PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp Index Version 2.0//EN"
+                       "http://java.sun.com/products/javahelp/index_2_0.dtd">
+
+<index version="2.0">
+	<indexitem text="Welcome" target="Welcome" />
+	<indexitem text="Installation" target="Installation" />
+	<indexitem text="Quick Start" target="QuickStart" />
+	<indexitem text="Creating a new Rating System" target="QuickStart_2" />
+	<indexitem text="Ratings, adding" target="QuickStart_3" />
+	<indexitem text="QuickStart_3" target="QuickStart_4" />
+	<indexitem text="QuickStart_3" target="QuickStart_5" />
+	<indexitem text="QuickStart_3" target="QuickStart_6" />
+	<indexitem text="QuickStart_3" target="QuickStart_7" />
+	<indexitem text="QuickStart_3" target="QuickStart_8" />
+	<indexitem text="QuickStart_3" target="QuickStart_9" />
+	<indexitem text="Developer's Notes" target="DevNotes_01" />
+	<indexitem text="Schema" />
+	<indexitem text="Schema" target="DevNotes_02" />
+</index>

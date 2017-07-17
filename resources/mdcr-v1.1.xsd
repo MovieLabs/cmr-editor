@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2009 (http://www.altova.com) by Lawrence J Levin (private) -->
+<xs:schema xmlns:mdcr="http://www.movielabs.com/schema/mdcr/v1.1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:md="http://www.movielabs.com/schema/md/v2.1/md" targetNamespace="http://www.movielabs.com/schema/mdcr/v1.1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.1">
+	<xs:import namespace="http://www.movielabs.com/schema/md/v2.1/md" schemaLocation="http://www.movielabs.com/schema/md/v2.1/md-v2.1.xsd"/>
+	<xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2001/xml.xsd"/>
+	<!--Content Ratings (CR) METADATA-->
+	<!--Verson 0.9-->
+	<!--*** Simple types ***-->
+	<xs:simpleType name="MediaOptions-type">
+		<xs:annotation>
+			<xs:documentation>Enumeration of the type of media that the Ratings System addresses</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Film"/>
+			<xs:enumeration value="Trailer"/>
+			<xs:enumeration value="DVD"/>
+			<xs:enumeration value="Music"/>
+			<xs:enumeration value="Game"/>
+			<xs:enumeration value="TV"/>
+			<xs:enumeration value="Ad"/>
+			<xs:enumeration value="other"/>
+			<!-- "Film" is synonomous with  D-Cinima "Feature"-->
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DistributionOptions-type">
+		<xs:annotation>
+			<xs:documentation>
+				Environments in which media may be viewed, displayed, or
+				listened to.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Home"/>
+			<xs:enumeration value="Theater"/>
+			<xs:enumeration value="Broadcast"/>
+			<xs:enumeration value="Retail"/>
+			<xs:enumeration value="App"/>
+			<xs:enumeration value="other"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--*** Generic types ***-->
+	<xs:complexType name="Descriptor-type">
+		<xs:sequence>
+			<xs:element name="Label" type="xs:string"/>
+			<xs:element name="Definition">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string"/>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Explanation" minOccurs="0">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string"/>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="language" type="xs:language" use="required"/>
+	</xs:complexType>
+	<!--*** Region ***-->
+	<xs:complexType name="Region-type">
+		<xs:complexContent>
+			<xs:extension base="md:Region-type">
+				<xs:sequence>
+					<xs:element name="SubRegion" type="xs:string" minOccurs="0"/>
+					<xs:element name="RegionName" type="xs:string" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--*** Rating ***-->
+	<xs:simpleType name="OrgOptions-type">
+		<xs:annotation>
+			<xs:documentation>Type of organization (i.e., govt, consumer, trade assoc., etc.)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Gov"/>
+			<xs:enumeration value="Trade"/>
+			<xs:enumeration value="Consumer"/>
+			<xs:enumeration value="Religious"/>
+			<xs:enumeration value="other"/>
+			<xs:enumeration value="not specified"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="RatingSystemID-type">
+		<xs:annotation>
+			<xs:documentation>a uinique ID </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Region" type="mdcr:Region-type"/>
+			<xs:element name="System" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RatingsOrg-type">
+		<xs:complexContent>
+			<xs:extension base="md:OrgName-type">
+				<xs:sequence>
+					<xs:element name="ContactString" type="xs:string" minOccurs="0"/>
+					<xs:element name="URL" type="xs:anyURI" minOccurs="0"/>
+					<xs:element name="OrgType" type="mdcr:OrgOptions-type">
+						<xs:annotation>
+							<xs:documentation>Type of organization (i.e., govt, consumer, trade assoc., etc.)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="Rating-type">
+		<xs:annotation>
+			<xs:documentation>A rating that may be assigned to content. Rating Valuations are specific to a given RatingsSystem.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Ordinal" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>'0' for EXMPT; 99 is used for UNRATED, '100' for BANNED; Values between 1 and 99 indicate progressively higher levels of restrictiveness.  Equally restrictive ratings should have same ordinal value (e.g. as when 'X' is deprecated and replaced with 'NC-17')</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="URI" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>auto-generated unique identifier</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LinkToLogo" type="xs:anyURI" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="MinRecAge" type="xs:nonNegativeInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Minimum recommended age. An age of 0 indicates no age-based recommendation have been provided Note that non-age related restrictions may still apply</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MinAge" type="xs:nonNegativeInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Minimum age for unsupervised individual. Absence of this attribute from a rating indicates content is inappropriate for all ages. An age of 0 indicates no age-based limitations apply. Note that non-age related restrictions may still apply</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MinAgeSupervised" type="xs:nonNegativeInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Minimum age for supervised individual (e.g., child with parent or guardian). Absence of this attribute from a rating indicates unsupervised individuals and supervised individuals are treated the same.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Deprecated" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Indicates if the Rating is no longer being assigned</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Override" type="mdcr:AdoptiveRegion-type" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>If present, supercedes Usage within the specified AdoptiveRegion.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="HPCApplicable" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>Indicates if the Rating is applicable to usage in a home Parental Control system. This is intended as a hint for systems such as UltraViolet and is not intended as a requirement regarding the usage of the Rating in a HPC implementation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Descriptor" type="mdcr:Descriptor-type" maxOccurs="unbounded"/>
+			<xs:element name="RatingReason" type="mdcr:RatingReason-type" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="ratingID"/>
+		<!-- <xs:annotation>
+			<xs:documentation>A rating that may be assigned to content. Rating Valuations are specific to a given RatingsSystem.</xs:documentation>
+		</xs:annotation> -->
+	</xs:complexType>
+	<!--*** Reason ***-->
+	<xs:complexType name="Reason-type">
+		<xs:sequence>
+			<xs:element name="Value" type="xs:string"/>
+			<xs:element name="GeneralDescriptor" type="mdcr:Descriptor-type" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="LinkToLogo" type="xs:anyURI" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="reasonID" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="RatingReason-type">
+		<xs:sequence>
+			<xs:element name="Value" type="xs:string"/>
+			<xs:element name="Descriptor" type="mdcr:Descriptor-type" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="LinkToLogo" type="xs:anyURI" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="reasonID" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="AdoptiveRegion-type">
+		<xs:complexContent>
+			<xs:extension base="md:Region-type">
+				<xs:sequence>
+					<xs:element name="SubRegion" type="xs:string" minOccurs="0"/>
+					<xs:element name="RegionName" type="xs:string" minOccurs="0"/>
+					<xs:element name="Usage" type="mdcr:Usage-type" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="Usage-type">
+		<xs:sequence>
+			<xs:element name="Media" type="mdcr:MediaOptions-type" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>If Media is not specified, rating system applies to all media types.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Environment" type="mdcr:DistributionOptions-type" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--*** Top-level definitions and elements ***-->
+	<xs:complexType name="RatingsSystem-type">
+		<xs:sequence>
+			<xs:element name="RatingSystemID">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="mdcr:RatingSystemID-type"/>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AdoptiveRegion" type="mdcr:AdoptiveRegion-type" maxOccurs="unbounded"/>
+			<xs:element name="LastChecked" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>indicates last time this encoding of the specification was checked and validated with the RatingOrg.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="URI" type="xs:anyURI">
+				<xs:annotation>
+					<xs:documentation>May represent a URL or URN</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RatingsOrg" type="mdcr:RatingsOrg-type"/>
+			<xs:element name="Rating" type="mdcr:Rating-type" maxOccurs="unbounded"/>
+			<xs:element name="Reason" type="mdcr:Reason-type" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="version" type="xs:int" use="optional"/>
+		<xs:attribute name="deprecated" type="xs:boolean" use="optional"/>
+		<xs:attribute name="lastSave" type="xs:dateTime" use="optional"/>
+		<xs:attribute name="lastValidated" type="xs:dateTime" use="optional"/>
+	</xs:complexType>
+	<xs:element name="RatingSystem">
+		<xs:annotation>
+			<xs:documentation> Used to define a specific rating system (e.g., MPAA)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="mdcr:RatingsSystem-type"/>
+			</xs:complexContent>
+		</xs:complexType>
+		<xs:unique name="UniqueValue">
+			<xs:selector xpath="mdcr:Rating"/>
+			<xs:field xpath="@ratingID"/>
+		</xs:unique>
+		<xs:unique name="UniqueReason">
+			<xs:selector xpath="mdcr:Reason"/>
+			<xs:field xpath="@reasonID"/>
+		</xs:unique>
+		<xs:key name="ReasonKey">
+			<xs:selector xpath=".//mdcr:Reason"/>
+			<xs:field xpath="@reasonID"/>
+		</xs:key>
+		<!-- xs:keyref name="ReasonREF" refer="mdcr:ReasonKey">
+			<xs:selector xpath="mdcr:RatingSystem/mdcr:Rating"/>
+			<xs:field xpath="mdcr:ApplicableReason/@id"/>
+		</xs:keyref  -->
+	</xs:element>
+	<xs:element name="RatingSystemSet">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="mdcr:RatingSystem" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

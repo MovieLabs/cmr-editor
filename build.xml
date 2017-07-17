@@ -1,0 +1,159 @@
+<project name="CMR Client" default="proj_build">
+	<!-- 
+	 ...............................................................
+	 Copyright 2013 Critical Architectures LLC
+	 http://criticalArchitectures.com/
+	 All rights reserved
+	 ...............................................................
+	-->
+	<!-- environment should be FIRST property set -->
+	<property environment="myenv" />
+	<!--  ================================================================  -->
+	<property name="proj.name" value="CMR_Editor" /> 
+	<property name="proj.home" value="." /> 
+	<!--  ================================================================  --> 
+	<property name="proj.version" value="v1.1" /> 
+	<property name="proj.package" value="com/callc/movielab" />
+	<property name="proj.build" value="${proj.home}/build" /> 
+	<property name="proj.lib" value="${proj.home}/lib" /> 
+	<property name="proj.src" value="${proj.home}/src" /> 
+	<property name="proj.jar" value="${proj.name}.jar"/>
+	<property name="proj.distro" value="${proj.home}/distro" /> 
+	<!-- ========================================================  -->
+	<!--  ==================== Compilation Options ==================== -->
+    <property name="jvm.target" value="1.5" /> 
+	<!-- ========================================================  -->
+	<path id="buildPath"> 
+		<fileset dir="${proj.lib}">
+			<include name="**/jdom*.jar" /> 
+			<include name="**/critArch*.jar" /> 
+		</fileset>
+	</path>
+	<path id="editorClassPath">
+		<filelist dir="${proj.lib}" files="proj.jar" />
+		<filelist id="callcJars" dir="${proj.lib}" files=" mise.jar, Singer.jar,  patbin153_13.jar" />
+		<filelist id="xmlJars" dir="${proj.lib}" files="jdom.jar, xercesImpl.jar, xml-apis.jar, jaxen-core.jar, jaxen-jdom.jar, saxpath.jar" />
+		<filelist id="graphJars" dir="${proj.lib}" files="bsh-2.0b2.jar, itext-1.02b.jar, epsgraphics.jar" />
+		<filelist id="jhelpJars" dir="${proj.lib}" files="jhall.jar" /> 
+		<filelist id="velocityJars" dir="${proj.lib}" files="velocity-1.4.jar,  velocity-dep-1.4.jar"/>
+		<fileset dir="${proj.lib}">
+			<include name="**/batik*.jar" /> 
+			<include name="**/jgraph*.jar" /> 
+		</fileset>
+	</path>
+
+
+	<!-- ========================================================  -->
+	<target name="helloWorld" description="default task that does nothing">
+		<echo message="Hello, Master. This is ANT" />
+	</target>
+	<target name="init">
+		<tstamp />
+		<echo message="${TODAY}, ${TSTAMP}" />
+		<echo message="JAVA_HOME is ${myenv.JAVA_HOME}" />
+	</target>
+	 
+	
+	<target name="moveRsrcs">
+		<!-- Copy resources -->
+		<mkdir dir="./rsrcDir" />
+		<delete includeEmptyDirs="true">
+			<fileset dir="./rsrcDir" />
+		</delete>
+		<mkdir dir="${proj.build}" />
+		<copy todir="./rsrcDir" includeEmptyDirs="false"> 
+			<fileset dir="${proj.src}/plugins/browserplugin" excludes="**/*.java" />
+			<fileset dir="${proj.src}/plugins/bshplugin" excludes="**/*.java" />
+			<fileset dir="${proj.src}/plugins/codecplugin" excludes="**/*.java" />
+			<fileset dir="${proj.src}/plugins/epsplugin" excludes="**/*.java" />
+			<fileset dir="${proj.src}/plugins/i18nplugin" excludes="**/*.java" />
+			<fileset dir="${proj.src}/plugins/jgxplugin" excludes="**/*.java" />
+			<fileset dir="${proj.src}/plugins/l2fplugin" excludes="**/*.java" />
+			<fileset dir="${proj.src}/plugins/layoutplugin" excludes="**/*.java" />
+			<fileset dir="${proj.src}/plugins/pdfplugin" excludes="**/*.java" />
+			<fileset dir="${proj.src}/plugins/svgplugin" excludes="**/*.java" />
+			<fileset dir="${proj.src}/plugins/twikiplugin" excludes="**/*.java" />
+		</copy>
+	</target>
+	
+ 
+	<target depends="helloWorld" name="proj_build">
+		<mkdir dir="${proj.build}" />
+		<delete includeEmptyDirs="true">
+			<fileset dir="${proj.build}" />
+		</delete>
+		<mkdir dir="${proj.build}" /> 
+		<javac 
+			debug="true" 
+			deprecation="true" 
+            target="${jvm.target}"
+            source="${jvm.target}"
+			destdir="${proj.build}" 
+			srcdir="${proj.src}">
+			<classpath>
+				<path refid="buildPath" />
+			</classpath>
+		</javac>
+	</target>
+ 
+	<target depends="proj_build" name="proj_jar">
+		<!-- create a build.prop file in the build directory. -->
+		<tstamp />
+		<echo file="./build/${proj.package}/build.properties" append="false"># Project Build properties
+		version=${proj.version}
+		buildDate=${TODAY}
+		buildTime=${TSTAMP}
+		</echo>
+		<!-- Copy in-jar resources (e.g., images)-->
+		<copy todir="./build" includeEmptyDirs="false">
+			<fileset dir="${proj.src}" excludes="**/*.java" />
+		</copy>
+		<jar basedir="${proj.build}" compress="true" jarfile="${proj.lib}/${proj.jar}">
+			<exclude name="**/*.java" />
+			<exclude name="**/*.form" />
+			<exclude name="lib/*.*" />
+		</jar>
+	</target>
+	
+ 
+	<target depends="proj_jar " name="binaryDist_Zip" description="creates a binary distribution package"> 
+		<mkdir dir="${proj.distro}" />
+		<delete includeEmptyDirs="true">
+			<fileset dir="${proj.distro}" />
+		</delete>
+		<mkdir dir="${proj.distro}" /> 
+		<copy todir="${proj.distro}/lib">
+			<fileset dir="${proj.lib}">
+				<include name="*.jar" />  
+			</fileset>
+		</copy>
+		<copy todir="${proj.distro}/resources/transforms">
+			<fileset dir="${proj.home}/resources/transforms">
+				<include name="*.xslt" />  
+			</fileset>
+		</copy>
+		<copy todir="${proj.distro}/resources">
+			<fileset dir="${proj.home}/resources">
+				<include name="*.properties" />  
+				<include name="*.xsd" />  
+			</fileset>
+		</copy> 
+		<copy todir="${proj.distro}/doc">
+			<fileset dir="${proj.home}/doc">
+				<include name="EditorUsersGuide_files/*.*" />  
+				<include name="EditorUsersGuide.html" />  
+			</fileset>
+		</copy> 
+		<copy todir="${proj.distro}">
+			<fileset dir="${proj.home}"> 
+				<include name="*.bat" />  
+				<include name="*.bash" />  
+				<include name="README.txt" />  
+			</fileset>
+		</copy> 
+		<delete file="./${proj.name}_bin_${proj.version}.zip"/>
+		<zip destfile="./${proj.name}_bin_${proj.version}.zip" basedir="${proj.distro}" update="true" /> 
+	</target>
+
+	 
+</project>
