@@ -31,33 +31,33 @@
         	<nav id="site-navigation" class="main-nav" role="navigation" aria-label="Primary Menu">
         			<div class="menu-main-container">
                 <ul id="menu-main" class="primary-menu">
-                  <li id="menu-item-24" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-24" aria-haspopup="true"><a href="http://dev.saltedstone.com/clients/movieLabs/who-we-are/">Who We Are</a><button class="dropdown-toggle" aria-expanded="false"><span class="screen-reader-text">expand child menu</span></button>
+                  <li id="menu-item-24" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-24" aria-haspopup="true"><a href="/who-we-are/">Who We Are</a><button class="dropdown-toggle" aria-expanded="false"><span class="screen-reader-text">expand child menu</span></button>
                     <ul class="sub-menu">
-                    	<li id="menu-item-26" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-26"><a href="http://dev.saltedstone.com/clients/movieLabs/who-we-are/team/">Team</a></li>
-                    	<li id="menu-item-212" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-212"><a href="http://dev.saltedstone.com/clients/movieLabs/who-we-are/how-we-run">How We Run</a></li>
-                    	<li id="menu-item-211" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-211"><a href="http://dev.saltedstone.com/clients/movieLabs/who-we-are/partners/">Partners</a></li>
-                    	<li id="menu-item-27" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27"><a href="http://dev.saltedstone.com/clients/movieLabs/who-we-are/careers/">Careers</a></li>
+                    	<li id="menu-item-26" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-26"><a href="/who-we-are/team/">Team</a></li>
+                    	<li id="menu-item-212" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-212"><a href="/who-we-are/how-we-run">How We Run</a></li>
+                    	<li id="menu-item-211" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-211"><a href="/who-we-are/partners/">Partners</a></li>
+                    	<li id="menu-item-27" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27"><a href="/who-we-are/careers/">Careers</a></li>
                     </ul>
                   </li>
-                  <li id="menu-item-28" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-28"><a href="http://dev.saltedstone.com/clients/movieLabs/what-we-do/">What We Do</a></li>
-                  <li id="menu-item-271" class="menu-item menu-item-type-post_type menu-item-object-page current-page-ancestor current-menu-ancestor current-menu-parent current-page-parent current_page_parent current_page_ancestor menu-item-has-children menu-item-271" aria-haspopup="true"><a href="http://dev.saltedstone.com/clients/movieLabs/solutions-specifications/">Solutions &amp; Specifications</a><button class="dropdown-toggle" aria-expanded="false"><span class="screen-reader-text">expand child menu</span></button>
+                  <li id="menu-item-28" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-28"><a href="/what-we-do/">What We Do</a></li>
+                  <li id="menu-item-271" class="menu-item menu-item-type-post_type menu-item-object-page current-page-ancestor current-menu-ancestor current-menu-parent current-page-parent current_page_parent current_page_ancestor menu-item-has-children menu-item-271" aria-haspopup="true"><a href="/solutions-specifications/">Solutions &amp; Specifications</a><button class="dropdown-toggle" aria-expanded="false"><span class="screen-reader-text">expand child menu</span></button>
                   <ul class="sub-menu">
-                  	<li id="menu-item-223" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-141 current_page_item menu-item-223"><a href="http://dev.saltedstone.com/clients/movieLabs/solutions-specifications/movielabs-digital-distribution-framework-mddf/">MovieLabs Digital Distribution Framework (MDDF)</a></li>
-                  	<li id="menu-item-229" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-229"><a href="http://dev.saltedstone.com/clients/movieLabs/solutions-specifications/ultra-hd-and-hdr/">Ultra HD and HDR</a></li>
-                  	<li id="menu-item-232" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-232"><a href="http://dev.saltedstone.com/clients/movieLabs/solutions-specifications/enhanced-content-protection-ecp/">Enhanced Content Protection (ECP)</a></li>
-                  	<li id="menu-item-235" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-235"><a href="http://dev.saltedstone.com/clients/movieLabs/solutions-specifications/digital-extras/">Digital extras</a></li>
-                  	<li id="menu-item-241" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-241"><a href="http://dev.saltedstone.com/clients/movieLabs/solutions-specifications/common-metadata/">Common Metadata</a></li>
-                  	<li id="menu-item-244" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-244"><a href="http://dev.saltedstone.com/clients/movieLabs/solutions-specifications/ema-avails/">EMA Avails</a></li>
-                  	<li id="menu-item-247" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-247"><a href="http://dev.saltedstone.com/clients/movieLabs/solutions-specifications/media-manifest/">Media Manifest</a></li>
-                  	<li id="menu-item-251" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-251"><a href="http://dev.saltedstone.com/clients/movieLabs/solutions-specifications/media-manifest-core/">Media Manifest Core</a></li>
-                  	<li id="menu-item-254" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-254"><a href="http://dev.saltedstone.com/clients/movieLabs/solutions-specifications/media-entertainment-core-metadata/">Media Entertainment Core Metadata</a></li>
-                  	<li id="menu-item-257" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-257"><a href="http://dev.saltedstone.com/clients/movieLabs/solutions-specifications/ratings/">Ratings</a></li>
-                  	<li id="menu-item-260" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-260"><a href="http://dev.saltedstone.com/clients/movieLabs/solutions-specifications/automated-content-notification-system/">Automated Content Notification System</a></li>
+                  	<li id="menu-item-223" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-141 current_page_item menu-item-223"><a href="/solutions-specifications/movielabs-digital-distribution-framework-mddf/">MovieLabs Digital Distribution Framework (MDDF)</a></li>
+                  	<li id="menu-item-229" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-229"><a href="/solutions-specifications/ultra-hd-and-hdr/">Ultra HD and HDR</a></li>
+                  	<li id="menu-item-232" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-232"><a href="/solutions-specifications/enhanced-content-protection-ecp/">Enhanced Content Protection (ECP)</a></li>
+                  	<li id="menu-item-235" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-235"><a href="/solutions-specifications/digital-extras/">Digital extras</a></li>
+                  	<li id="menu-item-241" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-241"><a href="/solutions-specifications/common-metadata/">Common Metadata</a></li>
+                  	<li id="menu-item-244" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-244"><a href="/solutions-specifications/ema-avails/">EMA Avails</a></li>
+                  	<li id="menu-item-247" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-247"><a href="/solutions-specifications/media-manifest/">Media Manifest</a></li>
+                  	<li id="menu-item-251" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-251"><a href="/solutions-specifications/media-manifest-core/">Media Manifest Core</a></li>
+                  	<li id="menu-item-254" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-254"><a href="/solutions-specifications/media-entertainment-core-metadata/">Media Entertainment Core Metadata</a></li>
+                  	<li id="menu-item-257" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-257"><a href="/solutions-specifications/ratings/">Ratings</a></li>
+                  	<li id="menu-item-260" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-260"><a href="/solutions-specifications/automated-content-notification-system/">Automated Content Notification System</a></li>
                   </ul>
                 </li>
-                <li id="menu-item-30" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-30"><a href="http://dev.saltedstone.com/clients/movieLabs/outreach/">Outreach</a></li>
-                <li id="menu-item-31" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-31"><a href="http://dev.saltedstone.com/clients/movieLabs/news/">News</a></li>
-                <li id="menu-item-32" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-32"><a href="http://dev.saltedstone.com/clients/movieLabs/contact-us/">Contact Us</a></li>
+                <li id="menu-item-30" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-30"><a href="/outreach/">Outreach</a></li>
+                <li id="menu-item-31" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-31"><a href="/news/">News</a></li>
+                <li id="menu-item-32" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-32"><a href="/contact-us/">Contact Us</a></li>
               </ul>
             </div>
           </nav><!-- .main-navigation -->
@@ -73,17 +73,17 @@
 <footer id="colophon" class="site-footer bg-blue ta-center" role="contentinfo">
   <div class="page-center">
 
-      <span class="footer-logo"><a href="http://dev.saltedstone.com/clients/movieLabs/" rel="home">Movie Labs</a></span>
+      <span class="footer-logo"><a href="/" rel="home">Movie Labs</a></span>
 
       <nav class="footer-nav" role="navigation" aria-label="Footer Menu">
         <div class="menu-footer-container">
           <ul id="menu-footer" class="footer-menu">
-            <li id="menu-item-33" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-33"><a href="http://dev.saltedstone.com/clients/movieLabs/who-we-are/">Who We Are</a></li>
-            <li id="menu-item-34" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-34"><a href="http://dev.saltedstone.com/clients/movieLabs/what-we-do/">What We Do</a></li>
-            <li id="menu-item-35" class="menu-item menu-item-type-post_type menu-item-object-page current-page-ancestor menu-item-35"><a href="http://dev.saltedstone.com/clients/movieLabs/solutions-specifications/">Solutions &amp; Specifications</a></li>
-            <li id="menu-item-36" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-36"><a href="http://dev.saltedstone.com/clients/movieLabs/outreach/">Outreach</a></li>
-            <li id="menu-item-37" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-37"><a href="http://dev.saltedstone.com/clients/movieLabs/news/">News</a></li>
-            <li id="menu-item-38" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-38"><a href="http://dev.saltedstone.com/clients/movieLabs/contact-us/">Contact Us</a></li>
+            <li id="menu-item-33" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-33"><a href="/who-we-are/">Who We Are</a></li>
+            <li id="menu-item-34" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-34"><a href="/what-we-do/">What We Do</a></li>
+            <li id="menu-item-35" class="menu-item menu-item-type-post_type menu-item-object-page current-page-ancestor menu-item-35"><a href="/solutions-specifications/">Solutions &amp; Specifications</a></li>
+            <li id="menu-item-36" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-36"><a href="/outreach/">Outreach</a></li>
+            <li id="menu-item-37" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-37"><a href="/news/">News</a></li>
+            <li id="menu-item-38" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-38"><a href="/contact-us/">Contact Us</a></li>
           </ul>
         </div>
       </nav>
@@ -100,10 +100,10 @@
           <div class="menu-terms-policy-container">
             <ul id="menu-terms-policy" class="menu">
               <li id="menu-item-43" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-43">
-                <a href="http://dev.saltedstone.com/clients/movieLabs/terms-of-use/">Terms of Use</a>
+                <a href="/terms-of-use/">Terms of Use</a>
               </li>
               <li id="menu-item-44" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-44">
-                <a href="http://dev.saltedstone.com/clients/movieLabs/privacy-policy/">Privacy Policy</a>
+                <a href="/privacy-policy/">Privacy Policy</a>
               </li>
             </ul>
           </div>
@@ -113,5 +113,64 @@
 
   </div>
 </footer>
+
+<script>
+$(document).ready(function(){
+  //$('.hero h1').text( $(document).find("title").text().split('-')[0] );
+
+  $('#menu-toggle').click(function(){
+    if ( $('.site-header').hasClass('toggled-on') ){
+      $('.site-header').removeClass('toggled-on');
+      $('.site-header-menu').removeClass('toggled-on');
+      $('.primary-menu').removeClass('toggled-on');
+    }
+    else{
+      $('.site-header').addClass('toggled-on');
+      $('.site-header-menu').addClass('toggled-on');
+      $('.primary-menu').addClass('toggled-on');
+    }
+  });
+
+  $('.dropdown-toggle').click(function(){
+    if ( $(this).hasClass('toggled-on') ){
+      $(this).removeClass('toggled-on');
+      $(this).siblings('.sub-menu').removeClass('toggled-on');
+    }
+    else{
+      $(this).addClass('toggled-on');
+      $(this).siblings('.sub-menu').addClass('toggled-on');
+    }
+  });
+
+});
+</script>
+<script>
+function isTouchDevice(){
+    return typeof window.ontouchstart !== 'undefined';
+}
+jQuery(document).ready(function(){
+	if ( isTouchDevice() == true ){
+        jQuery('.site-header').addClass('touch-device');
+		console.log('touch device');
+	}
+	else{
+		console.log('not touch device');
+	}
+});
+</script>
+<script>
+function isTouchDevice(){
+    return typeof window.ontouchstart !== 'undefined';
+}
+jQuery(document).ready(function(){
+	if ( isTouchDevice() == true ){
+        jQuery('.site-header').addClass('touch-device');
+		console.log('touch device');
+	}
+	else{
+		console.log('not touch device');
+	}
+});
+</script>
 	</xsl:template>
 </xsl:stylesheet>
