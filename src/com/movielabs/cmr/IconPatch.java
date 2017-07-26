@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class IconPatch {
 
@@ -68,12 +69,15 @@ public class IconPatch {
 		return urlList;
 	}
 
-	private static void loadFiles(String dir, List<String> urls) {
-		for (int i = 0; i < urls.size(); i++) {
+	private static void loadFiles(String dir, Map<String, String> urls) {
+		Set<String> keySet = urls.keySet();
+		String[] keyList = keySet.toArray(new String[keySet.size()]);
+		for (int i = 0; i < keyList.length; i++) {
 			try {
-				URL website = new URL(urls.get(i));
+				String name = keyList[i];
+				URL website = new URL(urls.get(name));
 				ReadableByteChannel rbc = Channels.newChannel(website.openStream());
-				FileOutputStream fos = new FileOutputStream(dir + "/file" + i + ".jpeg");
+				FileOutputStream fos = new FileOutputStream(dir + "/" + name);
 				fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
 				fos.close();
 			} catch (MalformedURLException e) {
