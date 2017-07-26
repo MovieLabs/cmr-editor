@@ -316,10 +316,9 @@ public class BatchXSLT {
 			}
 		}
 		// use version WITH the 'Notes' when generating HTML
-		Document masterDoc = new Document(allSystemsForHtml);
 		try {
 			// transformIndex();
-			genSummary1(masterDoc);
+			genSummary1(allSystemsForHtml);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -351,8 +350,9 @@ public class BatchXSLT {
 		}
 	}
 
-	private void genSummary1(Document masterDoc) throws JDOMException,
-			TransformerException, IOException {
+	private void genSummary1(Element rootEl) throws JDOMException,
+			TransformerException, IOException { 
+		Document masterDoc = new Document(rootEl);
 		String outputFileName = new String(destHtmlDir + "/Summary.html");
 		DOMOutputter converter = new DOMOutputter();
 		String xsltFileName = new String(xsltDirF + "/WrappedSummaryV2.xslt");
@@ -366,7 +366,8 @@ public class BatchXSLT {
 		fos.flush();
 		fos.close();
 	}
-
+	
+	
 	/**
 	 * @param outputFileName
 	 * @param xmlStuff
@@ -424,8 +425,7 @@ public class BatchXSLT {
 		 * work with the stylesheet you specify. This method call also processes
 		 * the stylesheet into a compiled Templates object.
 		 */
-		String xsltFileName = new String(xsltDirF + "/WrappedRatingSysDoc.xslt");
-		// String xsltFileName = new String(xsltDirF + "/RatingSysDoc.xslt");
+		String xsltFileName = new String(xsltDirF + "/WrappedRatingSysDoc.xslt"); 
 		Transformer transformer = tFactory.newTransformer(new StreamSource(
 				xsltFileName));
 		transformer.setParameter("identifier", new Integer(identifier));
@@ -437,13 +437,6 @@ public class BatchXSLT {
 				outputFileName), "UTF-8");
 		transformer.transform(new StreamSource(inputFile),
 				new StreamResult(osw));
-		// add it to the set to be included in the index
-		// Element rsEl = new Element("RFile");
-		// indexRootEl.addContent(rsEl);
-		// rsEl.setAttribute("htmlFile", outputFileName.replaceAll("\\\\",
-		// "/"));
-		// rsEl.setAttribute("xmlFile", inputFile.getPath()
-		// .replaceAll("\\\\", "/"));
 	}
 
 	private Element getAsXml(File inputFile) throws JDOMException, IOException {
