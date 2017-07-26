@@ -40,7 +40,7 @@ public class IconPatch {
 		}
 	}
 
-	public static void loadFiles(String dir, List<String> urls) {
+	private static void loadFiles(String dir, List<String> urls) {
 		for (int i = 0; i < urls.size(); i++) {
 			try {
 				URL website = new URL(urls.get(i));
