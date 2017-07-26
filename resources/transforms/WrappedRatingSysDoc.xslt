@@ -17,7 +17,6 @@
 	</xsl:variable>
 	<xsl:template match="/">
 		<html xmlns="http://www.w3.org/1999/xhtml">
-			<!-- InstanceBegin template="/Templates/MovieLab_template.dwt" codeOutsideHTMLIsLocked="false" -->
 			<head>
 				<!-- InstanceBeginEditable name="doctitle" -->
 				<xsl:for-each select="//mdcr:RatingSystem">
@@ -83,6 +82,9 @@
 			<div id="{$hdrDivID}">
 				<h2>
 					<xsl:value-of select="mdcr:RatingSystemID/mdcr:System" />
+					(
+					<xsl:value-of select="mdcr:RatingSystemID/mdcr:Region/mdcr:RegionName" />
+					)
 				</h2>
 			</div>
 			<p class="title">

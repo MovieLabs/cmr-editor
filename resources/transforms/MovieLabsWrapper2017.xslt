@@ -11,9 +11,9 @@
 	<xsl:template name="stdHeader">
 				<meta http-equiv="Content-Type" content="text/html;  charset=utf-8"/>
 				<link rel="Shortcut Icon" href="/images/ml_icon.ico"/> 
-				<script src="https://use.typekit.net/rjt6miv.js"></script>
+				<script src="https://use.typekit.net/rjt6miv.js"> </script>
 				<script>try{Typekit.load({ async: false });}catch(e){}</script>
-				<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"> </script>
 				<link href="../../../../style/movielab-2017.css" rel="stylesheet" type="text/css" />
 	</xsl:template>
 	<xsl:template name="topPanel">   
