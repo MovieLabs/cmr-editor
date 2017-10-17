@@ -21,6 +21,7 @@ import com.movielabs.cmr.client.RatingsEditor;
 import com.movielabs.cmr.client.resources.GuiSettings;
 import com.movielabs.cmr.client.rspec.RatingSystem;
 import com.movielabs.cmr.client.util.CountryCode;
+import com.movielabs.cmr.client.util.TimeStamp;
 
 import java.awt.BorderLayout;
 
@@ -35,11 +36,10 @@ import java.awt.GridBagLayout;
 
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
-import javax.swing.text.JTextComponent;
-
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.JTextField;
@@ -51,6 +51,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JButton;
 
 /**
  * 
@@ -79,6 +80,8 @@ public class RatingSystemPanel extends JPanel {
 	private JComboBox deprecatedComboBox;
 	private RatingsEditor editor;
 	private JTextArea notesField;
+	private JButton btnNewButton;
+	private JTextField lastCheckedTxtField;
 
 	/**
 	 * Create the panel.
@@ -95,11 +98,9 @@ public class RatingSystemPanel extends JPanel {
 
 	private JLabel getPanelLabel() {
 		if (panelLabel == null) {
-			String text = editor.getLanguage().getProperty(
-					propertyPrefix + "panel-label", "Properties");
+			String text = editor.getLanguage().getProperty(propertyPrefix + "panel-label", "Properties");
 			panelLabel = new JLabel(text);
-			panelLabel.setFont(new Font("Arial", panelLabel.getFont()
-					.getStyle(), panelLabel.getFont().getSize() + 2));
+			panelLabel.setFont(new Font("Arial", panelLabel.getFont().getStyle(), panelLabel.getFont().getSize() + 2));
 			panelLabel.setHorizontalAlignment(SwingConstants.CENTER);
 			panelLabel.setBackground(GuiSettings.backgroundPanelLabel);
 			panelLabel.setOpaque(true);
@@ -117,173 +118,195 @@ public class RatingSystemPanel extends JPanel {
 			 * Defining a 12 column grid
 			 */
 			GridBagLayout gbl_panel = new GridBagLayout();
-			gbl_panel.columnWidths = new int[] { 160, 0, 0, 0, 0, 0, 0, 0, 0,
-					0, 0, 0, 0, 0 };
-			gbl_panel.columnWeights = new double[] { 0.0, 0.0, 0.2, 0.0, 0.0,
-					0.2, 0.0, 0.0, 0.2, 0.0, 0.0, 0, 0, 0, 0, Double.MIN_VALUE };
+			gbl_panel.columnWidths = new int[] { 160, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+			gbl_panel.columnWeights = new double[] { 0.0, 0.0, 0.2, 0.0, 0.0, 0.2, 0.0, 1.0, 0.2, 0.0, 0.0, 0, 0, 0 };
 			/*
 			 * Defining a 7 rows with last weighted to act as a filler...
 			 */
 			gbl_panel.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-			gbl_panel.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-					0.0, 0.0, 1.0 };
+			gbl_panel.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0 };
 			panel.setLayout(gbl_panel);
 
 			// ............ ROW 1 ......................
 			/*
 			 * System ID....
 			 */
-			GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
-			gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
-			gbc_lblNewLabel_1.gridx = 0;
-			gbc_lblNewLabel_1.gridy = 0;
-			panel.add(getLblNewLabel_1(), gbc_lblNewLabel_1);
-			GridBagConstraints gbc_txtTbd = new GridBagConstraints();
-			gbc_txtTbd.gridwidth = 1;
-			gbc_txtTbd.fill = GridBagConstraints.HORIZONTAL;
-			gbc_txtTbd.anchor = GridBagConstraints.NORTHWEST;
-			// gbc_txtTbd.weightx = 0.6;
-			gbc_txtTbd.insets = new Insets(0, 0, 5, 5);
-			gbc_txtTbd.gridx = 2;
-			gbc_txtTbd.gridy = 0;
-			panel.add(getTxtFieldSystemID(), gbc_txtTbd);
+			{
+				GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
+				gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
+				gbc_lblNewLabel_1.gridx = 0;
+				gbc_lblNewLabel_1.gridy = 0;
+				getLblNewLabel_1();
+				panel.add(lblSysID, gbc_lblNewLabel_1);
+				GridBagConstraints gbc_txtTbd = new GridBagConstraints();
+				gbc_txtTbd.gridwidth = 1;
+				gbc_txtTbd.fill = GridBagConstraints.HORIZONTAL;
+				gbc_txtTbd.anchor = GridBagConstraints.NORTHWEST;
+				// gbc_txtTbd.weightx = 0.6;
+				gbc_txtTbd.insets = new Insets(0, 0, 5, 5);
+				gbc_txtTbd.gridx = 2;
+				gbc_txtTbd.gridy = 0;
+				panel.add(getTxtFieldSystemID(), gbc_txtTbd);
+			}
 
 			// ................
 			// VERSION....
-			/* ---------------------------
-			GridBagConstraints gbc_vLabel = new GridBagConstraints();
-			gbc_vLabel.insets = new Insets(0, 20, 0, 5);
-			gbc_vLabel.gridx = 4;
-			gbc_vLabel.gridy = 0;
-			gbc_vLabel.anchor = GridBagConstraints.NORTHEAST;
-			// gbc_vLabel.weightx = 0.3;
-			JLabel label = setLabel(5);
-			panel.add(label, gbc_vLabel);
-			GridBagConstraints gbc_vField = new GridBagConstraints();
-			gbc_vField.insets = new Insets(0, 10, 5, 0);
-			gbc_vField.gridx = 5; // 6;
-			gbc_vField.gridy = 0;
-			gbc_vField.gridwidth = 1;
-			gbc_vField.weightx = 0.3;
-			gbc_vField.anchor = GridBagConstraints.NORTHWEST;
-			gbc_vField.fill = GridBagConstraints.HORIZONTAL;
-			panel.add(getVersionField(), gbc_vField);
-	--------------------  */
+			/*
+			 * --------------------------- GridBagConstraints gbc_vLabel = new
+			 * GridBagConstraints(); gbc_vLabel.insets = new Insets(0, 20, 0,
+			 * 5); gbc_vLabel.gridx = 4; gbc_vLabel.gridy = 0; gbc_vLabel.anchor
+			 * = GridBagConstraints.NORTHEAST; // gbc_vLabel.weightx = 0.3;
+			 * JLabel label = setLabel(5); panel.add(label, gbc_vLabel);
+			 * GridBagConstraints gbc_vField = new GridBagConstraints();
+			 * gbc_vField.insets = new Insets(0, 10, 5, 0); gbc_vField.gridx =
+			 * 5; // 6; gbc_vField.gridy = 0; gbc_vField.gridwidth = 1;
+			 * gbc_vField.weightx = 0.3; gbc_vField.anchor =
+			 * GridBagConstraints.NORTHWEST; gbc_vField.fill =
+			 * GridBagConstraints.HORIZONTAL; panel.add(getVersionField(),
+			 * gbc_vField); --------------------
+			 */
 			// ................
 			// DEPRECATED:
-
-			GridBagConstraints gbcDepLabel = new GridBagConstraints();
-			gbcDepLabel.insets = new Insets(0, 20, 0, 5);
-			gbcDepLabel.gridx = 6;
-			gbcDepLabel.gridy = 0;
-			gbcDepLabel.anchor = GridBagConstraints.NORTHEAST;
-			panel.add(setLabel(6), gbcDepLabel);
-			GridBagConstraints gbcDepWidget = new GridBagConstraints();
-			gbcDepWidget.insets = new Insets(0, 10, 5, 0);
-			gbcDepWidget.gridx = 7;
-			gbcDepWidget.gridy = 0;
-			gbcDepWidget.gridwidth = 1;
-			gbcDepWidget.weightx = 0.0;
-			gbcDepWidget.anchor = GridBagConstraints.NORTHWEST;
-			panel.add(getDepWidget(), gbcDepWidget);
+			{
+				GridBagConstraints gbcDepLabel = new GridBagConstraints();
+				gbcDepLabel.insets = new Insets(0, 20, 5, 5);
+				gbcDepLabel.gridx = 6;
+				gbcDepLabel.gridy = 0;
+				gbcDepLabel.anchor = GridBagConstraints.NORTHEAST;
+				JLabel depLabel = new JLabel("Deprecated");
+				panel.add(depLabel, gbcDepLabel);
+				GridBagConstraints gbcDepWidget = new GridBagConstraints();
+				gbcDepWidget.insets = new Insets(0, 10, 5, 5);
+				gbcDepWidget.gridx = 7;
+				gbcDepWidget.gridy = 0;
+				gbcDepWidget.gridwidth = 1;
+				gbcDepWidget.weightx = 0.0;
+				gbcDepWidget.anchor = GridBagConstraints.NORTHWEST;
+				panel.add(getDepWidget(), gbcDepWidget);
+			}
 
 			// ............ ROW 2 ......................
-			// URI
-			GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
-			gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
-			gbc_lblNewLabel_2.gridx = 0;
-			gbc_lblNewLabel_2.gridy = 1;
-			panel.add(getLblNewLabel_2(), gbc_lblNewLabel_2);
-			GridBagConstraints gbc_uriField = new GridBagConstraints();
-			gbc_uriField.gridwidth = 4;
-			gbc_uriField.insets = new Insets(0, 0, 5, 5);
-			gbc_uriField.fill = GridBagConstraints.HORIZONTAL;
-			gbc_uriField.gridx = 2;
-			gbc_uriField.gridy = 1;
-			panel.add(getTextFieldUri(), gbc_uriField);
-
-			// VERSION....
-			GridBagConstraints gbc_vLabel = new GridBagConstraints();
-			gbc_vLabel.insets = new Insets(0, 20, 0, 5);
-			gbc_vLabel.gridx = 6;
-			gbc_vLabel.gridy = 1;
-			gbc_vLabel.anchor = GridBagConstraints.NORTHEAST;
-			// gbc_vLabel.weightx = 0.3;
-			JLabel label = setLabel(5);
-			panel.add(label, gbc_vLabel);
-			GridBagConstraints gbc_vField = new GridBagConstraints();
-			gbc_vField.insets = new Insets(0, 10, 5, 0);
-			gbc_vField.gridx = 7; // 6;
-			gbc_vField.gridy = 1;
-			gbc_vField.gridwidth = 1;
-			gbc_vField.weightx = 0.3;
-			gbc_vField.anchor = GridBagConstraints.NORTHWEST;
-			gbc_vField.fill = GridBagConstraints.HORIZONTAL;
-			panel.add(getVersionField(), gbc_vField);
-			
+			{
+				// URI
+				GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
+				gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
+				gbc_lblNewLabel_2.gridx = 0;
+				gbc_lblNewLabel_2.gridy = 1;
+				getLblNewLabel_2();
+				panel.add(lblSysURI, gbc_lblNewLabel_2);
+				GridBagConstraints gbc_uriField = new GridBagConstraints();
+				gbc_uriField.gridwidth = 4;
+				gbc_uriField.insets = new Insets(0, 0, 5, 5);
+				gbc_uriField.fill = GridBagConstraints.HORIZONTAL;
+				gbc_uriField.gridx = 2;
+				gbc_uriField.gridy = 1;
+				panel.add(getTextFieldUri(), gbc_uriField);
+			}
+			{
+				// VERSION....
+				GridBagConstraints gbc_vLabel = new GridBagConstraints();
+				gbc_vLabel.insets = new Insets(0, 20, 5, 5);
+				gbc_vLabel.gridx = 6;
+				gbc_vLabel.gridy = 1;
+				gbc_vLabel.anchor = GridBagConstraints.NORTHEAST;
+				// String[] text = getLocalizedText(5);
+				JLabel versionLabel = new JLabel("Version");
+				panel.add(versionLabel, gbc_vLabel);
+				GridBagConstraints gbc_vField = new GridBagConstraints();
+				gbc_vField.insets = new Insets(0, 10, 5, 5);
+				gbc_vField.gridx = 7; // 6;
+				gbc_vField.gridy = 1;
+				gbc_vField.gridwidth = 1;
+				gbc_vField.weightx = 0.3;
+				gbc_vField.anchor = GridBagConstraints.NORTHWEST;
+				gbc_vField.fill = GridBagConstraints.HORIZONTAL;
+				panel.add(getVersionField(), gbc_vField);
+			}
 			// ............ ROW 3 ......................
-			// Region
-			GridBagConstraints gbc_lblRegion = new GridBagConstraints();
-			gbc_lblRegion.insets = new Insets(0, 0, 5, 5);
-			gbc_lblRegion.gridx = 0;
-			gbc_lblRegion.gridy = 2;
-			panel.add(getLblRegion(), gbc_lblRegion);
-			// Region[0]
 			int regionCellWidth = 3;
 			int rCnt = 0;
-			GridBagConstraints gbcRegion01 = new GridBagConstraints();
-			gbcRegion01.insets = new Insets(0, 0, 5, 5);
-			// gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
-			gbcRegion01.gridy = 2;
-			gbcRegion01.gridx = 2 + (regionCellWidth * rCnt);
-			gbcRegion01.gridwidth = regionCellWidth;
-			panel.add(getRegionComboBox(), gbcRegion01);
+			{
+				// Region
+				GridBagConstraints gbc_lblRegion = new GridBagConstraints();
+				gbc_lblRegion.insets = new Insets(0, 0, 5, 5);
+				gbc_lblRegion.gridx = 0;
+				gbc_lblRegion.gridy = 2;
+				panel.add(getLblRegion(), gbc_lblRegion);
+				// Region[0]
+				GridBagConstraints gbcRegion01 = new GridBagConstraints();
+				gbcRegion01.insets = new Insets(0, 0, 5, 5);
+				// gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
+				gbcRegion01.gridy = 2;
+				gbcRegion01.gridx = 2 + (regionCellWidth * rCnt);
+				gbcRegion01.gridwidth = regionCellWidth;
+				panel.add(getRegionComboBox(), gbcRegion01);
+			}
 
 			// ............ ROW 4 ......................
-			// and the sub-region too....
-			GridBagConstraints gbc_subRegionField = new GridBagConstraints();
-			gbc_subRegionField.insets = new Insets(0, 0, 5, 5);
-			gbc_subRegionField.gridy = 3;
-			gbc_subRegionField.gridx = 2 + (regionCellWidth * rCnt);
-			gbc_subRegionField.gridwidth = regionCellWidth;
-			gbc_subRegionField.fill = GridBagConstraints.HORIZONTAL;
-			panel.add(getSubRegionField(rCnt), gbc_subRegionField);
-
+			{
+				// and the sub-region too....
+				GridBagConstraints gbc_subRegionField = new GridBagConstraints();
+				gbc_subRegionField.insets = new Insets(0, 0, 5, 5);
+				gbc_subRegionField.gridy = 3;
+				gbc_subRegionField.gridx = 2 + (regionCellWidth * rCnt);
+				gbc_subRegionField.gridwidth = regionCellWidth;
+				gbc_subRegionField.fill = GridBagConstraints.HORIZONTAL;
+				panel.add(getSubRegionField(rCnt), gbc_subRegionField);
+			}
 			// .............
-			// SubRegion LABEL
-			GridBagConstraints gbc_lblSubregion = new GridBagConstraints();
-			gbc_lblSubregion.insets = new Insets(0, 0, 5, 5);
-			gbc_lblSubregion.gridx = 0;
-			gbc_lblSubregion.gridy = 3;
-			panel.add(getLblSubregion(), gbc_lblSubregion);
-
+			{
+				// SubRegion LABEL
+				GridBagConstraints gbc_lblSubregion = new GridBagConstraints();
+				gbc_lblSubregion.insets = new Insets(0, 0, 5, 5);
+				gbc_lblSubregion.gridx = 0;
+				gbc_lblSubregion.gridy = 3;
+				panel.add(new JLabel("Sub-Region"), gbc_lblSubregion);
+			}
+			{
+				GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
+				gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
+				gbc_btnNewButton.gridx = 6;
+				gbc_btnNewButton.gridy = 3;
+				panel.add(getVerificationBtn(), gbc_btnNewButton);
+				GridBagConstraints gbc_lastVerifiedTxtField = new GridBagConstraints();
+				gbc_lastVerifiedTxtField.insets = new Insets(0, 0, 5, 5);
+				gbc_lastVerifiedTxtField.fill = GridBagConstraints.HORIZONTAL;
+				gbc_lastVerifiedTxtField.gridx = 7;
+				gbc_lastVerifiedTxtField.gridy = 3;
+				panel.add(getLastCheckedTxtField(), gbc_lastVerifiedTxtField);
+			}
 			// ............ ROW 5 ......................
-			// text area for Notes and Comments:
-			// LABEL
-			GridBagConstraints gbc_lblNotes = new GridBagConstraints();
-			gbc_lblNotes.insets = new Insets(0, 0, 5, 5);
-			gbc_lblNotes.gridx = 0;
-			gbc_lblNotes.gridy = 4;
-			panel.add(getLblNotes(), gbc_lblNotes);
-			// text area
-			GridBagConstraints gbc_noteTxt = new GridBagConstraints();
-			gbc_noteTxt.weightx = 1.0;
-			gbc_noteTxt.weighty = 0.5;
-			gbc_noteTxt.insets = new Insets(0, 0, 5, 0);
-			gbc_noteTxt.fill = GridBagConstraints.BOTH;
-			gbc_noteTxt.gridx = 2;
-			gbc_noteTxt.gridy = 4;
-			int rowHeight = 3;
-			gbc_noteTxt.gridheight = rowHeight; 
-			panel.add(getNotesField(), gbc_noteTxt); 
-
+			{
+				// text area for Notes and Comments:
+				// LABEL
+				GridBagConstraints gbc_lblNotes = new GridBagConstraints();
+				gbc_lblNotes.insets = new Insets(0, 0, 5, 5);
+				gbc_lblNotes.gridx = 0;
+				gbc_lblNotes.gridy = 4;
+				panel.add(new JLabel("Notes"), gbc_lblNotes);
+			}
+			{
+				// text area
+				GridBagConstraints gbc_noteTxt = new GridBagConstraints();
+				gbc_noteTxt.weightx = 1.0;
+				gbc_noteTxt.weighty = 0.5;
+				gbc_noteTxt.insets = new Insets(0, 0, 5, 5);
+				gbc_noteTxt.fill = GridBagConstraints.BOTH;
+				gbc_noteTxt.gridx = 2;
+				gbc_noteTxt.gridy = 4;
+				int rowHeight = 3;
+				gbc_noteTxt.gridheight = rowHeight;
+				panel.add(getNotesField(), gbc_noteTxt);
+			}
 			// ............ ROW 6 ......................
-			GridBagConstraints gbc_panel_2 = new GridBagConstraints();
-			gbc_panel_2.fill = GridBagConstraints.BOTH;
-			gbc_panel_2.gridwidth = GridBagConstraints.REMAINDER;
-			gbc_panel_2.gridx = 0;
-			gbc_panel_2.gridy = 8;
-			panel.add(getOrganizationPanel(), gbc_panel_2);
+			{
+				GridBagConstraints gbc_panel_2 = new GridBagConstraints();
+				gbc_panel_2.fill = GridBagConstraints.BOTH;
+				gbc_panel_2.gridwidth = GridBagConstraints.REMAINDER;
+				gbc_panel_2.gridx = 0;
+				gbc_panel_2.gridy = 8;
+				panel.add(getOrganizationPanel(), gbc_panel_2);
+			}
 		}
 		return panel;
 	}
@@ -312,8 +335,7 @@ public class RatingSystemPanel extends JPanel {
 					}
 				}
 			});
-			txtFieldSysID
-					.setToolTipText("Enter name of rating system (required)");
+			txtFieldSysID.setToolTipText("Enter name of rating system (required)");
 			currentSysId = dao.getName();
 			txtFieldSysID.setText(currentSysId);
 			txtFieldSysID.setColumns(10);
@@ -330,10 +352,10 @@ public class RatingSystemPanel extends JPanel {
 			versionField.setText(dao.getVersion());
 			// KLUDGE...
 			/*
-			 * version needs to be a montonicly increasing integer. Since
-			 * migration to Eclipse LUNA the Window Builder is fubar so I have
-			 * simply made this an editable field. Note original mechanism is
-			 * that Valdation will let you increase the version but that is
+			 * version needs to be a positive and montonicly increasing integer.
+			 * Since migration to Eclipse LUNA the Window Builder is fubar so I
+			 * have simply made this an editable field. Note original mechanism
+			 * is that Valdation will let you increase the version but that is
 			 * broken due to schema issues.
 			 */
 			versionField.setEditable(true);
@@ -346,7 +368,7 @@ public class RatingSystemPanel extends JPanel {
 			notesField = new JTextArea(3, 120);
 			notesField.setLineWrap(true);
 			notesField.setWrapStyleWord(true);
-			notesField.setBorder(new LineBorder(new Color(100, 100, 230), 1)); 
+			notesField.setBorder(new LineBorder(new Color(100, 100, 230), 1));
 			String[] text = getLocalizedText(6);
 			if (text[1] != null) {
 				notesField.setToolTipText(text[1]);
@@ -501,40 +523,28 @@ public class RatingSystemPanel extends JPanel {
 
 	private JLabel getLblNewLabel_1() {
 		if (lblSysID == null) {
-			lblSysID = setLabel(1);
+			lblSysID = buildLabel(1);
 		}
 		return lblSysID;
 	}
 
 	private JLabel getLblNewLabel_2() {
 		if (lblSysURI == null) {
-			lblSysURI = setLabel(2);
+			String[] text = getLocalizedText(2);
+			lblSysURI = new JLabel(text[0]);
 		}
 		return lblSysURI;
 	}
 
 	private JLabel getLblRegion() {
 		if (lblRegion == null) {
-			lblRegion = setLabel(3);
+			String[] text = getLocalizedText(3);
+			lblRegion = new JLabel(text[0]);
 		}
 		return lblRegion;
 	}
 
-	private JLabel getLblSubregion() {
-		if (lblSubregion == null) {
-			lblSubregion = setLabel(4);
-		}
-		return lblSubregion;
-	}
-
-	private JLabel getLblNotes() {
-		if (lblNotes == null) {
-			lblNotes = setLabel(7);
-		}
-		return lblNotes;
-	}
-
-	protected JLabel setLabel(int id) {
+	protected JLabel buildLabel(int id) {
 		String[] text = getLocalizedText(id);
 		JLabel label = new JLabel(text[0]);
 		if (text[1] != null && !text[1].isEmpty()) {
@@ -546,11 +556,9 @@ public class RatingSystemPanel extends JPanel {
 	protected String[] getLocalizedText(int fieldID) {
 		String[] text = new String[2];
 		String labelID = "row-label-" + fieldID;
-		text[0] = editor.getLanguage().getProperty(propertyPrefix + labelID,
-				labelID);
+		text[0] = editor.getLanguage().getProperty(propertyPrefix + labelID, labelID);
 		String tipID = "row-tip-" + fieldID;
-		text[1] = editor.getLanguage()
-				.getProperty(propertyPrefix + tipID, null);
+		text[1] = editor.getLanguage().getProperty(propertyPrefix + tipID, null);
 		return text;
 	}
 
@@ -563,8 +571,41 @@ public class RatingSystemPanel extends JPanel {
 		// version kludge
 		int verValue = Integer.parseInt(getVersionField().getText());
 		dao.setVersion(verValue);
-		
+
 		String notes = getNotesField().getText();
 		dao.setNotes(notes);
+	}
+
+	private JButton getVerificationBtn() {
+		if (btnNewButton == null) {
+			btnNewButton = new JButton("Verified");
+			btnNewButton.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					System.out.println("Updating 'last verified date'");
+					getLastCheckedTxtField();
+					Date curDate = TimeStamp.asDate();
+					lastCheckedTxtField.setText(TimeStamp.asXsDate(curDate));
+					dao.setLastChecked(curDate);
+				}
+			});
+			btnNewButton.setToolTipText("press to update date last verified with Ratings Org");
+		}
+		return btnNewButton;
+	}
+
+	private JTextField getLastCheckedTxtField() {
+		if (lastCheckedTxtField == null) {
+			lastCheckedTxtField = new JTextField();
+			lastCheckedTxtField.setEditable(false);
+			lastCheckedTxtField.setColumns(10);
+			Date last = dao.getLastChecked();
+			if (last != null) {
+				lastCheckedTxtField.setText(TimeStamp.asString(last));
+			}else{
+				lastCheckedTxtField.setText("");
+			}
+		}
+		return lastCheckedTxtField;
 	}
 }
