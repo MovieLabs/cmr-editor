@@ -82,11 +82,9 @@ public class RatingSystem extends SpecificationElement implements RSpecLeaf {
 	 * @throws JDOMException
 	 * @throws IOException
 	 */
-	public static RatingSystem loadFromXml(File xmlFile, boolean validate)
-			throws Exception {
-		File xsdfile = new File("./resources/"+schemaFile);
-		InputStreamReader isr = new InputStreamReader(new FileInputStream(
-				xmlFile), "UTF-8");
+	public static RatingSystem loadFromXml(File xmlFile, boolean validate) throws Exception {
+		File xsdfile = new File("./resources/" + schemaFile);
+		InputStreamReader isr = new InputStreamReader(new FileInputStream(xmlFile), "UTF-8");
 		XMLReaderJDOMFactory readerFactory;
 		if (validate) {
 			readerFactory = new XMLReaderXSDFactory(xsdfile);
@@ -154,8 +152,7 @@ public class RatingSystem extends SpecificationElement implements RSpecLeaf {
 		 */
 		setName(rSysIdEl.getChildText("System", mdcrNSpace));
 		// NEW schema.....
-		List<Element> regionOfUsageList = xmlEl.getChildren("AdoptiveRegion",
-				mdcrNSpace);
+		List<Element> regionOfUsageList = xmlEl.getChildren("AdoptiveRegion", mdcrNSpace);
 		for (int i = 0; i < regionOfUsageList.size(); i++) {
 			addUsage(regionOfUsageList.get(i));
 		}
@@ -332,16 +329,13 @@ public class RatingSystem extends SpecificationElement implements RSpecLeaf {
 			rSysIdEl.setAttribute("deprecated", "true");
 		}
 		if (lastValidated != null) {
-			ratingSysRoot.setAttribute("lastValidated",
-					TimeStamp.asXsDateTime(lastValidated));
+			ratingSysRoot.setAttribute("lastValidated", TimeStamp.asXsDateTime(lastValidated));
 		}
 		if (lastHtmlGen != null) {
-			ratingSysRoot.setAttribute("lastHtmlGen",
-					TimeStamp.asXsDateTime(lastHtmlGen));
+			ratingSysRoot.setAttribute("lastHtmlGen", TimeStamp.asXsDateTime(lastHtmlGen));
 		}
 		if (lastSaved != null) {
-			ratingSysRoot.setAttribute("lastSave",
-					TimeStamp.asXsDateTime(lastSaved));
+			ratingSysRoot.setAttribute("lastSave", TimeStamp.asXsDateTime(lastSaved));
 		}
 		// ....... done
 		if (confirmOperation()) {
@@ -374,13 +368,11 @@ public class RatingSystem extends SpecificationElement implements RSpecLeaf {
 			return true;
 		}
 		// check with user..
-		String msg = reportedProblems.size()
-				+ " errors found. Continue saving?";
+		String msg = reportedProblems.size() + " errors found. Continue saving?";
 		for (int i = 0; i < reportedProblems.size(); i++) {
 			msg = msg + "\n" + reportedProblems.get(i);
 		}
-		int n = JOptionPane.showConfirmDialog(uiWidget.getParent(), msg,
-				"Confirm SAVE", JOptionPane.YES_NO_OPTION);
+		int n = JOptionPane.showConfirmDialog(uiWidget.getParent(), msg, "Confirm SAVE", JOptionPane.YES_NO_OPTION);
 		return (n == 0);
 	}
 
@@ -541,8 +533,7 @@ public class RatingSystem extends SpecificationElement implements RSpecLeaf {
 	 */
 	private void genUri() {
 		if (autoGenUri) {
-			uri = baseUrl + adminRegion.getIsoCode() + UriSep
-					+ makeSafeForURI(name) + UriSep
+			uri = baseUrl + adminRegion.getIsoCode() + UriSep + makeSafeForURI(name) + UriSep
 					+ makeSafeForURI(getVersion());
 			if (uiWidget != null) {
 				uiWidget.getTextFieldUri().setText(getUri());
@@ -717,6 +708,21 @@ public class RatingSystem extends SpecificationElement implements RSpecLeaf {
 	public void setLastValidated(Date lastValidated) {
 		this.lastValidated = lastValidated;
 		setValid(lastValidated != null);
+	}
+
+	/**
+	 * @return the lastChecked
+	 */
+	public Date getLastChecked() {
+		return lastChecked;
+	}
+
+	/**
+	 * @param lastValidated
+	 *            the lastValidated to set
+	 */
+	public void setLastChecked(Date lastChecked) {
+		this.lastChecked = lastChecked;
 	}
 
 	/**
