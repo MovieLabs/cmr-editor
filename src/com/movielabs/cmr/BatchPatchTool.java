@@ -146,7 +146,7 @@ public class BatchPatchTool {
 		}
 	}
 
-	private Element getAsXml(File inputFile) throws JDOMException, IOException {
+	public static Element getAsXml(File inputFile) throws JDOMException, IOException {
 		InputStreamReader isr = new InputStreamReader(new FileInputStream(
 				inputFile), "UTF-8");
 		XMLReaderJDOMFactory readerFactory = new XMLReaderSAX2Factory(false);
