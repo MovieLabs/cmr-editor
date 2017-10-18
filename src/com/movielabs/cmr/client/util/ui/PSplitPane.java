@@ -16,6 +16,7 @@
 package com.movielabs.cmr.client.util.ui;
 
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -33,8 +34,16 @@ import javax.swing.JSplitPane;
  * 
  */
 public class PSplitPane extends JSplitPane {
-	public PSplitPane() {
+	private float primaryPercentage;
+
+	/**
+	 * 
+	 * @param primaryPercentage
+	 *            weight to give to <i>primary</i> panel.
+	 */
+	public PSplitPane(float primaryPercentage) {
 		setOneTouchExpandable(true);
+		this.primaryPercentage = primaryPercentage;
 	}
 
 	private boolean isPainted;
@@ -104,8 +113,7 @@ public class PSplitPane extends JSplitPane {
 			addHierarchyListener(new HierarchyListener() {
 				@Override
 				public void hierarchyChanged(HierarchyEvent e) {
-					if ((e.getChangeFlags() & HierarchyEvent.SHOWING_CHANGED) != 0
-							&& isShowing()) {
+					if ((e.getChangeFlags() & HierarchyEvent.SHOWING_CHANGED) != 0 && isShowing()) {
 						removeHierarchyListener(this);
 						target.setDividerLocation(proportion);
 					}
@@ -129,6 +137,7 @@ public class PSplitPane extends JSplitPane {
 	}
 
 	public void setRightComponent(Component comp) {
+		setSizes(comp, true);
 		int curLoc = getDividerLocation();
 		super.setRightComponent(comp);
 		if (curLoc >= 0) {
@@ -137,6 +146,7 @@ public class PSplitPane extends JSplitPane {
 	}
 
 	public void setLeftComponent(Component comp) {
+		setSizes(comp, false);
 		int curLoc = getDividerLocation();
 		super.setLeftComponent(comp);
 		if (curLoc >= 0) {
@@ -158,5 +168,41 @@ public class PSplitPane extends JSplitPane {
 		if (curLoc >= 0) {
 			setDividerLocation(curLoc);
 		}
+	}
+
+	private void setSizes(Component comp, boolean isPrimary) {
+		if(!isPrimary){
+			return;
+		}
+		Dimension curContainerSize = this.getSize();
+		double width;
+		double ht;
+		if (this.getOrientation() == JSplitPane.VERTICAL_SPLIT) {
+			// above/below orientation of components
+			width = curContainerSize.getWidth();
+			if (isPrimary) {
+				ht = primaryPercentage * curContainerSize.getHeight();
+			} else {
+				ht = (1.0f - primaryPercentage) * curContainerSize.getHeight();
+			}
+		} else {
+			// left/right orientation of components
+			ht = curContainerSize.getHeight();
+			if (isPrimary) {
+				width = primaryPercentage * curContainerSize.getWidth();
+			} else {
+				width = (1.0f - primaryPercentage) * curContainerSize.getWidth();
+			}
+		}
+		Dimension compSize = new Dimension();
+		compSize.setSize(width, ht);
+		comp.setPreferredSize(compSize);
+
+		double minW = curContainerSize.getWidth() * 0.5;
+		double minH = curContainerSize.getHeight() * 0.5;
+
+		Dimension minSize = new Dimension();
+		minSize.setSize(minW, minH);
+		comp.setMinimumSize(minSize);
 	}
 }

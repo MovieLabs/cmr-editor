@@ -139,8 +139,7 @@ public class RatingsEditor {
 		String NAME_SETTINGSFILE = ".movielab.r-edit.ini";
 		String PATH_USERSETTINGS = null;
 		try {
-			PATH_USERSETTINGS = System.getProperty("user.home")
-					+ File.separator + NAME_SETTINGSFILE;
+			PATH_USERSETTINGS = System.getProperty("user.home") + File.separator + NAME_SETTINGSFILE;
 		} catch (SecurityException e) {
 			// ignore
 		}
@@ -191,18 +190,13 @@ public class RatingsEditor {
 				shutDown();
 			}
 		});
-		frmCommonMetadataRatings
-				.setIconImage(Toolkit
-						.getDefaultToolkit()
-						.getImage(
-								"E:\\Eclipse\\Workspace\\MovieLab Server\\WebContent\\images\\logo_movielabs.jpg"));
+		frmCommonMetadataRatings.setIconImage(Toolkit.getDefaultToolkit()
+				.getImage("E:\\Eclipse\\Workspace\\MovieLab Server\\WebContent\\images\\logo_movielabs.jpg"));
 		frmCommonMetadataRatings.setTitle("Common Metadata Ratings Editor");
 		frmCommonMetadataRatings.setBounds(100, 100, 1000, 700);
 		frmCommonMetadataRatings.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmCommonMetadataRatings.getContentPane().add(getTopPanel(),
-				BorderLayout.NORTH);
-		frmCommonMetadataRatings.getContentPane().add(getMainPanel(),
-				BorderLayout.CENTER);
+		frmCommonMetadataRatings.getContentPane().add(getTopPanel(), BorderLayout.NORTH);
+		frmCommonMetadataRatings.getContentPane().add(getMainPanel(), BorderLayout.CENTER);
 		glass = new BlockingGlassPane();
 		frmCommonMetadataRatings.setGlassPane(glass);
 		// now update the UI
@@ -231,7 +225,7 @@ public class RatingsEditor {
 	 */
 	private JSplitPane getMainPanel() {
 		if (mainPanel == null) {
-			mainPanel = new PSplitPane();
+			mainPanel = new PSplitPane(0.85f);
 			mainPanel.setOrientation(JSplitPane.HORIZONTAL_SPLIT);
 			mainPanel.setLeftComponent(getPlaceHolderPanel());
 			mainPanel.setRightComponent(getPlaceHolderPanel());
@@ -284,8 +278,7 @@ public class RatingsEditor {
 			newFile = false;
 			File xmlFile = new File(path2xml);
 			if (xmlFile.canRead()) {
-				task = new XmlFileTask(xmlFile, ratingSystem, XF_TASKTYPE.READ,
-						true);
+				task = new XmlFileTask(xmlFile, ratingSystem, XF_TASKTYPE.READ, true);
 				task.execute();
 			}
 		}
@@ -307,15 +300,12 @@ public class RatingsEditor {
 	 */
 	public void saveAs(String path2xml) {
 		if (path2xml == null) {
-			String dirPath = (String) FileChooserDialog.getDefaultDirMap().get(
-					"fileChooser.xml");
-			String fileName = ratingSystem.getCountry(0) + "_"
-					+ ratingSystem.getName() + "_Ratings.xml";
+			String dirPath = (String) FileChooserDialog.getDefaultDirMap().get("fileChooser.xml");
+			String fileName = ratingSystem.getCountry(0) + "_" + ratingSystem.getName() + "_Ratings.xml";
 			path2xml = dirPath + "/" + fileName;
-			FileFilter filter = new FileNameExtensionFilter(
-					"Ratings Spec file", "xml");
-			path2xml = FileChooserDialog.getFilePath("Save as", path2xml,
-					filter, "xml", RatingsEditor.getEditor().getAppFrame());
+			FileFilter filter = new FileNameExtensionFilter("Ratings Spec file", "xml");
+			path2xml = FileChooserDialog.getFilePath("Save as", path2xml, filter, "xml",
+					RatingsEditor.getEditor().getAppFrame());
 			if (path2xml == null) {
 				// user cancelled
 				return;
@@ -324,8 +314,7 @@ public class RatingsEditor {
 		File xmlFile = new File(path2xml);
 		if (xmlFile.canWrite()) {
 			int n = JOptionPane.showConfirmDialog(frmCommonMetadataRatings,
-					"Overwrite and replace existing specification?",
-					"Replace Confirmation", JOptionPane.YES_NO_OPTION);
+					"Overwrite and replace existing specification?", "Replace Confirmation", JOptionPane.YES_NO_OPTION);
 			if (n == JOptionPane.NO_OPTION) {
 				return;
 			}
@@ -358,18 +347,20 @@ public class RatingsEditor {
 		task.execute();
 	}
 
+	public void generateURI() {
+		ratingSystem.generateURI();
+	}
+
 	/**
 	 * @param path2html
 	 * 
 	 */
 	public void genHtml(String htmlDirPath) {
-		String xmlDirPath = (String) FileChooserDialog.getDefaultDirMap().get(
-				"fileChooser.xml");
+		String xmlDirPath = (String) FileChooserDialog.getDefaultDirMap().get("fileChooser.xml");
 		/* IFF path is null then ask user */
 		if (xmlDirPath == null || xmlDirPath.isEmpty()) {
-			xmlDirPath = FileChooserDialog.getDirPath(
-					"Directory with XML-formated Rating Specs", null, null,
-					"xml", getAppFrame());
+			xmlDirPath = FileChooserDialog.getDirPath("Directory with XML-formated Rating Specs", null, null, "xml",
+					getAppFrame());
 			if (xmlDirPath == null || xmlDirPath.isEmpty()) {
 				// Cancelled by user
 				return;
@@ -382,17 +373,14 @@ public class RatingsEditor {
 		File parent = new File(htmlDirPath);
 		String version = parent.getName();
 		final JOptionPane optionPane = new JOptionPane(
-				"The data set will be tagged as Version '" + version + "'.\n"
-						+ "Do you wish to continue?",
+				"The data set will be tagged as Version '" + version + "'.\n" + "Do you wish to continue?",
 				JOptionPane.QUESTION_MESSAGE, JOptionPane.YES_NO_OPTION);
-		JDialog dialog = optionPane
-				.createDialog(headerPanel, "Confirm Version");
+		JDialog dialog = optionPane.createDialog(headerPanel, "Confirm Version");
 		dialog.setVisible(true);
-		int value = ((Integer)optionPane.getValue()).intValue();
+		int value = ((Integer) optionPane.getValue()).intValue();
 		if (value == JOptionPane.YES_OPTION) {
 			// ................................................
-			BatchXSLT htmlGenerator = new BatchXSLT(xmlDirPath, htmlDirPath,
-					"./resources");
+			BatchXSLT htmlGenerator = new BatchXSLT(xmlDirPath, htmlDirPath, "./resources");
 			boolean status = htmlGenerator.process();
 		}
 	}
@@ -459,8 +447,7 @@ public class RatingsEditor {
 			properties.setProperty("recentFile." + i, path2xml);
 		}
 		try {
-			properties.store(new FileWriter(userPropFile),
-					"Movie Labs Ratings Editor");
+			properties.store(new FileWriter(userPropFile), "Movie Labs Ratings Editor");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -478,10 +465,8 @@ public class RatingsEditor {
 	 * @param b
 	 */
 	void showWorkInProgress(boolean modal) {
-		frmCommonMetadataRatings.setCursor(Cursor
-				.getPredefinedCursor(Cursor.WAIT_CURSOR));
-		progressDialog = new ProgressDisplay(
-				"Rating System Load & Validation in progress...");
+		frmCommonMetadataRatings.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+		progressDialog = new ProgressDisplay("Rating System Load & Validation in progress...");
 		progressDialog.setLocationRelativeTo(frmCommonMetadataRatings);
 		progressDialog.setAlwaysOnTop(modal);
 		progressDialog.setVisible(true);
@@ -492,8 +477,7 @@ public class RatingsEditor {
 	 * @param b
 	 */
 	void endWorkInProgress() {
-		frmCommonMetadataRatings.setCursor(Cursor
-				.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+		frmCommonMetadataRatings.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		progressDialog.setVisible(false);
 		progressDialog.dispose();
 		headerPanel.getMenuBar().setEnabled(true);
@@ -546,8 +530,7 @@ public class RatingsEditor {
 		 * @param tasking
 		 * @param modal
 		 */
-		public XmlFileTask(File xmlFile, RatingSystem rSys,
-				XF_TASKTYPE tasking, boolean modal) {
+		public XmlFileTask(File xmlFile, RatingSystem rSys, XF_TASKTYPE tasking, boolean modal) {
 			this.xmlFile = xmlFile;
 			this.taskRatingSys = rSys;
 			this.tasking = tasking;
@@ -589,18 +572,14 @@ public class RatingsEditor {
 					outputter.output(xmlDoc, fw);
 					fw.close();
 					// now read back in validate mode
-					RatingSystem rSys = RatingSystem
-							.loadFromXml(tempFile, true);
+					RatingSystem rSys = RatingSystem.loadFromXml(tempFile, true);
 					tempFile.delete();
 					taskRatingSys.setLastValidated(TimeStamp.asDate());
 					String msgID = "Dialog-msg-v1";
-					String msg = language.getProperty(msgID,
-							"Increment version?");
+					String msg = language.getProperty(msgID, "Increment version?");
 					String[] options = { "Yes", "No" };
-					int choice = JOptionPane.showOptionDialog(headerPanel, msg,
-							"Validated", JOptionPane.YES_NO_CANCEL_OPTION,
-							JOptionPane.QUESTION_MESSAGE, null, options,
-							options[0]);
+					int choice = JOptionPane.showOptionDialog(headerPanel, msg, "Validated",
+							JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 					if (choice == 0) {
 						taskRatingSys.incrementVersion();
 					}
@@ -609,8 +588,7 @@ public class RatingsEditor {
 				if (e instanceof JDOMParseException) {
 					taskRatingSys.setLastValidated(null);
 					String details = e.getCause().getMessage();
-					JOptionPane.showMessageDialog(headerPanel, details,
-							"XML Parse error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(headerPanel, details, "XML Parse error", JOptionPane.ERROR_MESSAGE);
 				} else {
 					// TODO: pop-up dialog and status-bar update
 					e.printStackTrace();
@@ -650,8 +628,7 @@ public class RatingsEditor {
 					Document xmlDoc = new Document(rootEl);
 					Format myFormat = Format.getPrettyFormat();
 					XMLOutputter outputter = new XMLOutputter(myFormat);
-					OutputStreamWriter osw = new OutputStreamWriter(
-							new FileOutputStream(xmlFile), "UTF-8");
+					OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(xmlFile), "UTF-8");
 					outputter.output(xmlDoc, osw);
 					osw.close();
 					setCurrentFile(xmlFile);
