@@ -41,7 +41,7 @@ public class Rating extends SpecificationElement implements RSpecLeaf {
 	List<LocalizedText> labels = new ArrayList<LocalizedText>();
 	private RatingsEditor mainApp;
 	private RatingPanel uiWidget;;
-	private boolean autoGenUri = true;
+	private boolean autoGenUri;
 	private int ordinal = 0;
 	private int minRecAge = 0;
 	private int minAge = 0;
@@ -65,6 +65,7 @@ public class Rating extends SpecificationElement implements RSpecLeaf {
 	public Rating(RatingSystem ratingSystem, Element xmlEl) {
 		super();
 		this.ratingSystem = ratingSystem;
+		autoGenUri = ratingSystem.isAutoGenUri();
 		mainApp = RatingsEditor.getEditor();
 		if (xmlEl != null) {
 			initFromXml(xmlEl);
@@ -387,10 +388,16 @@ public class Rating extends SpecificationElement implements RSpecLeaf {
 	 */
 	private void genUri() {
 		if (autoGenUri) {
-			uri = ratingSystem.getUri() + UriSep + makeSafeForURI(ratingID);
-			if (uiWidget != null) {
-				uiWidget.syncUri();
-			}
+			generateURI();
+		}
+	}
+	
+
+
+	public void generateURI() {
+		uri = ratingSystem.getUri() + UriSep + makeSafeForURI(ratingID);
+		if (uiWidget != null) {
+			uiWidget.syncUri();
 		}
 	}
 

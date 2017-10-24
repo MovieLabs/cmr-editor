@@ -63,9 +63,9 @@ import java.util.List;
  * XSLT transforms are used, all of which should be located in
  * <tt>${rsrcDir}/transforms</tt>. The transforms are:
  * <ul>
- * <li><tt>WrappedRatingSysDoc.xslt</tt> used to convert a single XML-defined Rating
- * System into an HTML description.</li>
- * <li><tt>WrappedRatingSysDoc.xslt</tt> used to gen the index page</li> 
+ * <li><tt>WrappedRatingSysDoc.xslt</tt> used to convert a single XML-defined
+ * Rating System into an HTML description.</li>
+ * <li><tt>WrappedRatingSysDoc.xslt</tt> used to gen the index page</li>
  * </ul>
  * 
  * @author L. J. Levin, created July 23, 2013
@@ -103,9 +103,7 @@ public class BatchXSLT {
 		String xsltDir = rsrcDir + File.separator + "transforms";
 		xsltDirF = new File(xsltDir);
 		if (!xsltDirF.exists()) {
-			throw new RuntimeException(
-					"Transform directory not found. Specified as '" + xsltDir
-							+ "'");
+			throw new RuntimeException("Transform directory not found. Specified as '" + xsltDir + "'");
 		}
 		srcXmlDirLocation = srcXmlDir;
 		File srcXmlDirFile = new File(srcXmlDirLocation);
@@ -122,16 +120,14 @@ public class BatchXSLT {
 			copyXml = !(srxXmlPath.equals(destXmlLocation));
 			String msg;
 			if (copyXml) {
-				msg = "XML will be copied to deployment location \n"
-						+ destXmlLocation;
+				msg = "XML will be copied to deployment location \n" + destXmlLocation;
 			} else {
 				msg = "Source directory for XML is also designated deployment location.\n No need to copy XML";
 			}
 			System.out.println(msg);
 		} catch (IOException e) {
 			e.printStackTrace();
-			throw new RuntimeException(
-					"IO Excption while trying to access XML directories ");
+			throw new RuntimeException("IO Excption while trying to access XML directories ");
 		}
 		if (clearDestDir && copyXml) {
 			clearAll(destXmlDirFile);
@@ -247,15 +243,11 @@ public class BatchXSLT {
 		 * this is used to create a 'master' all-encompassing XML file for use
 		 * by UltraViolet
 		 */
-		allSystemsForXml = new Element("RatingSystemSet",
-				SpecificationElement.mdcrNSpace);
+		allSystemsForXml = new Element("RatingSystemSet", SpecificationElement.mdcrNSpace);
 		allSystemsForXml.addNamespaceDeclaration(SpecificationElement.mdNSpace);
-		allSystemsForXml
-				.addNamespaceDeclaration(SpecificationElement.xsiNSpace);
-		allSystemsForXml.setAttribute("schemaLocation",
-				SpecificationElement.schemaLoc, SpecificationElement.xsiNSpace);
-		String blurb = "Saved " + TimeStamp.asString() + " as version "
-				+ releaseVersion;
+		allSystemsForXml.addNamespaceDeclaration(SpecificationElement.xsiNSpace);
+		allSystemsForXml.setAttribute("schemaLocation", SpecificationElement.schemaLoc, SpecificationElement.xsiNSpace);
+		String blurb = "Saved " + TimeStamp.asString() + " as version " + releaseVersion;
 		Comment versionInfo = new Comment(blurb);
 		allSystemsForXml.addContent(versionInfo);
 		Element allSystemsForHtml = allSystemsForXml.clone();
@@ -273,8 +265,7 @@ public class BatchXSLT {
 					 */
 					if (nextRSyst.getName().equals("RatingSystem")) {
 						if (copyXml) {
-							String destXml = destXmlLocation + "/"
-									+ aFile.getName();
+							String destXml = destXmlLocation + "/" + aFile.getName();
 							modifyPublishedXml(nextRSyst);
 							Element cloned = nextRSyst.clone();
 							allSystemsForHtml.addContent(cloned);
@@ -294,8 +285,7 @@ public class BatchXSLT {
 						 * attribute is already set in the root of the master
 						 * doc and can only appear once.
 						 */
-						nextRSyst.removeAttribute("schemaLocation",
-								SpecificationElement.xsiNSpace);
+						nextRSyst.removeAttribute("schemaLocation", SpecificationElement.xsiNSpace);
 
 						allSystemsForXml.addContent(nextRSyst);
 						/*
@@ -306,13 +296,11 @@ public class BatchXSLT {
 						transformFile(aFile, message, ++identifier);
 					}
 				} catch (Exception e) {
-					System.out.println("Error processing file " + message
-							+ "\n");
+					System.out.println("Error processing file " + message + "\n");
 					e.printStackTrace();
 				}
 			} else {
-				System.out
-						.println("Skipping " + message + " (not an XML file)");
+				System.out.println("Skipping " + message + " (not an XML file)");
 			}
 		}
 		// use version WITH the 'Notes' when generating HTML
@@ -323,8 +311,7 @@ public class BatchXSLT {
 			e.printStackTrace();
 		}
 
-		File csvFile = new File(baseReleaseDir, "CMR_Ratings_" + releaseVersion
-				+ ".csv");
+		File csvFile = new File(baseReleaseDir, "CMR_Ratings_" + releaseVersion + ".csv");
 		try {
 			CsvExporter.export(allSystemsForXml, csvFile);
 		} catch (FileNotFoundException e1) {
@@ -335,13 +322,11 @@ public class BatchXSLT {
 		 * Last step is output the 'master' XML that has everything in one big
 		 * file.
 		 */
-		File xmlFile = new File(baseReleaseDir, "CMR_Ratings_" + releaseVersion
-				+ ".xml");
+		File xmlFile = new File(baseReleaseDir, "CMR_Ratings_" + releaseVersion + ".xml");
 		Format myFormat = Format.getPrettyFormat();
 		XMLOutputter outputter = new XMLOutputter(myFormat);
 		try {
-			OutputStreamWriter osw = new OutputStreamWriter(
-					new FileOutputStream(xmlFile), "UTF-8");
+			OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(xmlFile), "UTF-8");
 			// use version WITH OUT the <Notes> element
 			outputter.output(new Document(allSystemsForXml), osw);
 			osw.close();
@@ -350,8 +335,7 @@ public class BatchXSLT {
 		}
 	}
 
-	private void genSummary1(Element rootEl) throws JDOMException,
-			TransformerException, IOException { 
+	private void genSummary1(Element rootEl) throws JDOMException, TransformerException, IOException {
 		Document masterDoc = new Document(rootEl);
 		String outputFileName = new String(destHtmlDir + "/Summary.html");
 		DOMOutputter converter = new DOMOutputter();
@@ -359,15 +343,13 @@ public class BatchXSLT {
 		org.w3c.dom.Document domDoc = converter.output(masterDoc);
 		FileOutputStream fos = new FileOutputStream(outputFileName);
 		TransformerFactory tFactory = TransformerFactory.newInstance();
-		Transformer transformer = tFactory.newTransformer(new StreamSource(
-				xsltFileName));
+		Transformer transformer = tFactory.newTransformer(new StreamSource(xsltFileName));
 		transformer.setParameter("mLabVersion", releaseVersion);
 		transformer.transform(new DOMSource(domDoc), new StreamResult(fos));
 		fos.flush();
 		fos.close();
 	}
-	
-	
+
 	/**
 	 * @param outputFileName
 	 * @param xmlStuff
@@ -397,22 +379,18 @@ public class BatchXSLT {
 	}
 
 	private void transformFile(File inputFile, String message, int identifier)
-			throws TransformerException, TransformerConfigurationException,
-			FileNotFoundException, IOException {
+			throws TransformerException, TransformerConfigurationException, FileNotFoundException, IOException {
 
-		String outputFileName = new String(destHtmlDir + "/"
-				+ inputFile.getName());
+		String outputFileName = new String(destHtmlDir + "/" + inputFile.getName());
 		if (outputFileName.matches("^.+xml$")) {
 			StringBuilder b = new StringBuilder(outputFileName);
-			b.replace(outputFileName.lastIndexOf("xml"),
-					outputFileName.lastIndexOf("xml") + 3, "html");
+			b.replace(outputFileName.lastIndexOf("xml"), outputFileName.lastIndexOf("xml") + 3, "html");
 			outputFileName = b.toString();
 		} else {
 			outputFileName = outputFileName + ".html";
 		}
 
-		System.out.println("Transforming XML file: " + inputFile.getPath()
-				+ "    " + message);
+		System.out.println("Transforming XML file: " + inputFile.getPath() + "    " + message);
 		/*
 		 * Use the static TransformerFactory.newInstance() method to instantiate
 		 * a TransformerFactory. The javax.xml.transform.TransformerFactory
@@ -425,23 +403,19 @@ public class BatchXSLT {
 		 * work with the stylesheet you specify. This method call also processes
 		 * the stylesheet into a compiled Templates object.
 		 */
-		String xsltFileName = new String(xsltDirF + "/WrappedRatingSysDoc.xslt"); 
-		Transformer transformer = tFactory.newTransformer(new StreamSource(
-				xsltFileName));
+		String xsltFileName = new String(xsltDirF + "/WrappedRatingSysDoc.xslt");
+		Transformer transformer = tFactory.newTransformer(new StreamSource(xsltFileName));
 		transformer.setParameter("identifier", new Integer(identifier));
 		/*
 		 * Use the Transformer to apply the associated Templates object to an
 		 * XML document (foo.xml) and write the output to a file (foo.out).
 		 */
-		OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(
-				outputFileName), "UTF-8");
-		transformer.transform(new StreamSource(inputFile),
-				new StreamResult(osw));
+		OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(outputFileName), "UTF-8");
+		transformer.transform(new StreamSource(inputFile), new StreamResult(osw));
 	}
 
 	private Element getAsXml(File inputFile) throws JDOMException, IOException {
-		InputStreamReader isr = new InputStreamReader(new FileInputStream(
-				inputFile), "UTF-8");
+		InputStreamReader isr = new InputStreamReader(new FileInputStream(inputFile), "UTF-8");
 		XMLReaderJDOMFactory readerFactory = new XMLReaderSAX2Factory(false);
 		SAXBuilder builder = new SAXBuilder(readerFactory);
 		Document validatedDoc;
@@ -460,17 +434,14 @@ public class BatchXSLT {
 	 */
 	private void writeReleaseInfo(String rVer, String sVer) {
 		String content = "";
-		content = content + "function getLatestRatingsVersion() {" + "return '"
-				+ rVer + "';}\n\n";
+		content = content + "function getLatestRatingsVersion() {" + "return '" + rVer + "';}\n\n";
 
 		GregorianCalendar cal = new GregorianCalendar();
 		SimpleDateFormat sdf = new SimpleDateFormat("MMMMM dd, yyyy");
 		String curDate = sdf.format(cal.getTime());
-		content = content + "function getLatestRatingsDate() { " + "return '"
-				+ curDate + "';}\n\n";
+		content = content + "function getLatestRatingsDate() { " + "return '" + curDate + "';}\n\n";
 
-		content = content + "function getLatestSchemaVersion() { " + "return '"
-				+ sVer + "';}\n\n";
+		content = content + "function getLatestSchemaVersion() { " + "return '" + sVer + "';}\n\n";
 
 		File file = new File(baseReleaseDir.getParent(), "releaseSpecific.js");
 
@@ -509,8 +480,7 @@ public class BatchXSLT {
 	 * @return
 	 */
 	private boolean insertMod_01(Element rSystemRoot) {
-		Element rSysIDEL = rSystemRoot.getChild("RatingSystemID",
-				SpecificationElement.mdcrNSpace);
+		Element rSysIDEL = rSystemRoot.getChild("RatingSystemID", SpecificationElement.mdcrNSpace);
 		rSystemRoot.removeAttribute("lastHtmlGen");
 		// move version
 		String value = rSysIDEL.getAttributeValue("version", "");
@@ -534,10 +504,8 @@ public class BatchXSLT {
 	 * @return
 	 */
 	private boolean insertMod_02(Element rSystemRoot) {
-		Element rSysIDEL = rSystemRoot.getChild("RatingSystemID",
-				SpecificationElement.mdcrNSpace);
-		List<Element> regionList = rSysIDEL.getChildren("Region",
-				SpecificationElement.mdcrNSpace);
+		Element rSysIDEL = rSystemRoot.getChild("RatingSystemID", SpecificationElement.mdcrNSpace);
+		List<Element> regionList = rSysIDEL.getChildren("Region", SpecificationElement.mdcrNSpace);
 		Element primaryRegionEL = regionList.get(0);
 		// clone it
 		Element cloned = primaryRegionEL.clone();
@@ -561,23 +529,21 @@ public class BatchXSLT {
 	 * <ul>
 	 * <li><tt>ordinal</tt> is no longer attribute of child element
 	 * <tt>Value</tt> but is now an Element itself</li>
-	 * <li>child element <tt>Value</tt> replaced by <tt>ratingID</tt> attribute</li>
+	 * <li>child element <tt>Value</tt> replaced by <tt>ratingID</tt> attribute
+	 * </li>
 	 * </ul>
 	 * 
 	 * @param rSys
 	 */
 	private void insertMod_03(Element rSys) {
-		List<Element> ratingList = rSys.getChildren("Rating",
-				SpecificationElement.mdcrNSpace);
+		List<Element> ratingList = rSys.getChildren("Rating", SpecificationElement.mdcrNSpace);
 		for (int i = 0; i < ratingList.size(); i++) {
 			Element ratingEL = ratingList.get(i);
-			Element valueEL = ratingEL.getChild("Value",
-					SpecificationElement.mdcrNSpace);
+			Element valueEL = ratingEL.getChild("Value", SpecificationElement.mdcrNSpace);
 			String id = valueEL.getText();
 			String ordinal = valueEL.getAttributeValue("ordinal");
 			ratingEL.setAttribute("ratingID", id);
-			Element ordinalEl = new Element("Ordinal",
-					SpecificationElement.mdcrNSpace);
+			Element ordinalEl = new Element("Ordinal", SpecificationElement.mdcrNSpace);
 			ordinalEl.setText(ordinal);
 			ratingEL.setContent(0, ordinalEl);
 			valueEL.detach();
@@ -592,37 +558,30 @@ public class BatchXSLT {
 		 * ApplicableReasons elements.
 		 */
 		HashMap<String, Element> criteriaMap = new HashMap<String, Element>();
-		List<Element> childList = rSystemRoot.getChildren("Reason",
-				SpecificationElement.mdcrNSpace);
+		List<Element> childList = rSystemRoot.getChildren("Reason", SpecificationElement.mdcrNSpace);
 		for (int i = 0; i < childList.size(); i++) {
 			Element reasonEL = childList.get(i);
 			String langCode = reasonEL.getAttributeValue("language");
 			reasonEL.removeAttribute("language");
 			String reasonID = reasonEL.getAttributeValue("reasonID");
-			Element valueEl = new Element("Value",
-					SpecificationElement.mdcrNSpace);
+			Element valueEl = new Element("Value", SpecificationElement.mdcrNSpace);
 			valueEl.setText(reasonID);
 			reasonEL.addContent(0, valueEl);
 			// next WAS optional but now required. It has also been moved
-			Element defEl = reasonEL.getChild("Definition",
-					SpecificationElement.mdcrNSpace);
+			Element defEl = reasonEL.getChild("Definition", SpecificationElement.mdcrNSpace);
 			if (defEl == null) {
-				defEl = new Element("Definition",
-						SpecificationElement.mdcrNSpace);
+				defEl = new Element("Definition", SpecificationElement.mdcrNSpace);
 				defEl.setText("n.a");
 			} else {
 				defEl.detach();
 			}
 			// next is optional
-			Element explainEl = reasonEL.getChild("Explanation",
-					SpecificationElement.mdcrNSpace);
+			Element explainEl = reasonEL.getChild("Explanation", SpecificationElement.mdcrNSpace);
 			// now create the new GeneralDescriptor
-			Element gdEl = new Element("GeneralDescriptor",
-					SpecificationElement.mdcrNSpace);
+			Element gdEl = new Element("GeneralDescriptor", SpecificationElement.mdcrNSpace);
 			reasonEL.addContent(1, gdEl);
 			gdEl.setAttribute("language", defaultLangCode);
-			Element gdLabelEl = new Element("Label",
-					SpecificationElement.mdcrNSpace);
+			Element gdLabelEl = new Element("Label", SpecificationElement.mdcrNSpace);
 			gdLabelEl.setText(reasonID);
 			gdEl.addContent(gdLabelEl);
 			gdEl.addContent(defEl);
@@ -631,8 +590,7 @@ public class BatchXSLT {
 				gdEl.addContent(explainEl);
 			}
 			// next is an error to be corrected
-			Element badEl = reasonEL.getChild("Label",
-					SpecificationElement.mdcrNSpace);
+			Element badEl = reasonEL.getChild("Label", SpecificationElement.mdcrNSpace);
 			if (badEl != null) {
 				badEl.detach();
 			}
@@ -640,15 +598,13 @@ public class BatchXSLT {
 			 * Next step is to convert the CRITERIA to RatingReason/Descriptor
 			 * elements
 			 */
-			List<Element> criteriaList = reasonEL.getChildren("Criteria",
-					SpecificationElement.mdcrNSpace);
+			List<Element> criteriaList = reasonEL.getChildren("Criteria", SpecificationElement.mdcrNSpace);
 			// need to deal with 'live list' issue
 			Element[] working = new Element[criteriaList.size()];
 			working = criteriaList.toArray(working);
 			for (int j = 0; j < working.length; j++) {
 				Element nextCriteria = working[j];
-				Element criteriaDescEl = new Element("Descriptor",
-						SpecificationElement.mdcrNSpace);
+				Element criteriaDescEl = new Element("Descriptor", SpecificationElement.mdcrNSpace);
 				/*
 				 * the language, Label, and Definition are the same as the
 				 * 'generic'. Only the (optional) Explanation is unique.
@@ -656,15 +612,13 @@ public class BatchXSLT {
 				criteriaDescEl.setAttribute("language", langCode);
 				criteriaDescEl.addContent(gdLabelEl.clone());
 				criteriaDescEl.addContent(defEl.clone());
-				Element cxEl = nextCriteria.getChild("Explanation",
-						SpecificationElement.mdcrNSpace);
+				Element cxEl = nextCriteria.getChild("Explanation", SpecificationElement.mdcrNSpace);
 				if (cxEl != null) {
 					cxEl.detach();
 					criteriaDescEl.addContent(cxEl);
 				}
 				// create the parent RatingReason
-				Element rrEl = new Element("RatingReason",
-						SpecificationElement.mdcrNSpace);
+				Element rrEl = new Element("RatingReason", SpecificationElement.mdcrNSpace);
 				/*
 				 * the reasonID, Value, and (optional) LinkToLogo are the same
 				 * as the 'generic'.
@@ -672,8 +626,7 @@ public class BatchXSLT {
 				rrEl.setAttribute("reasonID", reasonID);
 				rrEl.addContent(valueEl.clone());
 				rrEl.addContent(criteriaDescEl);
-				Element l2lEl = reasonEL.getChild("LinkToLogo",
-						SpecificationElement.mdcrNSpace);
+				Element l2lEl = reasonEL.getChild("LinkToLogo", SpecificationElement.mdcrNSpace);
 				if (l2lEl != null) {
 					rrEl.addContent(l2lEl.clone());
 				}
@@ -682,8 +635,7 @@ public class BatchXSLT {
 				 * element
 				 */
 				nextCriteria.detach();
-				String key = nextCriteria.getAttributeValue("ratingID") + "<->"
-						+ reasonID;
+				String key = nextCriteria.getAttributeValue("ratingID") + "<->" + reasonID;
 				criteriaMap.put(key, rrEl);
 			}
 		}
@@ -692,8 +644,7 @@ public class BatchXSLT {
 		 * ApplicableReasons elements.
 		 */
 
-		List<Element> ratingList = rSystemRoot.getChildren("Rating",
-				SpecificationElement.mdcrNSpace);
+		List<Element> ratingList = rSystemRoot.getChildren("Rating", SpecificationElement.mdcrNSpace);
 		for (int i = 0; i < ratingList.size(); i++) {
 			Element ratingEL = ratingList.get(i);
 			// if old schema....
@@ -701,8 +652,7 @@ public class BatchXSLT {
 			// SpecificationElement.mdcrNSpace);
 			// if new schema....
 			String ratingID = ratingEL.getAttributeValue("ratingID");
-			List<Element> arList = ratingEL.getChildren("ApplicableReason",
-					SpecificationElement.mdcrNSpace);
+			List<Element> arList = ratingEL.getChildren("ApplicableReason", SpecificationElement.mdcrNSpace);
 			// need to deal with 'live list' issue
 			Element[] working = new Element[arList.size()];
 			working = arList.toArray(working);
@@ -715,18 +665,15 @@ public class BatchXSLT {
 				try {
 					ratingEL.addContent(rrEL);
 				} catch (Exception e) {
-					System.out.println("WARNING: Can not match Criteria key '"
-							+ key + "' in " + "fileName????");
+					System.out.println("WARNING: Can not match Criteria key '" + key + "' in " + "fileName????");
 					// create a minimal default RatingReason
-					rrEL = new Element("RatingReason",
-							SpecificationElement.mdcrNSpace);
+					rrEL = new Element("RatingReason", SpecificationElement.mdcrNSpace);
 					/*
 					 * the reasonID, Value, and (optional) LinkToLogo are the
 					 * same as the 'generic'.
 					 */
 					rrEL.setAttribute("reasonID", reasonID);
-					Element valueEl = new Element("Value",
-							SpecificationElement.mdcrNSpace);
+					Element valueEl = new Element("Value", SpecificationElement.mdcrNSpace);
 					valueEl.setText(reasonID);
 					rrEL.addContent(valueEl);
 					ratingEL.addContent(rrEL);
@@ -736,8 +683,7 @@ public class BatchXSLT {
 	}
 
 	private boolean insertMod_05(Element rSystemRoot) {
-		Element noteEl = rSystemRoot.getChild("Notes",
-				SpecificationElement.mdcrNSpace);
+		Element noteEl = rSystemRoot.getChild("Notes", SpecificationElement.mdcrNSpace);
 		if (noteEl != null) {
 			noteEl.detach();
 		}
@@ -755,11 +701,13 @@ public class BatchXSLT {
 	private boolean insertMod_06(Element rSystemRoot) {
 		XMLOutputter xmlOut = new XMLOutputter();
 		Filter<Element> divFilter = Filters.element("div");
-		IteratorIterable<Element> targetIterator = rSystemRoot
-				.getDescendants(divFilter);
-		int cnt = 0;
+		IteratorIterable<Element> targetIterator = rSystemRoot.getDescendants(divFilter);
+		ArrayList<Element> divElList = new ArrayList<Element>();
 		while (targetIterator.hasNext()) {
-			Element nextDivEl = targetIterator.next();
+			divElList.add(targetIterator.next());
+		}
+		int cnt = 0;
+		for (Element nextDivEl : divElList) {
 			String divContent = xmlOut.outputString(nextDivEl);
 			Element parent = nextDivEl.getParentElement();
 			int loc = parent.indexOf(nextDivEl);
@@ -773,10 +721,8 @@ public class BatchXSLT {
 	}
 
 	private boolean insertMod_07(Element rSystemRoot) {
-		Filter<Element> divFilter = Filters.element("OrgType",
-				SpecificationElement.mdcrNSpace);
-		IteratorIterable<Element> targetIterator = rSystemRoot
-				.getDescendants(divFilter);
+		Filter<Element> divFilter = Filters.element("OrgType", SpecificationElement.mdcrNSpace);
+		IteratorIterable<Element> targetIterator = rSystemRoot.getDescendants(divFilter);
 		/*
 		 * Need to convert Iterable to a List in order to avoid a concurrent
 		 * modification exception when doing the 'setText()'
@@ -801,10 +747,8 @@ public class BatchXSLT {
 	 * @return
 	 */
 	private String getDefaultLang(Element rSystemRoot) {
-		Element firstRating = rSystemRoot.getChild("Rating",
-				SpecificationElement.mdcrNSpace);
-		String code = firstRating.getChild("Descriptor",
-				SpecificationElement.mdcrNSpace).getAttributeValue("language",
+		Element firstRating = rSystemRoot.getChild("Rating", SpecificationElement.mdcrNSpace);
+		String code = firstRating.getChild("Descriptor", SpecificationElement.mdcrNSpace).getAttributeValue("language",
 				"en");
 		return code;
 	}

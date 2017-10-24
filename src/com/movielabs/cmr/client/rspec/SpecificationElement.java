@@ -57,23 +57,18 @@ public abstract class SpecificationElement extends DefaultMutableTreeNode {
 		Home, Theater, Broadcast, Retail, App, other
 	};
 
-	protected static List<MEDIA> mediaList = new ArrayList<MEDIA>(
-			EnumSet.allOf(MEDIA.class));
-	protected static List<ENVIRONMENT> envList = new ArrayList<ENVIRONMENT>(
-			EnumSet.allOf(ENVIRONMENT.class));
+	protected static List<MEDIA> mediaList = new ArrayList<MEDIA>(EnumSet.allOf(MEDIA.class));
+	protected static List<ENVIRONMENT> envList = new ArrayList<ENVIRONMENT>(EnumSet.allOf(ENVIRONMENT.class));
 
-	public static Namespace xsiNSpace = Namespace.getNamespace("xsi",
-			"http://www.w3.org/2001/XMLSchema-instance");
+	public static Namespace xsiNSpace = Namespace.getNamespace("xsi", "http://www.w3.org/2001/XMLSchema-instance");
 	public static Namespace mdNSpace = Namespace.getNamespace("md",
 			"http://www.movielabs.com/schema/md/v" + MD_VER + "/md");
-	public static final String mdcrFull = "http://www.movielabs.com/schema/mdcr/v"
-			+ MDCR_VER;
-	public static Namespace mdcrNSpace = Namespace.getNamespace("mdcr",
-			mdcrFull);
+	public static final String mdcrFull = "http://www.movielabs.com/schema/mdcr/v" + MDCR_VER;
+	public static Namespace mdcrNSpace = Namespace.getNamespace("mdcr", mdcrFull);
 	protected static String schemaFile = "mdcr-v" + MDCR_VER + ".xsd";
-	public static String mdcrUrl = mdcrFull + "/"+schemaFile;  
+	public static String mdcrUrl = mdcrFull + "/" + schemaFile;
 	public static String baseUrl = "http://www.movielabs.com/md/ratings/";
-	public static final String schemaLoc = mdcrFull + " " + mdcrUrl; 
+	public static final String schemaLoc = mdcrFull + " " + mdcrUrl;
 
 	protected RatingSystem ratingSystem;
 
@@ -119,13 +114,17 @@ public abstract class SpecificationElement extends DefaultMutableTreeNode {
 		if (raw == null || raw.isEmpty()) {
 			return "";
 		}
-		String[] temp1 = raw.split("\\<div class=\"userHtml\">");
-		String[] temp2 = temp1[1].split("\\</div");
-		return (temp2[0]);
+		if (raw.contains("<div class=\"userHtml\">")) {
+			String[] temp1 = raw.split("<div class=\"userHtml\">");
+			String[] temp2 = temp1[1].split("</div");
+			return (temp2[0]);
+		} else {
+			return raw;
+		}
+
 	}
 
-	protected Element parseInnerHtml(String text) throws JDOMException,
-			IOException {
+	protected Element parseInnerHtml(String text) throws JDOMException, IOException {
 		SAXBuilder builder = new SAXBuilder();
 		Reader in = new StringReader("<div class='userHtml'>" + text + "</div>");
 		Document doc = null;

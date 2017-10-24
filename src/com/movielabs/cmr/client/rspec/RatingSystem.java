@@ -22,7 +22,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.EnumSet;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -51,7 +50,7 @@ import com.movielabs.cmr.client.util.TimeStamp;
 public class RatingSystem extends SpecificationElement implements RSpecLeaf {
 	private RatingsEditor mainApp;
 	private RatingSystemPanel uiWidget;
-	private boolean autoGenUri = true;
+	private boolean autoGenUri = false;
 
 	// .... start of properties...
 	private String name = "";
@@ -68,7 +67,7 @@ public class RatingSystem extends SpecificationElement implements RSpecLeaf {
 	private List<AdoptiveRegion> usageRegions = new ArrayList<AdoptiveRegion>();
 	private Organization org;
 	private DefaultMutableTreeNode usageNode = new UsageBin();
-	private List<AdoptiveRegion> usageList = new ArrayList<AdoptiveRegion>();
+	// private List<AdoptiveRegion> usageList = new ArrayList<AdoptiveRegion>();
 	private DefaultMutableTreeNode ratingNode = new RatingsBin();
 	private List<Rating> ratingList = new ArrayList<Rating>();
 	private DefaultMutableTreeNode reasonNode = new ReasonsBin();
@@ -164,6 +163,11 @@ public class RatingSystem extends SpecificationElement implements RSpecLeaf {
 		if (lastCheckEl != null) {
 			String lcText = lastCheckEl.getText();
 			lastChecked = TimeStamp.fromXsDate(lcText);
+		}
+
+		Element systemUriEl = xmlEl.getChild("URI", mdcrNSpace);
+		if (systemUriEl != null) {
+			uri = systemUriEl.getText();
 		}
 
 		Element notesEl = xmlEl.getChild("Notes", mdcrNSpace);
@@ -533,11 +537,28 @@ public class RatingSystem extends SpecificationElement implements RSpecLeaf {
 	 */
 	private void genUri() {
 		if (autoGenUri) {
-			uri = baseUrl + adminRegion.getIsoCode() + UriSep + makeSafeForURI(name) + UriSep
-					+ makeSafeForURI(getVersion());
-			if (uiWidget != null) {
-				uiWidget.getTextFieldUri().setText(getUri());
-			}
+			generateURI();
+		}
+	}
+
+	public void generateURI() {
+		uri = baseUrl + adminRegion.getIsoCode() + UriSep + makeSafeForURI(name) + UriSep
+				+ makeSafeForURI(getVersion());
+		if (uiWidget != null) {
+			uiWidget.getTextFieldUri().setText(getUri());
+		}
+
+		for (int i = 0; i < ratingList.size(); i++) {
+			Rating rating = ratingList.get(i);
+			rating.generateURI();
+		}
+
+		/*
+		 * now add individual Reason elements
+		 */
+		for (int i = 0; i < reasonList.size(); i++) {
+			ReasonDescriptor reason = reasonList.get(i);
+			reason.generateURI();
 		}
 	}
 

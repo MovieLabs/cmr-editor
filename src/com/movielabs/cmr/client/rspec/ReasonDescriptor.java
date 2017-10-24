@@ -45,13 +45,14 @@ public class ReasonDescriptor extends SpecificationElement implements RSpecLeaf 
 	private RatingsEditor mainApp;
 	private ReasonPanel uiWidget; 
 	private String reasonID = "t.b.d";
-	private boolean autoGenUri = true;
+	private boolean autoGenUri;
 	private String uri;
 	private Map<Rating, Criteria> applicationMap = new HashMap<Rating, Criteria>();
 
 	public ReasonDescriptor(RatingSystem ratingSystem, Element xmlEl) {
 		super();
 		this.ratingSystem = ratingSystem;
+		autoGenUri = ratingSystem.isAutoGenUri();
 		mainApp = RatingsEditor.getEditor();
 		if (xmlEl != null) {
 			initFromXml(xmlEl);
@@ -269,14 +270,18 @@ public class ReasonDescriptor extends SpecificationElement implements RSpecLeaf 
 	 */
 	private void genUri() {
 		if (autoGenUri) {
-			uri = ratingSystem.getUri() + UriSep+"Reason"+UriSep + makeSafeForURI(reasonID);
-			getUiWidget();
-			if (uiWidget != null) {
-				uiWidget.syncUri();
-			}
+			generateURI();
 		}
 	}
 
+
+	public void generateURI() {
+		uri = ratingSystem.getUri() + UriSep+"Reason"+UriSep + makeSafeForURI(reasonID);
+		getUiWidget();
+		if (uiWidget != null) {
+			uiWidget.syncUri();
+		}
+	}
 	/**
 	 * @return the uri
 	 */

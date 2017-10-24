@@ -59,6 +59,7 @@ public class EditorMenuBar extends JMenuBar {
 	private JMenu htmlMenu;
 	private JMenuItem showHtmlIdxMI;
 	private JMenuItem showHtmlSummaryMI;
+	private JMenuItem genUriMI;
 
 	public EditorMenuBar() {
 		this.editor = editor;
@@ -225,12 +226,26 @@ public class EditorMenuBar extends JMenuBar {
 	private JMenu getToolMenu() {
 		if (toolMenu == null) {
 			toolMenu = new JMenu("Tools");
+			toolMenu.add(getGenUriMenuItem());
 			toolMenu.add(getValidateMenuItem());
 			toolMenu.add(getHtmlMenu());
 		}
 		return toolMenu;
 	}
 
+
+	public JMenuItem getGenUriMenuItem() {
+		if (genUriMI == null) {
+			genUriMI = new JMenuItem("Auto-gen URIs");
+			genUriMI.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					RatingsEditor.getEditor().generateURI();
+				}
+			});
+		}
+		return genUriMI;
+	}
+	
 	public JMenuItem getValidateMenuItem() {
 		if (validateMI == null) {
 			validateMI = new JMenuItem("Validate");
