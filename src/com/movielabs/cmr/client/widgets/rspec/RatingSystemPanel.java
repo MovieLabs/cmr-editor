@@ -26,6 +26,7 @@ import com.movielabs.cmr.client.util.TimeStamp;
 import java.awt.BorderLayout;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
@@ -51,6 +52,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 /**
@@ -82,6 +85,7 @@ public class RatingSystemPanel extends JPanel {
 	private JTextArea notesField;
 	private JButton btnNewButton;
 	private JTextField lastCheckedTxtField;
+	private JButton versionButton;
 
 	/**
 	 * Create the panel.
@@ -150,22 +154,6 @@ public class RatingSystemPanel extends JPanel {
 			}
 
 			// ................
-			// VERSION....
-			/*
-			 * --------------------------- GridBagConstraints gbc_vLabel = new
-			 * GridBagConstraints(); gbc_vLabel.insets = new Insets(0, 20, 0,
-			 * 5); gbc_vLabel.gridx = 4; gbc_vLabel.gridy = 0; gbc_vLabel.anchor
-			 * = GridBagConstraints.NORTHEAST; // gbc_vLabel.weightx = 0.3;
-			 * JLabel label = setLabel(5); panel.add(label, gbc_vLabel);
-			 * GridBagConstraints gbc_vField = new GridBagConstraints();
-			 * gbc_vField.insets = new Insets(0, 10, 5, 0); gbc_vField.gridx =
-			 * 5; // 6; gbc_vField.gridy = 0; gbc_vField.gridwidth = 1;
-			 * gbc_vField.weightx = 0.3; gbc_vField.anchor =
-			 * GridBagConstraints.NORTHWEST; gbc_vField.fill =
-			 * GridBagConstraints.HORIZONTAL; panel.add(getVersionField(),
-			 * gbc_vField); --------------------
-			 */
-			// ................
 			// DEPRECATED:
 			{
 				GridBagConstraints gbcDepLabel = new GridBagConstraints();
@@ -209,9 +197,7 @@ public class RatingSystemPanel extends JPanel {
 				gbc_vLabel.gridx = 6;
 				gbc_vLabel.gridy = 1;
 				gbc_vLabel.anchor = GridBagConstraints.NORTHEAST;
-				// String[] text = getLocalizedText(5);
-				JLabel versionLabel = new JLabel("Version");
-				panel.add(versionLabel, gbc_vLabel);
+				panel.add(getVersionBtn(), gbc_vLabel);
 				GridBagConstraints gbc_vField = new GridBagConstraints();
 				gbc_vField.insets = new Insets(0, 10, 5, 5);
 				gbc_vField.gridx = 7; // 6;
@@ -343,6 +329,26 @@ public class RatingSystemPanel extends JPanel {
 		return txtFieldSysID;
 	}
 
+	private JButton getVersionBtn() {
+		if (versionButton == null) {
+			versionButton = new JButton("Version");
+			versionButton.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					int n = JOptionPane.showConfirmDialog(editor.getAppFrame(),
+							"Incrementing the version will result in a new URI being generated. Do you wish to continue?",
+							"Confirm Version Change", JOptionPane.YES_NO_OPTION);
+					if (n < 1) {
+						System.out.println("Incrementing version");
+						dao.incrementVersion(); 
+					}
+				}
+			});
+			versionButton.setToolTipText("press to update date last verified with Ratings Org");
+		}
+		return versionButton;
+	}
+
 	/**
 	 * @return
 	 */
@@ -350,15 +356,7 @@ public class RatingSystemPanel extends JPanel {
 		if (versionField == null) {
 			versionField = new JTextField();
 			versionField.setText(dao.getVersion());
-			// KLUDGE...
-			/*
-			 * version needs to be a positive and montonicly increasing integer.
-			 * Since migration to Eclipse LUNA the Window Builder is fubar so I
-			 * have simply made this an editable field. Note original mechanism
-			 * is that Valdation will let you increase the version but that is
-			 * broken due to schema issues.
-			 */
-			versionField.setEditable(true);
+			versionField.setEditable(false);
 		}
 		return versionField;
 	}
@@ -403,7 +401,7 @@ public class RatingSystemPanel extends JPanel {
 			/*
 			 * name changes cause URI to be changed...
 			 */
-			txtFieldUri.setText(dao.getUri());
+			txtFieldUri.setText(dao.getUriBase());
 		}
 
 	}
@@ -411,9 +409,13 @@ public class RatingSystemPanel extends JPanel {
 	public JTextField getTextFieldUri() {
 		if (txtFieldUri == null) {
 			txtFieldUri = new JTextField();
-			// is user allowed to manually enter this field?
-			txtFieldUri.setEditable(!dao.isAutoGenUri());
-			txtFieldUri.setText(dao.getUri());
+			// is user allowed to manually enter this field? 
+			if(dao.isUriLocked()){
+				txtFieldUri.setEditable(false); 
+			}else{
+				txtFieldUri.setEditable(true); 
+			} 
+			txtFieldUri.setText(dao.getUriBase());
 			txtFieldUri.setColumns(10);
 		}
 		return txtFieldUri;
@@ -440,7 +442,7 @@ public class RatingSystemPanel extends JPanel {
 							/*
 							 * region changes cause URI to be changed...
 							 */
-							txtFieldUri.setText(dao.getUri());
+							txtFieldUri.setText(dao.getUriBase() );
 						}
 					}
 				}
@@ -508,7 +510,7 @@ public class RatingSystemPanel extends JPanel {
 			/*
 			 * changes may cause URI to be changed...
 			 */
-			txtFieldUri.setText(dao.getUri());
+			txtFieldUri.setText(dao.getUriBase());
 		}
 
 	}
@@ -532,6 +534,16 @@ public class RatingSystemPanel extends JPanel {
 		if (lblSysURI == null) {
 			String[] text = getLocalizedText(2);
 			lblSysURI = new JLabel(text[0]);
+			lblSysURI.setToolTipText(text[1]);
+			// is user allowed to manually enter this field?
+			String lockIconPath =  "/com/movielabs/cmr/client/images/";
+			if(dao.isUriLocked()){ 
+				lockIconPath =  lockIconPath +"Lock-closed-icon-20x20.png";
+			}else{ 
+				lockIconPath =  lockIconPath +"Lock-open-icon-20x20.png";
+			}
+			ImageIcon lockIcon = new ImageIcon(getClass().getResource(lockIconPath));
+			lblSysURI.setIcon(lockIcon);
 		}
 		return lblSysURI;
 	}
@@ -602,7 +614,7 @@ public class RatingSystemPanel extends JPanel {
 			Date last = dao.getLastChecked();
 			if (last != null) {
 				lastCheckedTxtField.setText(TimeStamp.asString(last));
-			}else{
+			} else {
 				lastCheckedTxtField.setText("");
 			}
 		}

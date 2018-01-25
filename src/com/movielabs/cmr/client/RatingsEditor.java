@@ -347,9 +347,9 @@ public class RatingsEditor {
 		task.execute();
 	}
 
-	public void generateURI() {
-		ratingSystem.generateURI();
-	}
+//	public void generateURI() {
+//		ratingSystem.generateURI();
+//	}
 
 	/**
 	 * @param path2html

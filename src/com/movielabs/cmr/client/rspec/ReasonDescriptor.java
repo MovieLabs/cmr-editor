@@ -44,15 +44,13 @@ public class ReasonDescriptor extends SpecificationElement implements RSpecLeaf 
 	private List<JCheckBox> ratingCBoxList = new ArrayList();
 	private RatingsEditor mainApp;
 	private ReasonPanel uiWidget; 
-	private String reasonID = "t.b.d";
-	private boolean autoGenUri;
+	private String reasonID = "t.b.d"; 
 	private String uri;
 	private Map<Rating, Criteria> applicationMap = new HashMap<Rating, Criteria>();
 
 	public ReasonDescriptor(RatingSystem ratingSystem, Element xmlEl) {
 		super();
-		this.ratingSystem = ratingSystem;
-		autoGenUri = ratingSystem.isAutoGenUri();
+		this.ratingSystem = ratingSystem; 
 		mainApp = RatingsEditor.getEditor();
 		if (xmlEl != null) {
 			initFromXml(xmlEl);
@@ -268,15 +266,13 @@ public class ReasonDescriptor extends SpecificationElement implements RSpecLeaf 
 	/**
 	 * 
 	 */
-	private void genUri() {
-		if (autoGenUri) {
-			generateURI();
-		}
+	private void genUri() { 
+			generateURI(); 
 	}
 
 
 	public void generateURI() {
-		uri = ratingSystem.getUri() + UriSep+"Reason"+UriSep + makeSafeForURI(reasonID);
+		uri = ratingSystem.getFullUri() + UriSep+"Reason"+UriSep + makeSafeForURI(reasonID);
 		getUiWidget();
 		if (uiWidget != null) {
 			uiWidget.syncUri();

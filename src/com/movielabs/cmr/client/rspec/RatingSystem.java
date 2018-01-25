@@ -50,7 +50,7 @@ import com.movielabs.cmr.client.util.TimeStamp;
 public class RatingSystem extends SpecificationElement implements RSpecLeaf {
 	private RatingsEditor mainApp;
 	private RatingSystemPanel uiWidget;
-	private boolean autoGenUri = false;
+	private boolean uriLocked = true;
 
 	// .... start of properties...
 	private String name = "";
@@ -62,7 +62,7 @@ public class RatingSystem extends SpecificationElement implements RSpecLeaf {
 	private Date lastHtmlGen;
 	private boolean deprecated = false;
 
-	private String uri;
+	private String uriBase;
 	private Region adminRegion;
 	private List<AdoptiveRegion> usageRegions = new ArrayList<AdoptiveRegion>();
 	private Organization org;
@@ -167,15 +167,20 @@ public class RatingSystem extends SpecificationElement implements RSpecLeaf {
 
 		Element systemUriEl = xmlEl.getChild("URI", mdcrNSpace);
 		if (systemUriEl != null) {
-			uri = systemUriEl.getText();
+			String uriFull = systemUriEl.getText();
+			/*
+			 * remove version suffix to get base. Check 1st that URI matches a
+			 * valid syntax (i.e., alphas and digits with '.', ':', '_', or '/'
+			 * as separators and a numeric sequence as the final suffix)
+			 */
+			if (uriFull.matches("[:/\\\\.\\w]+/\\d+$")) {
+				int splitAt = uriFull.lastIndexOf("/");
+				uriBase = uriFull.substring(0, splitAt);
+				System.out.println("RatingSystem.init():: uriBase="+uriBase);
+			}
 		}
 
 		Element notesEl = xmlEl.getChild("Notes", mdcrNSpace);
-		// if (Notes != null) {
-		// notesAndComments = Notes.getText();
-		// }else{
-		// notesAndComments = "";
-		// }
 		if (notesEl != null) {
 			notesAndComments = loadInnerHtml(notesEl);
 		}
@@ -283,7 +288,7 @@ public class RatingSystem extends SpecificationElement implements RSpecLeaf {
 		// make sure its up-to-date
 		genUri();
 		Element uriEl = new Element("URI", mdcrNSpace);
-		uriEl.setText(uri);
+		uriEl.setText(uriBase);
 		ratingSysRoot.addContent(uriEl);
 
 		/*
@@ -388,7 +393,7 @@ public class RatingSystem extends SpecificationElement implements RSpecLeaf {
 		genUri();
 		if (uiWidget != null) {
 			uiWidget.getVersionField().setText(Integer.toString(version));
-		}
+		} 
 	}
 
 	/**
@@ -535,17 +540,14 @@ public class RatingSystem extends SpecificationElement implements RSpecLeaf {
 	/**
 	 * 
 	 */
-	private void genUri() {
-		if (autoGenUri) {
-			generateURI();
-		}
-	}
+	public void genUri() { 
+		if ((uriBase == null) || (uriBase.isEmpty())) {
+			uriBase = baseUrl + adminRegion.getIsoCode() + UriSep + makeSafeForURI(name);
+		} else {
 
-	public void generateURI() {
-		uri = baseUrl + adminRegion.getIsoCode() + UriSep + makeSafeForURI(name) + UriSep
-				+ makeSafeForURI(getVersion());
+		}
 		if (uiWidget != null) {
-			uiWidget.getTextFieldUri().setText(getUri());
+			uiWidget.getTextFieldUri().setText(uriBase);
 		}
 
 		for (int i = 0; i < ratingList.size(); i++) {
@@ -563,18 +565,17 @@ public class RatingSystem extends SpecificationElement implements RSpecLeaf {
 	}
 
 	/**
-	 * @return the uri
+	 * @return the uri including the version suffix
 	 */
-	public String getUri() {
-		return uri;
+	public String getFullUri() {
+		return uriBase + UriSep + makeSafeForURI(getVersion());
 	}
 
 	/**
-	 * @param uri
-	 *            the uri to set
+	 * @return the uriBase
 	 */
-	public void setUri(String uri) {
-		this.uri = uri;
+	public String getUriBase() {
+		return uriBase;
 	}
 
 	/**
@@ -673,8 +674,8 @@ public class RatingSystem extends SpecificationElement implements RSpecLeaf {
 	/**
 	 * @return the autoGenUri
 	 */
-	public boolean isAutoGenUri() {
-		return autoGenUri;
+	public boolean isUriLocked() {
+		return uriLocked;
 	}
 
 	/**
@@ -682,7 +683,7 @@ public class RatingSystem extends SpecificationElement implements RSpecLeaf {
 	 *            the autoGenUri to set
 	 */
 	public void setAutoGenUri(boolean autoGenUri) {
-		this.autoGenUri = autoGenUri;
+//		this.autoGenUri = autoGenUri;
 	}
 
 	/**

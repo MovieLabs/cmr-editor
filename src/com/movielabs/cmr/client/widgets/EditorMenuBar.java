@@ -110,10 +110,8 @@ public class EditorMenuBar extends JMenuBar {
 			openFileMI.addActionListener(new ActionListener() {
 
 				public void actionPerformed(ActionEvent arg0) {
-					FileFilter filter = new FileNameExtensionFilter(
-							"Ratings Spec file", "xml");
-					String path2xml = FileChooserDialog.getFilePath(
-							"Open Ratings Spec for Edits", null, filter, "xml",
+					FileFilter filter = new FileNameExtensionFilter("Ratings Spec file", "xml");
+					String path2xml = FileChooserDialog.getFilePath("Open Ratings Spec for Edits", null, filter, "xml",
 							RatingsEditor.getEditor().getAppFrame());
 					if (path2xml != null) {
 						// currentFilePath = path2xml;
@@ -226,26 +224,13 @@ public class EditorMenuBar extends JMenuBar {
 	private JMenu getToolMenu() {
 		if (toolMenu == null) {
 			toolMenu = new JMenu("Tools");
-			toolMenu.add(getGenUriMenuItem());
+			// toolMenu.add(getGenUriMenuItem());
 			toolMenu.add(getValidateMenuItem());
 			toolMenu.add(getHtmlMenu());
 		}
 		return toolMenu;
 	}
 
-
-	public JMenuItem getGenUriMenuItem() {
-		if (genUriMI == null) {
-			genUriMI = new JMenuItem("Auto-gen URIs");
-			genUriMI.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					RatingsEditor.getEditor().generateURI();
-				}
-			});
-		}
-		return genUriMI;
-	}
-	
 	public JMenuItem getValidateMenuItem() {
 		if (validateMI == null) {
 			validateMI = new JMenuItem("Validate");
@@ -262,7 +247,7 @@ public class EditorMenuBar extends JMenuBar {
 		if (htmlMenu == null) {
 			htmlMenu = new JMenu("HTML");
 			htmlMenu.add(getGenHtmlMI());
-			htmlMenu.add(getShowHtmlPageMI()); 
+			htmlMenu.add(getShowHtmlPageMI());
 			htmlMenu.add(getUploadMI());
 		}
 		return htmlMenu;
@@ -284,8 +269,8 @@ public class EditorMenuBar extends JMenuBar {
 	 * 
 	 */
 	protected void doHtmlGen() {
-		String path2html = FileChooserDialog.getDirPath("Root Directory", null,
-				null, "html", RatingsEditor.getEditor().getAppFrame());
+		String path2html = FileChooserDialog.getDirPath("Root Directory", null, null, "html",
+				RatingsEditor.getEditor().getAppFrame());
 		if (path2html != null) {
 			RatingsEditor.getEditor().genHtml(path2html);
 		}
@@ -297,22 +282,21 @@ public class EditorMenuBar extends JMenuBar {
 			showHtmlIdxMI = new JMenuItem("Show in Browser");
 			showHtmlIdxMI.addActionListener(new ActionListener() {
 				@Override
-				public void actionPerformed(ActionEvent e) { 
-					doShowInBrowser( );
+				public void actionPerformed(ActionEvent e) {
+					doShowInBrowser();
 				}
 			});
 		}
 		return showHtmlIdxMI;
 	}
- 
 
 	/**
 	 * @param relative
 	 * 
 	 */
 	protected void doShowInBrowser() {
-		String path2html = FileChooserDialog.getFilePath("HTML Directory", null,
-				null, "html", RatingsEditor.getEditor().getAppFrame());
+		String path2html = FileChooserDialog.getFilePath("HTML Directory", null, null, "html",
+				RatingsEditor.getEditor().getAppFrame());
 		if (path2html != null) {
 			String completePath = path2html;
 			File test = new File(completePath);
@@ -380,10 +364,9 @@ public class EditorMenuBar extends JMenuBar {
 		if (aboutMI == null) {
 			aboutMI = new JMenuItem("About");
 			final Component menuBar = this;
-			aboutMI
-			.addActionListener(new java.awt.event.ActionListener() {
-				public void actionPerformed(java.awt.event.ActionEvent e) { 
-					AboutEditorDialog dialog =  new AboutEditorDialog();
+			aboutMI.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					AboutEditorDialog dialog = new AboutEditorDialog();
 					final Component parent = menuBar.getParent().getParent();
 					dialog.setLocation(parent.getLocationOnScreen());
 					dialog.setVisible(true);

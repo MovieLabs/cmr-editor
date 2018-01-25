@@ -15,10 +15,7 @@
  */
 package com.movielabs.cmr.client.widgets.rspec;
 
-import java.util.List;
-
 import com.movielabs.cmr.client.rspec.RatingDescriptor;
-import com.movielabs.cmr.client.rspec.ReasonDescriptor;
 
 /**
  * 

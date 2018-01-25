@@ -182,7 +182,7 @@ public class Criteria extends SpecificationElement implements RSpecLeaf {
 	 * 
 	 */
 	private void genUri() {
-		uri = ratingSystem.getUri() + UriSep + "Criteria" + UriSep
+		uri = ratingSystem.getFullUri() + UriSep + "Criteria" + UriSep
 				+ makeSafeForURI(this.toString());
 		getUiWidget();
 		if (uiWidget != null) {
