@@ -24,8 +24,7 @@
 						<xsl:value-of select="mdcr:RatingSystemID/mdcr:System" />
 						Ratings
 					</title>
-				</xsl:for-each>
-				<!-- <title>Ratings Test - MovieLabs</title> -->
+				</xsl:for-each> 
 				<xsl:comment>
 					Converted using XSL version
 					<xsl:value-of select="system-property('xsl:version')" />
@@ -44,6 +43,14 @@
     <div class="page-center">
       <!-- TemplateBeginEditable name="Title" -->
 		<h1><a href="./Summary.html">COMMON METADATA RATINGS</a></h1>
+		<hr style=" width: 200px;"/>
+		<xsl:for-each select="//mdcr:RatingSystem">
+				<h1>
+					<xsl:value-of select="mdcr:RatingSystemID/mdcr:Region/mdcr:RegionName" />
+					-
+					<xsl:value-of select="mdcr:RatingSystemID/mdcr:System" /> 
+				</h1>
+		</xsl:for-each>
       <!-- TemplateEndEditable -->
     </div>
   </div>
@@ -76,18 +83,17 @@
 					<xsl:if test="not(fn:matches(mdcr:RatingSystemID/@deprecated,'true'))">activeRatingSys</xsl:if>
 				</xsl:if>
 				<xsl:if test="not(mdcr:RatingSystemID/@deprecated)">activeRatingSys</xsl:if>
-			</xsl:variable>
-
-			<hr id="blockDivider" />
-			<div id="{$hdrDivID}">
-				<h2>
-					<xsl:value-of select="mdcr:RatingSystemID/mdcr:System" />
-					(
-					<xsl:value-of select="mdcr:RatingSystemID/mdcr:Region/mdcr:RegionName" />
-					)
-				</h2>
-			</div>
-			<p class="title">
+			</xsl:variable> 
+<!-- 			<hr id="blockDivider" /> -->
+<!-- 			<div id="{$hdrDivID}"> -->
+<!-- 				<h2> -->
+<!-- 					<xsl:value-of select="mdcr:RatingSystemID/mdcr:System" /> -->
+<!-- 					( -->
+<!-- 					<xsl:value-of select="mdcr:RatingSystemID/mdcr:Region/mdcr:RegionName" /> -->
+<!-- 					) -->
+<!-- 				</h2> -->
+<!-- 			</div> -->
+			<p class="subtitle">
 				Version
 				<xsl:value-of select="mdcr:RatingSystemID/@version" />
 			</p>
@@ -102,7 +108,7 @@
 			</xsl:if>
 			<br />
 			<hr id="blockDivider" />
-			<p class="title">Organization:</p>
+			<p class="subtitle">Organization:</p>
 			<ul>
 				<li>
 					Name:
@@ -138,7 +144,7 @@
 				</xsl:if>
 			</ul>
 			<hr id="blockDivider" />
-			<p class="title">Scope:</p>
+			<p class="subtitle">Scope:</p>
 			<p>
 				This rating system has been adopted in these regions for the
 				specified usage:
@@ -190,7 +196,7 @@
 			</table>
 
 			<hr id="blockDivider" />
-			<p class="title">Notes:</p>
+			<p class="subtitle">Notes:</p>
 			<xsl:choose>
 				<xsl:when test="$hdrDivID ='deprecatedRatingSys'">
 					This is a
@@ -203,7 +209,7 @@
 				<xsl:value-of select="./mdcr:Notes" />
 			</xsl:if>
 			<hr id="blockDivider" />
-			<p class="title">Ratings:</p>
+			<p class="subtitle">Ratings:</p>
 			<xsl:variable name="filePrefix">
 				<xsl:value-of select="mdcr:RatingSystemID/mdcr:Region[1]/md:country" />
 			</xsl:variable>
