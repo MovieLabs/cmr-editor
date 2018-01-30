@@ -51,6 +51,8 @@
 										<p class="subtitle">Versioning </p>
 										<p>This is <b>Version <xsl:value-of select="$mLabVersion"/></b>.</p>
 										<p>This document will be versioned when updated. It is recommended that the latest version be used. However, specifications may reference a specific version if necessary.</p>
+										<p class="subtitle">Contact</p>
+										<p>All questions, comments, and feedback regarding either this document or specific ratings systems should be submitted to <a href="mailto:ratings@movielabs.com">ratings@movielabs.com</a></p>
 										<p class="title">CONTENT RATING ENCODING</p>
 										<div id="listing-section">
 										<table  id="summaryTable" border="1" cellpadding="4" cellspacing="0" summary="">
