@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdcr:RatingSystem xmlns:mdcr="http://www.movielabs.com/schema/mdcr/v1.1" xmlns:md="http://www.movielabs.com/schema/md/v2.1/md" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.movielabs.com/schema/mdcr/v1.1 http://www.movielabs.com/schema/mdcr/v1.1/mdcr-v1.1.xsd" lastValidated="2017-07-28T07:50:35" lastSave="2017-08-07T18:30:10"><mdcr:RatingSystemID version="0"><mdcr:Region><md:country>AU</md:country><mdcr:RegionName>AUSTRALIA</mdcr:RegionName></mdcr:Region><mdcr:System>ACMA</mdcr:System></mdcr:RatingSystemID><mdcr:AdoptiveRegion><md:country>AU</md:country><mdcr:RegionName>AUSTRALIA</mdcr:RegionName><mdcr:Usage><mdcr:Media>TV</mdcr:Media><mdcr:Environment>Broadcast</mdcr:Environment></mdcr:Usage></mdcr:AdoptiveRegion><mdcr:LastChecked>2017-07-27</mdcr:LastChecked><mdcr:URI>http://www.movielabs.com/md/ratings/AU/ACMA/0</mdcr:URI><mdcr:RatingsOrg organizationID="Australian Communications and Media Authority"><md:DisplayName>Australian Communications and Media Authority</md:DisplayName><mdcr:ContactString>Level 5 The Bay Centre, 65 Pirrama Road, Pyrmont NSW 2009
+PO Box Q500, Queen Victoria Building NSW 1230
+Tel: 02 9334 7700
+Fax 02 9334 7799</mdcr:ContactString><mdcr:URL>http://www.acma.gov.au/</mdcr:URL><mdcr:OrgType>Gov</mdcr:OrgType></mdcr:RatingsOrg><mdcr:Rating><mdcr:Value ordinal="0">C</mdcr:Value><mdcr:URI>http://www.movielabs.com/md/ratings/AU/ACMA/0/C</mdcr:URI><mdcr:LinkToLogo>./imageCache/AU_ACMA_C.png</mdcr:LinkToLogo><mdcr:MinRecAge>0</mdcr:MinRecAge><mdcr:MinAge>0</mdcr:MinAge><mdcr:MinAgeSupervised>0</mdcr:MinAgeSupervised><mdcr:HPCApplicable>true</mdcr:HPCApplicable><mdcr:Descriptor language="EN"><mdcr:Label>Children</mdcr:Label><mdcr:Definition>Intended for children under 14</mdcr:Definition><mdcr:Explanation><div class="userHtml">A program meets the criteria of suitability for a C program if it:
+(a) is made specifically for children, or groups of children, of school age;
+and
+(b) is entertaining; and
+(c) is well produced using sufficient resources to ensure a high standard of
+script, cast, direction, editing, shooting, sound and other production
+elements; and
+(d) enhances the understanding and experience of children of school age;
+and
+(e) is appropriate for Australian children of school age.</div></mdcr:Explanation></mdcr:Descriptor></mdcr:Rating><mdcr:Rating><mdcr:Value ordinal="0">P</mdcr:Value><mdcr:URI>http://www.movielabs.com/md/ratings/AU/ACMA/0/P</mdcr:URI><mdcr:LinkToLogo>./imageCache/AU_ACMA_P.png</mdcr:LinkToLogo><mdcr:MinRecAge>0</mdcr:MinRecAge><mdcr:MinAge>0</mdcr:MinAge><mdcr:MinAgeSupervised>0</mdcr:MinAgeSupervised><mdcr:HPCApplicable>true</mdcr:HPCApplicable><mdcr:Descriptor language="EN"><mdcr:Label>Preschool</mdcr:Label><mdcr:Definition>Intended for preschool children</mdcr:Definition><mdcr:Explanation><div class="userHtml">A program meets the criteria of suitability for a P program if it:
+(a) is made specifically for preschool children; and
+(b) is entertaining; and
+(c) is well produced using sufficient resources to ensure a high standard of
+script, cast, direction, editing, shooting, sound and other production
+elements; and
+(d) enhances the understanding and experience of preschool children; and
+(e) is appropriate for Australian preschool children.</div></mdcr:Explanation></mdcr:Descriptor></mdcr:Rating></mdcr:RatingSystem>

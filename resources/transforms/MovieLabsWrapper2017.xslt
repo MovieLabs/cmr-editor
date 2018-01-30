@@ -13,7 +13,8 @@
 				<link rel="Shortcut Icon" href="/images/ml_icon.ico"/> 
 				<script src="https://use.typekit.net/rjt6miv.js"> </script>
 				<script>try{Typekit.load({ async: false });}catch(e){}</script>
-				<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"> </script>
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"> </script> 
+				<link xmlns="" href="../../styles/CMRatings.css" rel="stylesheet" type="text/css"/>
 				<link href="../../../../style/movielab-2017.css" rel="stylesheet" type="text/css" />
 	</xsl:template>
 	<xsl:template name="topPanel">   
@@ -42,17 +43,17 @@
                   <li id="menu-item-28" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-28"><a href="/what-we-do/">What We Do</a></li>
                   <li id="menu-item-271" class="menu-item menu-item-type-post_type menu-item-object-page current-page-ancestor current-menu-ancestor current-menu-parent current-page-parent current_page_parent current_page_ancestor menu-item-has-children menu-item-271" aria-haspopup="true"><a href="/solutions-specifications/">Solutions &amp; Specifications</a><button class="dropdown-toggle" aria-expanded="false"><span class="screen-reader-text">expand child menu</span></button>
                   <ul class="sub-menu">
-                  	<li id="menu-item-223" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-141 current_page_item menu-item-223"><a href="/solutions-specifications/movielabs-digital-distribution-framework-mddf/">MovieLabs Digital Distribution Framework (MDDF)</a></li>
+                  	<li id="menu-item-223" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-141 current_page_item menu-item-223"><a href="/md/">MovieLabs Digital Distribution Framework (MDDF)</a></li>
                   	<li id="menu-item-229" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-229"><a href="/solutions-specifications/ultra-hd-and-hdr/">Ultra HD and HDR</a></li>
                   	<li id="menu-item-232" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-232"><a href="/solutions-specifications/enhanced-content-protection-ecp/">Enhanced Content Protection (ECP)</a></li>
-                  	<li id="menu-item-235" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-235"><a href="/solutions-specifications/digital-extras/">Digital extras</a></li>
-                  	<li id="menu-item-241" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-241"><a href="/solutions-specifications/common-metadata/">Common Metadata</a></li>
-                  	<li id="menu-item-244" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-244"><a href="/solutions-specifications/ema-avails/">EMA Avails</a></li>
-                  	<li id="menu-item-247" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-247"><a href="/solutions-specifications/media-manifest/">Media Manifest</a></li>
-                  	<li id="menu-item-251" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-251"><a href="/solutions-specifications/media-manifest-core/">Media Manifest Core</a></li>
-                  	<li id="menu-item-254" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-254"><a href="/solutions-specifications/media-entertainment-core-metadata/">Media Entertainment Core Metadata</a></li>
-                  	<li id="menu-item-257" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-257"><a href="/solutions-specifications/ratings/">Ratings</a></li>
-                  	<li id="menu-item-260" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-260"><a href="/solutions-specifications/automated-content-notification-system/">Automated Content Notification System</a></li>
+                  	<li id="menu-item-235" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-235"><a href="/cpe/">Digital extras</a></li>
+                  	<li id="menu-item-241" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-241"><a href="/md/md/">Common Metadata</a></li>
+                  	<li id="menu-item-244" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-244"><a href="/md/avails/">EMA Avails</a></li>
+                  	<li id="menu-item-247" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-247"><a href="/md/manifest/">Media Manifest</a></li>
+                  	<li id="menu-item-251" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-251"><a href="/md/mmc/">Media Manifest Core</a></li>
+                  	<li id="menu-item-254" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-254"><a href="/md/mec/">Media Entertainment Core Metadata</a></li>
+                  	<li id="menu-item-257" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-257"><a href="/md/ratings/">Ratings</a></li>
+                  	<li id="menu-item-260" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-260"><a href="http://acns.net">Automated Content Notification System</a></li>
                   </ul>
                 </li>
                 <li id="menu-item-30" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-30"><a href="/outreach/">Outreach</a></li>

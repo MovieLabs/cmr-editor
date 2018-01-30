@@ -1,0 +1,308 @@
+@CHARSET "ISO-8859-1";
+
+table 
+{ 
+  font-size:12px;  
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-style: normal;
+} 
+
+div#activeRating{  
+  font-size:20px; 
+  font-family:Arial; 
+  font-weight:bold;
+	background-color:#1b6d2f; 
+	color:#dddddd;
+}
+
+
+div#deprecatedRating{ 
+	background-color: #541126;
+	color:#dddddd;
+}
+
+tr#deprecatedRatingSys{ 
+	#background-color: #f2dee5;
+	#background-color: #f4e6ea;
+	#background-color: #f2e6e9;
+	background-color: #cccccc;
+}
+
+div#deprecatedRatingSys{ 
+	background-color: #541126;
+	color:#dddddd;
+  font-size:20px; 
+  font-family:Arial; 
+  font-weight:bold;
+	padding-left:15px;
+	padding-top:15px;
+  padding-bottom:15px;
+}
+
+div#reasonSection{  
+  font-size:20px; 
+  font-family:Arial;
+  font-weight:bold;
+	background-color:#2f1b6d;  
+	color:#dddddd;
+}
+
+div#reasonDetails{
+  width: 600px;
+	background-color: #ffffff;
+}
+
+div.summaryNotes{ 
+  font-size:smaller; 
+  font-family:"Palatino Linotype",  Palatino, serif; 
+  margin-right:15px;
+  margin-left:15px;
+text-align:justify;
+}
+
+
+
+div#reasonEx{
+  font-size:12px; 
+  font-family:"Palatino Linotype",  Palatino, serif;
+	margin-left:35px;
+	padding-top:5px;
+  padding-bottom:15px;
+}
+
+p#reasonIcon{ 
+	margin-left:35px; 
+  width: 80px;
+  height: 80px;
+}
+img#reasonIcon{  
+  width: 80px;
+  height: 80px;
+}
+div#ratingsDetails{
+  width: 600px;
+	background-color: #ffffff;
+}
+
+p#ratingHdr{
+	text-align:left;
+  font-size:18px; 
+  font-family:Arial; 
+  font-weight:bold;
+	margin-top:25px;
+	margin-bottom:0px;
+	padding-left:15px;
+	padding-top:6px;
+  padding-bottom:6px;
+}
+
+p#ratingSectionHdr{
+	text-align:left;
+  font-size:14px; 
+  font-family:Arial,sans-serif; 
+  font-weight:bold;
+	padding-left:15px;
+	padding-top:5px;
+  padding-bottom:1px;
+}
+
+p#subSectionHdr{
+	text-align:left;
+  font-size:14px; 
+  font-family:Arial,sans-serif; 
+  font-weight:normal;
+	text-decoration: underline;
+	padding-left:30px;
+	padding-top:1px;
+  padding-bottom:1px;
+}
+ 
+table#regionUsageTable{  
+	margin-left:35px;
+ 	border:0px;  
+ 	font-size:12px; 
+ 	font-family:Arial,sans-serif; 
+ 	font-weight:normal;
+	width: 400px;
+}
+
+table#regionUsageTable td{
+	border:0px; 
+	padding-top: 3px; 
+	padding-left: 6px;   
+	vertical-align: top;
+}
+ 
+table#ratingSymbolTable 
+{
+	background-color: #ffffff; 
+  border:0px;    
+} 
+
+table#ratingAgeTable 
+{
+	margin-left:35px;
+  border:0px;  
+  font-size:12px; 
+  font-family:Arial,sans-serif; 
+  font-weight:normal; 
+	width: 250px;
+} 
+
+table#ratingAgeTable td{
+  border:0px; 
+	padding-top:0px; 
+  padding-left:0px; 
+}
+
+table#ratingAttribTable{  
+	margin-left:35px;
+  border:0px;  
+  font-size:12px; 
+  font-family:Arial,sans-serif; 
+  font-weight:normal;
+	width: 250px;
+}
+
+table#ratingAttribTable td{
+  border:0px; 
+	padding-top:0px; 
+  padding-left:0px; 
+}
+
+
+table#ratingCriteriaTable{  
+	margin-left:35px;
+  border:0px;  
+  font-size:12px; 
+  font-family:Arial,sans-serif; 
+  font-weight:normal; 
+}
+
+table#ratingCriteriaTable td{
+  border:0px; 
+	padding-top:10px; 
+  padding-left:3px;  
+	vertical-align: top;
+}
+
+
+div#explanatory{
+	margin-left:35px;
+  font-size:12px; 
+  font-family:"Palatino Linotype",  Palatino, serif;
+	padding-top:5px;
+  padding-bottom:5px;
+}
+ 
+
+/*======= ******************************************************** =========*/
+/*======= ************** Styles for the SUMMARY page ************* =========*/
+ 
+#listing-section ul
+{
+  list-style-type:none;
+  margin:0px;
+  text-align:left;
+  padding-left:8px;
+  padding-right:8px;
+	/*
+  padding-top:5px;
+	*/
+}
+
+/*======= Following are used in row summarizing a Rating System on the Summary page =========*/
+tr.summary 
+{ 
+  font-size:14px; 
+  font-family:Arial; 
+  font-weight:normal;
+}
+
+td.summaryKeyCell{  
+  font-weight:bold; 
+}
+
+td.summaryKeyCell, td.summaryCell, td.summaryOther{ 
+  padding-left:8px;
+  padding-top:10px; 
+  padding-bottom:5px;
+}
+
+table#summaryTable thead th{
+  font-size:14px; 
+  font-family:Arial; 
+  font-weight:bold;
+	background-color:#008080; 
+	color:#dddddd;
+  padding-left:8px;
+  padding-top:8px;
+  padding-bottom:8px;
+  padding-right:8px;
+}
+
+/*======= ******************************************************** =========*/
+/*======= ************** generic stuff ************* ************* =========*/
+
+
+div#menu-navigation{ 
+  text-align:center;
+	align: center;
+}
+
+hr#blockDivider 
+{
+	background-color: #a0a0a0;  
+	height: 2px;
+	align: center;
+} 
+
+p#blockDivider 
+{
+	background-color: #a0a0a0;  
+  padding-top:18px;
+  padding-bottom:18px;
+	width: 600px;	 
+} 
+/*======= ***********************  IMPORTANT NOTE **************** =========*/
+/*======= I am (for now) overriding the movielab2.css in regards   =========*/
+/*======= to the <a> tag because I can not stand their colors. The =========*/
+/*======= next two entries should be removed prior to delivery to  =========*/
+/*======= the client. -------------------------------------------  =========*/
+
+/*=======
+a:link {
+	color: #0000ff;
+	text-decoration: none;
+}
+
+a:visited {
+	text-decoration: none;
+	color: #9900ff;
+}
+ =========*/
+/*======= ------------------------------------------------------  =========*/
+a.tooltip {
+	 position: relative;
+}
+		
+a.tooltip::before {
+    content: attr(data-tip) ;
+    font-size: 10px;
+    position:absolute;
+    z-index: 999;
+    white-space:nowrap;
+    bottom:9999px;
+    left: 50%;
+    background:#00ff00;
+    color:#ff0000;
+    padding:0px 7px;
+    line-height: 24px;
+    height: 24px;
+    opacity: 0;
+    transition:opacity 0.4s ease-out;
+    }
+a.tooltip:hover::before {
+    opacity: 1;
+    bottom:-35px;
+    }
