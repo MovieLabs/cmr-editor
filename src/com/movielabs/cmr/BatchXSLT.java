@@ -51,21 +51,21 @@ import java.io.OutputStreamWriter;
 import java.nio.channels.FileChannel;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 
 /**
- * Handle conversion and export of XML into HTML. This is the class that gets
- * invoked when the editor's "<tt>Generate HTML</tt>" function is invoked. Three
- * XSLT transforms are used, all of which should be located in
- * <tt>${rsrcDir}/transforms</tt>. The transforms are:
+ * Generates the final 'published' forms of all Rating Systems. This consists of
+ * the following functions:
  * <ul>
- * <li><tt>WrappedRatingSysDoc.xslt</tt> used to convert a single XML-defined
- * Rating System into an HTML description.</li>
- * <li><tt>WrappedRatingSysDoc.xslt</tt> used to gen the index page</li>
+ * <li>Handle conversion of each Rating System spec from XML into HTML.</li>
+ * <li>Handle conversion of each Rating System from the <i>internal</i> XML
+ * schema to the latest version of the
+ * <tt>Common Metadata Content Rating Structure</tt> schema (see
+ * <a href='http://movielabs.com/md/ratings/doc.html'>http://movielabs.com/md/
+ * ratings/doc.html</a>)</li>
+ * <li>generates HTML with aggregate summary of all ratings systems</li>
  * </ul>
  * 
  * @author L. J. Levin, created July 23, 2013
@@ -91,7 +91,7 @@ public class BatchXSLT {
 	private File baseReleaseDir;
 
 	/**
-	 * @param xmlDir
+	 * @param srcXmlDir
 	 * @param rootDstDir
 	 * @param rsrcDir
 	 */
@@ -378,6 +378,24 @@ public class BatchXSLT {
 		return true;
 	}
 
+	/**
+	 * 
+	 * Three XSLT transforms are used, all of which should be located in
+	 * <tt>${rsrcDir}/transforms</tt>. The transforms are:
+	 * <ul>
+	 * <li><tt>WrappedRatingSysDoc.xslt</tt> used to convert a single
+	 * XML-defined Rating System into an HTML description.</li>
+	 * <li><tt>WrappedRatingSysDoc.xslt</tt> used to gen the index page</li>
+	 * </ul>
+	 * 
+	 * @param inputFile
+	 * @param message
+	 * @param identifier
+	 * @throws TransformerException
+	 * @throws TransformerConfigurationException
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
 	private void transformFile(File inputFile, String message, int identifier)
 			throws TransformerException, TransformerConfigurationException, FileNotFoundException, IOException {
 
