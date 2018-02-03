@@ -111,8 +111,8 @@ public class Organization extends SpecificationElement implements RSpecLeaf {
 		xDName.setText(displayName);
 		rOrgRoot.addContent(xDName);
 		// optional attributes..
-		if (!displayName.isEmpty()) {
-			rOrgRoot.setAttribute("organizationID", displayName);
+		if (!organizationID.isEmpty()) {
+			rOrgRoot.setAttribute("organizationID",  organizationID);
 		}
 //		if (!idType.isEmpty()) {
 //			rOrgRoot.setAttribute("idType", idType);
