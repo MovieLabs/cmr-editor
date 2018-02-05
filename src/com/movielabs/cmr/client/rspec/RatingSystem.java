@@ -288,7 +288,7 @@ public class RatingSystem extends SpecificationElement implements RSpecLeaf {
 		// make sure its up-to-date
 		genUri();
 		Element uriEl = new Element("URI", mdcrNSpace);
-		uriEl.setText(uriBase);
+		uriEl.setText(getFullUri());
 		ratingSysRoot.addContent(uriEl);
 
 		/*
