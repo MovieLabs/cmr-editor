@@ -1,4 +1,5 @@
-Movie Labs Editor for Rating System Specification
+![screenshot1](mddf-tools/docs/users/md/manifest/validator/v1.1/images/MLabs_header.jpg)
+# Movie Labs Editor for Rating System Specification
 ================================================
 
 Documentation for installation and usage is in the ./doc directory.
