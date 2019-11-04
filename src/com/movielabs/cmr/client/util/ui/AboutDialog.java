@@ -56,7 +56,7 @@ public class AboutDialog extends JDialog {
 	private JTabbedPane tabbedPane;
 	private HashMap tabPanes = new HashMap();
 	private HashMap tabEntries = new HashMap();
-	private static String callcLogoPath = "/com/critarch/util/ui/Logo_smallest.JPG";
+	private static String movielabsLogoPath = "/com/movielabs/cmr/client/images/logo_movielabs.jpg";
 
 	/**
 	 * Create dialog using the default Critical Architectures logo
@@ -65,7 +65,7 @@ public class AboutDialog extends JDialog {
 	 * @param subtitle
 	 */
 	public AboutDialog(String title, String subtitle) {
-		this(title, subtitle, callcLogoPath);
+		this(title, subtitle, movielabsLogoPath);
 	}
 
 	/**
@@ -103,7 +103,7 @@ public class AboutDialog extends JDialog {
 		});
 		// add the icon with the corporate logo
 		ImageIcon callcLogo = new ImageIcon(getClass().getResource(
-				callcLogoPath));
+				movielabsLogoPath));
 		JLabel logoLabel = new JLabel(callcLogo);
 		buttonPanel.add(logoLabel, BorderLayout.WEST);
 		// Sets default button for enter key
