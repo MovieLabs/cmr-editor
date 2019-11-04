@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="2.0"
-	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:mdcr="http://www.movielabs.com/schema/mdcr/v1.1"
-	xmlns:md="http://www.movielabs.com/schema/md/v2.1/md" xmlns:saxon="http://saxon.sf.net/">
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:fn="http://www.w3.org/2005/xpath-functions"
+	xmlns:mdcr="http://www.movielabs.com/schema/mdcr/v1.1"
+	xmlns:md="http://www.movielabs.com/schema/md/v2.1/md"
+	xmlns:saxon="http://saxon.sf.net/">
 	<xsl:output method="html" encoding="UTF-8" indent="yes" />
 	<xsl:include href="MovieLabsWrapper2017.xslt" />
 	<xsl:variable name="tipHPCA">
@@ -21,10 +24,11 @@
 				<!-- InstanceBeginEditable name="doctitle" -->
 				<xsl:for-each select="//mdcr:RatingSystem">
 					<title>
-						<xsl:value-of select="mdcr:RatingSystemID/mdcr:System" />
+						<xsl:value-of
+							select="mdcr:RatingSystemID/mdcr:System" />
 						Ratings
 					</title>
-				</xsl:for-each> 
+				</xsl:for-each>
 				<xsl:comment>
 					Converted using XSL version
 					<xsl:value-of select="system-property('xsl:version')" />
@@ -36,39 +40,46 @@
 				<xsl:comment>
 					generated using transform 'WrappedRatingSysDoc.xslt' (2017a)
 				</xsl:comment>
-				<xsl:call-template name="topPanel" /> 
-				
+				<xsl:call-template name="topPanel" />
 
-  <div class="hero" style="background: url(http://movielabs.com/images/interior-hero-bg.jpg); background-size: cover; background-position: center center;">
-    <div class="page-center">
-      <!-- TemplateBeginEditable name="Title" -->
-		<h1><a href="./Summary.html">COMMON METADATA RATINGS</a></h1>
-		<hr style=" width: 200px;"/>
-		<xsl:for-each select="//mdcr:RatingSystem">
-				<h1>
-					<xsl:value-of select="mdcr:RatingSystemID/mdcr:Region/mdcr:RegionName" />
-					-
-					<xsl:value-of select="mdcr:RatingSystemID/mdcr:System" /> 
-				</h1>
-		</xsl:for-each>
-      <!-- TemplateEndEditable -->
-    </div>
-  </div>
-				<table class="main-content" width="800" border="0" align="center" cellpadding="0" cellspacing="0">  
-				  <tr>
-				    <td valign="top">
-				        <table width="100%" border="0" cellspacing="0" cellpadding="10">
-				          <tr>
- 				              <td width="75%" valign="top">
-				<xsl:call-template name="contentSection" /> 
- 				              </td>
- 				          </tr>
- 				        </table>
- 				    </td>
- 				  </tr>
- 			</table>			
-				
-				<xsl:call-template name="stdFooter" /> 
+
+				<div class="hero"
+					style="background: url(http://movielabs.com/images/interior-hero-bg.jpg); background-size: cover; background-position: center center;">
+					<div class="page-center">
+						<!-- TemplateBeginEditable name="Title" -->
+						<h1>
+							<a href="./Summary.html">COMMON METADATA RATINGS</a>
+						</h1>
+						<hr style=" width: 200px;" />
+						<xsl:for-each select="//mdcr:RatingSystem">
+							<h1>
+								<xsl:value-of
+									select="mdcr:RatingSystemID/mdcr:Region/mdcr:RegionName" />
+								-
+								<xsl:value-of
+									select="mdcr:RatingSystemID/mdcr:System" />
+							</h1>
+						</xsl:for-each>
+						<!-- TemplateEndEditable -->
+					</div>
+				</div>
+				<table class="main-content" width="800" border="0"
+					align="center" cellpadding="0" cellspacing="0">
+					<tr>
+						<td valign="top">
+							<table width="100%" border="0" cellspacing="0"
+								cellpadding="10">
+								<tr>
+									<td width="75%" valign="top">
+										<xsl:call-template name="contentSection" />
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+
+				<xsl:call-template name="stdFooter" />
 			</body>
 		</html>
 	</xsl:template>
@@ -79,20 +90,29 @@
 		<xsl:for-each select="//mdcr:RatingSystem">
 			<xsl:variable name="hdrDivID">
 				<xsl:if test="mdcr:RatingSystemID/@deprecated">
-					<xsl:if test="fn:matches(mdcr:RatingSystemID/@deprecated,'true')">deprecatedRatingSys</xsl:if>
-					<xsl:if test="not(fn:matches(mdcr:RatingSystemID/@deprecated,'true'))">activeRatingSys</xsl:if>
+					<xsl:if
+						test="fn:matches(mdcr:RatingSystemID/@deprecated,'true')">
+						deprecatedRatingSys
+					</xsl:if>
+					<xsl:if
+						test="not(fn:matches(mdcr:RatingSystemID/@deprecated,'true'))">
+						activeRatingSys
+					</xsl:if>
 				</xsl:if>
-				<xsl:if test="not(mdcr:RatingSystemID/@deprecated)">activeRatingSys</xsl:if>
-			</xsl:variable> 
-<!-- 			<hr id="blockDivider" /> -->
-<!-- 			<div id="{$hdrDivID}"> -->
-<!-- 				<h2> -->
-<!-- 					<xsl:value-of select="mdcr:RatingSystemID/mdcr:System" /> -->
-<!-- 					( -->
-<!-- 					<xsl:value-of select="mdcr:RatingSystemID/mdcr:Region/mdcr:RegionName" /> -->
-<!-- 					) -->
-<!-- 				</h2> -->
-<!-- 			</div> -->
+				<xsl:if test="not(mdcr:RatingSystemID/@deprecated)">
+					activeRatingSys
+				</xsl:if>
+			</xsl:variable>
+			<!-- <hr id="blockDivider" /> -->
+			<!-- <div id="{$hdrDivID}"> -->
+			<!-- <h2> -->
+			<!-- <xsl:value-of select="mdcr:RatingSystemID/mdcr:System" /> -->
+			<!-- ( -->
+			<!-- <xsl:value-of select="mdcr:RatingSystemID/mdcr:Region/mdcr:RegionName" 
+				/> -->
+			<!-- ) -->
+			<!-- </h2> -->
+			<!-- </div> -->
 			<p class="subtitle">
 				Version
 				<xsl:value-of select="mdcr:RatingSystemID/@version" />
@@ -112,7 +132,8 @@
 			<ul>
 				<li>
 					Name:
-					<xsl:value-of select="./mdcr:RatingsOrg/md:DisplayName" />
+					<xsl:value-of
+						select="./mdcr:RatingsOrg/md:DisplayName" />
 				</li>
 				<!-- <li> Region: <xsl:value-of select="mdcr:RatingSystemID/mdcr:Region/mdcr:RegionName" 
 					/> <xsl:if test="mdcr:RatingSystemID/mdcr:Region/mdcr:SubRegion"> - <xsl:value-of 
@@ -125,7 +146,8 @@
 					<li>
 						Contact Information:
 						<br />
-						<xsl:value-of select="./mdcr:RatingsOrg/mdcr:ContactString" />
+						<xsl:value-of
+							select="./mdcr:RatingsOrg/mdcr:ContactString" />
 					</li>
 				</xsl:if>
 				<xsl:if test="not(./mdcr:RatingsOrg/mdcr:ContactString)">
@@ -206,19 +228,22 @@
 				<xsl:otherwise></xsl:otherwise>
 			</xsl:choose>
 			<xsl:if test="./mdcr:Notes">
-				<xsl:value-of select="./mdcr:Notes" />
+				<xsl:copy-of select="./mdcr:Notes" />
 			</xsl:if>
 			<hr id="blockDivider" />
 			<p class="subtitle">Ratings:</p>
 			<xsl:variable name="filePrefix">
-				<xsl:value-of select="mdcr:RatingSystemID/mdcr:Region[1]/md:country" />
+				<xsl:value-of
+					select="mdcr:RatingSystemID/mdcr:Region[1]/md:country" />
 			</xsl:variable>
 			<xsl:variable name="fileId">
 				<xsl:value-of select="mdcr:RatingSystemID/mdcr:System" />
 			</xsl:variable>
 			<p>
-				<a href="../xml/{$filePrefix}_{$fileId}_Ratings.xml" target="_blank">
-					<span class="hint--info" data-hint="Open XML file in new browser tab"> XML formatted file
+				<a href="../xml/{$filePrefix}_{$fileId}_Ratings.xml"
+					target="_blank">
+					<span class="hint--info"
+						data-hint="Open XML file in new browser tab"> XML formatted file
 					</span>
 				</a>
 			</p>
@@ -233,8 +258,8 @@
 				<hr id="blockDivider" />
 				<p id="ratingSectionHdr">
 					<a name="reason_list"></a>
-					Reasons and Content Descriptors:
 				</p>
+				<p class="subtitle">Reasons and Content Descriptors:</p>
 				<div id="reasonDetails">
 					<xsl:for-each select="./mdcr:Reason">
 						<xsl:variable name="anchor">
@@ -262,8 +287,7 @@
 						</xsl:if>
 						<div id="reasonEx">
 							<xsl:if test="./mdcr:Explanation">
-								<xsl:value-of select=" ./mdcr:Explanation"
-									disable-output-escaping="yes" />
+								<xsl:copy-of select="./mdcr:Explanation" />
 							</xsl:if>
 						</div>
 						<xsl:for-each select="./mdcr:Criteria">
@@ -299,59 +323,69 @@
 	<xsl:template match="mdcr:Rating">
 		<xsl:variable name="dead">
 			<xsl:if test="./mdcr:Deprecated">
-				<xsl:if test="fn:matches(./mdcr:Deprecated,'true')">(DEPRECATED)</xsl:if>
+				<xsl:if test="fn:matches(./mdcr:Deprecated,'true')">
+					(DEPRECATED)
+				</xsl:if>
 			</xsl:if>
 		</xsl:variable>
-		<xsl:variable name="bg-color-1">
+		<xsl:variable name="header-bar-top">
 			<xsl:if test="./mdcr:Deprecated">
-				<xsl:if test="fn:matches(./mdcr:Deprecated,'true')">deprecatedRating</xsl:if>
-				<xsl:if test="not(fn:matches(./mdcr:Deprecated,'true'))">activeRating</xsl:if>
+				<xsl:if test="fn:matches(./mdcr:Deprecated,'true')">
+					deprecatedRating
+				</xsl:if>
+				<xsl:if test="not(fn:matches(./mdcr:Deprecated,'true'))">
+					activeRating
+				</xsl:if>
 			</xsl:if>
-			<xsl:if test="not(./mdcr:Deprecated)">activeRating</xsl:if>
+			<xsl:if test="not(./mdcr:Deprecated)">
+				activeRating
+			</xsl:if>
+		</xsl:variable>
+		<xsl:variable name="header-bar-bottom">
+			<xsl:if test="./mdcr:Deprecated">
+				<xsl:if test="fn:matches(./mdcr:Deprecated,'true')">
+					deprecatedRating_end
+				</xsl:if>
+				<xsl:if test="not(fn:matches(./mdcr:Deprecated,'true'))">
+					activeRating_end
+				</xsl:if>
+			</xsl:if>
+			<xsl:if test="not(./mdcr:Deprecated)">
+				activeRating_end
+			</xsl:if>
 		</xsl:variable>
 		<xsl:variable name="rValue">
 			<xsl:value-of select="./mdcr:Value" />
 		</xsl:variable>
+		<xsl:variable name="linkTarget">
+			<xsl:value-of select="./@reasonID" />
+		</xsl:variable>
 
 		<!-- #################################################### -->
-		<div id="{$bg-color-1}">
-			<p id="ratingHdr">
-				<a name="{$rValue}"></a>
-				<xsl:for-each select="./mdcr:Descriptor">
-					<u>
-						<b>
-							<xsl:value-of select="$rValue" />
-						</b>
-						<xsl:if test="not($rValue = ./mdcr:Label)">
-							:
-							<xsl:value-of select="./mdcr:Label" />
-						</xsl:if>
-					</u>
-					<br />
-				</xsl:for-each>
-			</p>
-		</div>
-		<table id="ratingSymbolTable">
+		<hr id="{$header-bar-top}" />
+		<table id="ratingSymbolTable" name="{linkTarget}">
 			<tbody>
 				<tr>
 					<xsl:if test="./mdcr:LinkToLogo">
 						<xsl:for-each select="./mdcr:LinkToLogo">
 							<td align="center" style="width:170px;height:60px;">
 								<xsl:variable name="logoUrl" select="." />
-								<img alt="" src="{$logoUrl}" />
+								<img id="ratingSymbol" alt="" src="{$logoUrl}" />
 							</td>
 						</xsl:for-each>
 					</xsl:if>
 					<xsl:if test="not(./mdcr:LinkToLogo)">
 						<td align="center" style="width:170px;height:60px;">
-							<font face="arial" size="20">
-								<xsl:value-of select="./mdcr:Value" />
-							</font>
+							<xsl:for-each select="./mdcr:Descriptor">
+								<xsl:value-of select="./mdcr:Label" />
+								<br />
+							</xsl:for-each>
 						</td>
 					</xsl:if>
 				</tr>
 			</tbody>
 		</table>
+		<hr id="{$header-bar-bottom}" />
 		<p id="ratingSectionHdr">Age Restrictions</p>
 		<table id="ratingAgeTable">
 			<tr>
@@ -461,21 +495,25 @@
 				</xsl:if>
 			</div>
 		</xsl:if>
-		<p id="ratingSectionHdr">Definition</p>
+		<p id="ratingSectionHdr">Localized Definitions</p>
 		<xsl:for-each select="./mdcr:Descriptor">
 			<p id="subSectionHdr">
 				<u>
 					<b>
-						<xsl:value-of select="$rValue" />
-					</b>
-					<xsl:if test="not($rValue = ./mdcr:Label)">
-						:
 						<xsl:value-of select="./mdcr:Label" />
-					</xsl:if>
+					</b>
 				</u>
+				(
+				<xsl:value-of select="@language" />
+				)
 				<xsl:if test="./mdcr:Definition">
 					<div id="explanatory">
 						<xsl:value-of select="./mdcr:Definition" />
+					</div>
+				</xsl:if>
+				<xsl:if test="./mdcr:Definition = ''">
+					<div id="explanatory">
+						<i>Additional definition not provided</i>
 					</div>
 				</xsl:if>
 			</p>
@@ -548,7 +586,8 @@
 					']/mdcr:Definition
 				</xsl:variable>
 				<xsl:variable name="criteriaDef">
-					<xsl:value-of select="saxon:evaluate($criteriaDefPath)" />
+					<xsl:value-of
+						select="saxon:evaluate($criteriaDefPath)" />
 				</xsl:variable>
 				<tr>
 					<td>
@@ -557,7 +596,8 @@
 						</a>
 					</td>
 					<td>
-						<xsl:value-of select="saxon:evaluate($criteriaDefPath)" />
+						<xsl:value-of
+							select="saxon:evaluate($criteriaDefPath)" />
 					</td>
 				</tr>
 			</xsl:for-each>
