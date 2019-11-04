@@ -7,6 +7,12 @@ table
 	font-style: normal;
 } 
 
+img#ratingSymbol{
+    max-height: 70px;
+    width: auto;
+    min-height: 40px;
+}
+
 div#activeRating{  
   font-size:20px; 
   font-family:Arial; 
@@ -19,6 +25,19 @@ div#activeRating{
 div#deprecatedRating{ 
 	background-color: #541126;
 	color:#dddddd;
+}
+
+
+hr#activeRating{ 
+	border-width: 0px; 
+	height: 20px;  
+	background-color:#1b6d2f;
+}
+
+hr#deprecatedRating{ 
+	border-width: 0px; 
+	height: 20px;  
+	background-color:#541126;
 }
 
 tr#deprecatedRatingSys{ 
