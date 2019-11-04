@@ -1,6 +1,9 @@
-![screenshot1](mddf-tools/docs/users/md/manifest/validator/v1.1/images/MLabs_header.jpg)
+![screenshot1](./MLabs_header.jpg)
 # CM Ratings Editor Change Log
 
 ---
 
-## Version
+## Version 1.2
+
+* switch build system from Ant to Maven
+* execution is now via Java executable jar; bash and bat scripts removed.
