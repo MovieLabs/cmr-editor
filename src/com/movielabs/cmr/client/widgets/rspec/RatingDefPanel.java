@@ -19,14 +19,12 @@ import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.GridBagLayout;
 
-import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.text.JTextComponent;
 
 import com.movielabs.cmr.client.resources.GuiSettings;
 import com.movielabs.cmr.client.rspec.RatingDescriptor;
-import com.movielabs.cmr.client.util.LanguageCode;
 
 /**
  * 
