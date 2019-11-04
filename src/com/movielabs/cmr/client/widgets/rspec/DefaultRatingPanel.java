@@ -16,18 +16,11 @@
 package com.movielabs.cmr.client.widgets.rspec;
 
 import java.awt.BorderLayout;
-import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.Insets;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.util.ArrayList;
-import java.util.EnumSet;
 import java.util.List;
 
 import javax.swing.*;
-import javax.swing.border.EtchedBorder;
 import javax.swing.text.JTextComponent;
 
 import com.movielabs.cmr.client.resources.GuiSettings;
@@ -35,8 +28,6 @@ import com.movielabs.cmr.client.rspec.Rating;
 import com.movielabs.cmr.client.rspec.RatingDescriptor;
 import com.movielabs.cmr.client.rspec.RatingSystem;
 import com.movielabs.cmr.client.rspec.ReasonDescriptor;
-import com.movielabs.cmr.client.rspec.SpecificationElement.ENVIRONMENT;
-import com.movielabs.cmr.client.rspec.SpecificationElement.MEDIA;
 import com.movielabs.cmr.client.util.ui.JOutlookBar1;
 
 /**
@@ -204,6 +195,7 @@ public class DefaultRatingPanel extends AbstractSpecElementPanel implements
 //			checkBox.setEnabled(flag);
 //		}
 //	}
+	
 	/*
 	 * (non-Javadoc)
 	 * 
