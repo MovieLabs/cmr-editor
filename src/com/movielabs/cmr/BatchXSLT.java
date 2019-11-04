@@ -306,7 +306,7 @@ public class BatchXSLT {
 		// use version WITH the 'Notes' when generating HTML
 		try {
 			// transformIndex();
-			genSummary1(allSystemsForHtml);
+			genSummary(allSystemsForHtml);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -335,15 +335,23 @@ public class BatchXSLT {
 		}
 	}
 
-	private void genSummary1(Element rootEl) throws JDOMException, TransformerException, IOException {
+	private void genSummary(Element rootEl) throws JDOMException, TransformerException, IOException {
 		Document masterDoc = new Document(rootEl);
-		String outputFileName = new String(destHtmlDir + "/Summary.html");
+		String outputFile = new String(destHtmlDir + "/Summary.html");
+		String xsltFile = new String(xsltDirF + "/WrappedSummary_w_Ratings.xslt");
+		genSummary(masterDoc, outputFile, xsltFile);
+		outputFile = new String(destHtmlDir + "/Summary_without_Ratings.html");
+		xsltFile = new String(xsltDirF + "/WrappedSummaryV2.xslt");
+		genSummary(masterDoc, outputFile, xsltFile);
+	}
+
+	private void genSummary(Document masterDoc, String outputFileName, String xsltFile)
+			throws JDOMException, TransformerException, IOException {
 		DOMOutputter converter = new DOMOutputter();
-		String xsltFileName = new String(xsltDirF + "/WrappedSummaryV2.xslt");
 		org.w3c.dom.Document domDoc = converter.output(masterDoc);
 		FileOutputStream fos = new FileOutputStream(outputFileName);
 		TransformerFactory tFactory = TransformerFactory.newInstance();
-		Transformer transformer = tFactory.newTransformer(new StreamSource(xsltFileName));
+		Transformer transformer = tFactory.newTransformer(new StreamSource(xsltFile));
 		transformer.setParameter("mLabVersion", releaseVersion);
 		transformer.transform(new DOMSource(domDoc), new StreamResult(fos));
 		fos.flush();
