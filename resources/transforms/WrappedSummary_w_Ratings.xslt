@@ -61,7 +61,7 @@
 												<th>Type</th>
 												<th>Environ</th>
 												<th>System</th>
-<!-- 												<th>Ratings</th> -->
+												<th>Ratings</th>
 <!-- 												<th>Reasons</th> -->
 												<th>Notes &amp; References</th>
 											</thead>   
@@ -162,18 +162,18 @@
 			<td class="summaryCell">
 					 <a href="./{$filePrefix}_{$fileId}_Ratings.html"><xsl:value-of select="mdcr:RatingSystemID/mdcr:System"/></a> 
 			</td>
-<!-- 			<td class="summaryOther summaryAutoCell"> -->
-<!-- 				<ul class="summaryList"> -->
-<!-- 					<xsl:for-each select="./mdcr:Rating"> -->
-<!-- 		<xsl:variable name="anchor"> -->
-<!-- 			<xsl:value-of select="./@ratingID"/> -->
-<!-- 		</xsl:variable> -->
-<!-- 						<li><a href="./{$filePrefix}_{$fileId}_Ratings.html#{$anchor}"> -->
-<!-- 							<xsl:value-of select="./@ratingID"/></a> -->
-<!-- 						</li> -->
-<!-- 					</xsl:for-each> -->
-<!-- 				</ul> -->
-<!-- 			</td> -->
+			<td class="summaryOther summaryAutoCell">
+				<ul class="summaryList">
+					<xsl:for-each select="./mdcr:Rating">
+		<xsl:variable name="anchor">
+			<xsl:value-of select="./@ratingID"/>
+		</xsl:variable>
+						<li><a href="./{$filePrefix}_{$fileId}_Ratings.html#{$anchor}">
+							<xsl:value-of select="./@ratingID"/></a>
+						</li>
+					</xsl:for-each>
+				</ul>
+			</td>
 <!-- 			<td class="summaryOther summaryAutoCell"> -->
 <!-- 				<ul class="summaryList"> -->
 <!-- 					<xsl:for-each select="./mdcr:Reason"> -->
@@ -207,7 +207,7 @@
 			<xsl:if test="./mdcr:Notes">
 				<p class="summaryTitle">Notes:</p>
 				<div class="summaryNotes">
-					<xsl:value-of select="./mdcr:Notes" />
+					<xsl:copy-of select="./mdcr:Notes" />
 				</div>
 			</xsl:if>
 			</td>
