@@ -7,7 +7,7 @@
 	xmlns:md="http://www.movielabs.com/schema/md/v2.1/md"
 	xmlns:saxon="http://saxon.sf.net/">
 	<xsl:output method="html" encoding="UTF-8" indent="yes" />
-	<xsl:include href="MovieLabsWrapper2017.xslt" />
+	<xsl:include href="MovieLabsWrapper2020.xslt" />
 	<xsl:variable name="tipHPCA">
 		Indicates if the Rating is applicable to usage in an at-home Access
 		Control system. This is intended as a hint for implementors and

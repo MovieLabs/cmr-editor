@@ -5,7 +5,7 @@
 	xmlns:mdcr="http://www.movielabs.com/schema/mdcr/v1.1" 
 	xmlns:md="http://www.movielabs.com/schema/md/v2.1/md">
 	<xsl:output method="html" encoding="UTF-8" indent="yes"/>
-	<xsl:include href="MovieLabsWrapper2017.xslt" />
+	<xsl:include href="MovieLabsWrapper2020.xslt" />
 	<xsl:param name="mLabVersion"/>
 		<xsl:template match="/mdcr:RatingSystemSet">
 		<html xmlns="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:mdcr="http://www.movielabs.com/schema/mdcr/v1.1" xmlns:md="http://www.movielabs.com/schema/md/v2.1/md">
