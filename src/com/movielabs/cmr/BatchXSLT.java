@@ -142,9 +142,9 @@ public class BatchXSLT {
 			}
 		}
 		/*
-		 * The XSLT has been developed and tested using the Saxon library.
-		 * Results when using xalan are not guaranteed. Issue (a/o 2013-June) is
-		 * level of support for XSLT 2 features.
+		 * The XSLT has been developed and tested using the Saxon library. Results when
+		 * using xalan are not guaranteed. Issue (a/o 2013-June) is level of support for
+		 * XSLT 2 features.
 		 */
 		System.setProperty("javax.xml.transform.TransformerFactory", saxTFac);
 		disclaimer = "DISCLAIMER: Although care has been taken to ensure the accuracy, completeness and reliability of the information provided, "
@@ -169,9 +169,9 @@ public class BatchXSLT {
 	public boolean process() {
 		int identifier = 0;
 		/*
-		 * check to see if xmlSource is a directory. If so, process all XML
-		 * files and generated an index in XML format. When we are done, the XML
-		 * and a supporting XSLT will be used to generate HTML.
+		 * check to see if xmlSource is a directory. If so, process all XML files and
+		 * generated an index in XML format. When we are done, the XML and a supporting
+		 * XSLT will be used to generate HTML.
 		 */
 		File _input = new File(srcXmlDirLocation);
 		if (_input.isFile()) {
@@ -240,8 +240,8 @@ public class BatchXSLT {
 	 */
 	private void transformFileSet(File _input, int identifier) {
 		/*
-		 * this is used to create a 'master' all-encompassing XML file for use
-		 * by UltraViolet
+		 * this is used to create a 'master' all-encompassing XML file for use by
+		 * UltraViolet
 		 */
 		allSystemsForXml = new Element("RatingSystemSet", SpecificationElement.mdcrNSpace);
 		allSystemsForXml.addNamespaceDeclaration(SpecificationElement.mdNSpace);
@@ -260,8 +260,8 @@ public class BatchXSLT {
 				try {
 					Element nextRSyst = getAsXml(aFile);
 					/*
-					 * make sure its a Rating System and not some other XML that
-					 * happens to be in this directory
+					 * make sure its a Rating System and not some other XML that happens to be in
+					 * this directory
 					 */
 					if (nextRSyst.getName().equals("RatingSystem")) {
 						if (copyXml) {
@@ -276,22 +276,19 @@ public class BatchXSLT {
 							outputXml(destXml, nextRSyst);
 						}
 						/*
-						 * now its OK to manipulate XML so we can append to the
-						 * master file.
+						 * now its OK to manipulate XML so we can append to the master file.
 						 */
 						nextRSyst.detach();
 						/*
-						 * The schemaLocation needs to be removed as the
-						 * attribute is already set in the root of the master
-						 * doc and can only appear once.
+						 * The schemaLocation needs to be removed as the attribute is already set in the
+						 * root of the master doc and can only appear once.
 						 */
 						nextRSyst.removeAttribute("schemaLocation", SpecificationElement.xsiNSpace);
 
 						allSystemsForXml.addContent(nextRSyst);
 						/*
-						 * NOTE that xslt operates on a 'fresh' copy of original
-						 * src XML so any manipulation to the published copy are
-						 * not relevant.
+						 * NOTE that xslt operates on a 'fresh' copy of original src XML so any
+						 * manipulation to the published copy are not relevant.
 						 */
 						transformFile(aFile, message, ++identifier);
 					}
@@ -319,8 +316,7 @@ public class BatchXSLT {
 			e1.printStackTrace();
 		}
 		/*
-		 * Last step is output the 'master' XML that has everything in one big
-		 * file.
+		 * Last step is output the 'master' XML that has everything in one big file.
 		 */
 		File xmlFile = new File(baseReleaseDir, "CMR_Ratings_" + releaseVersion + ".xml");
 		Format myFormat = Format.getPrettyFormat();
@@ -387,13 +383,15 @@ public class BatchXSLT {
 	}
 
 	/**
-	 * 
-	 * Three XSLT transforms are used, all of which should be located in
+	 * Generate an HTML page for a Rating System from it's XML specification. Two
+	 * XSLT transforms are used, both of which should be located in
 	 * <tt>${rsrcDir}/transforms</tt>. The transforms are:
 	 * <ul>
-	 * <li><tt>WrappedRatingSysDoc.xslt</tt> used to convert a single
-	 * XML-defined Rating System into an HTML description.</li>
-	 * <li><tt>WrappedRatingSysDoc.xslt</tt> used to gen the index page</li>
+	 * <li><tt>WrappedRatingSysDoc.xslt</tt> used to convert a single XML-defined
+	 * Rating System into an HTML description. This XSLT file will include by
+	 * reference the 2nd XSLT transform...</li>
+	 * <li><tt>MovieLabsWrapper{<i>yyyy</i>}.xslt</tt> defines the current MovieLabs
+	 * header-menu and style template.</li>
 	 * </ul>
 	 * 
 	 * @param inputFile
@@ -418,23 +416,23 @@ public class BatchXSLT {
 
 		System.out.println("Transforming XML file: " + inputFile.getPath() + "    " + message);
 		/*
-		 * Use the static TransformerFactory.newInstance() method to instantiate
-		 * a TransformerFactory. The javax.xml.transform.TransformerFactory
-		 * system property setting determines the actual class to instantiate --
+		 * Use the static TransformerFactory.newInstance() method to instantiate a
+		 * TransformerFactory. The javax.xml.transform.TransformerFactory system
+		 * property setting determines the actual class to instantiate --
 		 * org.apache.xalan.transformer.TransformerImpl.
 		 */
 		TransformerFactory tFactory = TransformerFactory.newInstance();
 		/*
-		 * Use the TransformerFactory to instantiate a Transformer that will
-		 * work with the stylesheet you specify. This method call also processes
-		 * the stylesheet into a compiled Templates object.
+		 * Use the TransformerFactory to instantiate a Transformer that will work with
+		 * the stylesheet you specify. This method call also processes the stylesheet
+		 * into a compiled Templates object.
 		 */
 		String xsltFileName = new String(xsltDirF + "/WrappedRatingSysDoc.xslt");
 		Transformer transformer = tFactory.newTransformer(new StreamSource(xsltFileName));
 		transformer.setParameter("identifier", new Integer(identifier));
 		/*
-		 * Use the Transformer to apply the associated Templates object to an
-		 * XML document (foo.xml) and write the output to a file (foo.out).
+		 * Use the Transformer to apply the associated Templates object to an XML
+		 * document (foo.xml) and write the output to a file (foo.out).
 		 */
 		OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(outputFileName), "UTF-8");
 		transformer.transform(new StreamSource(inputFile), new StreamResult(osw));
@@ -452,8 +450,8 @@ public class BatchXSLT {
 
 	/**
 	 * Generate the <tt>releaseSpecific.js</tt> that is used by the
-	 * <tt>index.html</tt> page. This contains release-specific information,
-	 * such as version and date, that is displayed on the index page.
+	 * <tt>index.html</tt> page. This contains release-specific information, such as
+	 * version and date, that is displayed on the index page.
 	 * 
 	 * @param aFile
 	 * @param nextRSyst
@@ -522,9 +520,8 @@ public class BatchXSLT {
 	}
 
 	/**
-	 * <tt>RatingSystemID</tt> is again limited to a single child
-	 * <tt>Region</tt>. Multi-region support is now via 1 or more
-	 * <tt>AdoptiveRegion</tt> elements
+	 * <tt>RatingSystemID</tt> is again limited to a single child <tt>Region</tt>.
+	 * Multi-region support is now via 1 or more <tt>AdoptiveRegion</tt> elements
 	 * 
 	 * @param rSystemRoot
 	 * @return
@@ -553,10 +550,9 @@ public class BatchXSLT {
 	/**
 	 * changes to <tt>Rating</tt> element:
 	 * <ul>
-	 * <li><tt>ordinal</tt> is no longer attribute of child element
-	 * <tt>Value</tt> but is now an Element itself</li>
-	 * <li>child element <tt>Value</tt> replaced by <tt>ratingID</tt> attribute
-	 * </li>
+	 * <li><tt>ordinal</tt> is no longer attribute of child element <tt>Value</tt>
+	 * but is now an Element itself</li>
+	 * <li>child element <tt>Value</tt> replaced by <tt>ratingID</tt> attribute</li>
 	 * </ul>
 	 * 
 	 * @param rSys
@@ -579,9 +575,9 @@ public class BatchXSLT {
 	private void insertMod_04(Element rSystemRoot) {
 		String defaultLangCode = getDefaultLang(rSystemRoot);
 		/*
-		 * 1st re-map the Reason and create a HashMap of RatingReason elements
-		 * from the Criteria. Then go thru the Ratings and replace the
-		 * ApplicableReasons elements.
+		 * 1st re-map the Reason and create a HashMap of RatingReason elements from the
+		 * Criteria. Then go thru the Ratings and replace the ApplicableReasons
+		 * elements.
 		 */
 		HashMap<String, Element> criteriaMap = new HashMap<String, Element>();
 		List<Element> childList = rSystemRoot.getChildren("Reason", SpecificationElement.mdcrNSpace);
@@ -621,8 +617,7 @@ public class BatchXSLT {
 				badEl.detach();
 			}
 			/*
-			 * Next step is to convert the CRITERIA to RatingReason/Descriptor
-			 * elements
+			 * Next step is to convert the CRITERIA to RatingReason/Descriptor elements
 			 */
 			List<Element> criteriaList = reasonEL.getChildren("Criteria", SpecificationElement.mdcrNSpace);
 			// need to deal with 'live list' issue
@@ -632,8 +627,8 @@ public class BatchXSLT {
 				Element nextCriteria = working[j];
 				Element criteriaDescEl = new Element("Descriptor", SpecificationElement.mdcrNSpace);
 				/*
-				 * the language, Label, and Definition are the same as the
-				 * 'generic'. Only the (optional) Explanation is unique.
+				 * the language, Label, and Definition are the same as the 'generic'. Only the
+				 * (optional) Explanation is unique.
 				 */
 				criteriaDescEl.setAttribute("language", langCode);
 				criteriaDescEl.addContent(gdLabelEl.clone());
@@ -646,8 +641,7 @@ public class BatchXSLT {
 				// create the parent RatingReason
 				Element rrEl = new Element("RatingReason", SpecificationElement.mdcrNSpace);
 				/*
-				 * the reasonID, Value, and (optional) LinkToLogo are the same
-				 * as the 'generic'.
+				 * the reasonID, Value, and (optional) LinkToLogo are the same as the 'generic'.
 				 */
 				rrEl.setAttribute("reasonID", reasonID);
 				rrEl.addContent(valueEl.clone());
@@ -657,8 +651,7 @@ public class BatchXSLT {
 					rrEl.addContent(l2lEl.clone());
 				}
 				/*
-				 * finish up by adding new element to hashmap and detaching old
-				 * element
+				 * finish up by adding new element to hashmap and detaching old element
 				 */
 				nextCriteria.detach();
 				String key = nextCriteria.getAttributeValue("ratingID") + "<->" + reasonID;
@@ -666,8 +659,8 @@ public class BatchXSLT {
 			}
 		}
 		/*
-		 * END of Step 1. Now go thru the Ratings and replace the
-		 * ApplicableReasons elements.
+		 * END of Step 1. Now go thru the Ratings and replace the ApplicableReasons
+		 * elements.
 		 */
 
 		List<Element> ratingList = rSystemRoot.getChildren("Rating", SpecificationElement.mdcrNSpace);
@@ -695,8 +688,7 @@ public class BatchXSLT {
 					// create a minimal default RatingReason
 					rrEL = new Element("RatingReason", SpecificationElement.mdcrNSpace);
 					/*
-					 * the reasonID, Value, and (optional) LinkToLogo are the
-					 * same as the 'generic'.
+					 * the reasonID, Value, and (optional) LinkToLogo are the same as the 'generic'.
 					 */
 					rrEL.setAttribute("reasonID", reasonID);
 					Element valueEl = new Element("Value", SpecificationElement.mdcrNSpace);
@@ -717,9 +709,9 @@ public class BatchXSLT {
 	}
 
 	/**
-	 * Schema compliance issue: embedded HTML is allowed for use when generating
-	 * the <i>Explanation</i> part of a RatingSystem's HTML page but it is
-	 * exported in XML files as [CDATA].
+	 * Schema compliance issue: embedded HTML is allowed for use when generating the
+	 * <i>Explanation</i> part of a RatingSystem's HTML page but it is exported in
+	 * XML files as [CDATA].
 	 * 
 	 * @param rSystemRoot
 	 * @return
