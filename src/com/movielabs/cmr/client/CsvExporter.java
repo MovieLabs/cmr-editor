@@ -25,16 +25,23 @@ public class CsvExporter {
 	static Namespace mdcr = SpecificationElement.mdcrNSpace;
 	static Namespace md = SpecificationElement.mdNSpace;
 	private static FileOutputStream fos;
+	private static String[] colHeaders = { "Region", "ISO", "System ID", "Rating ID", "Label" };
 
-	public static boolean export(Element root, File destFile)
-			throws FileNotFoundException {
+	public static boolean export(Element root, File destFile) throws FileNotFoundException {
 		fos = new FileOutputStream(destFile);
-		List<Element> rSysList = root.getChildren("RatingSystem", mdcr);
-		for (int i = 0; i < rSysList.size(); i++) {
-			Element nextSysEl = rSysList.get(i);
-			addSystem(nextSysEl);
+		/* add a header row */
+		String hdr = "";
+		for (int i = 0; i < colHeaders.length; i++) {
+			hdr = hdr + colHeaders[i] + SEP;
 		}
+		hdr = hdr  + "\n";
 		try {
+			fos.write(hdr.getBytes());
+			List<Element> rSysList = root.getChildren("RatingSystem", mdcr);
+			for (int i = 0; i < rSysList.size(); i++) {
+				Element nextSysEl = rSysList.get(i);
+				addSystem(nextSysEl);
+			}
 			fos.close();
 			fos = null;
 
@@ -58,8 +65,7 @@ public class CsvExporter {
 		List<Element> regionElList = rSysEl.getChildren("AdoptiveRegion", mdcr);
 		for (int i = 0; i < regionElList.size(); i++) {
 			Element nextARegEl = regionElList.get(i);
-			String regionName = nextARegEl.getChildTextNormalize("RegionName",
-					mdcr);
+			String regionName = nextARegEl.getChildTextNormalize("RegionName", mdcr);
 			String regionCode = nextARegEl.getChildTextNormalize("country", md);
 			String entry = regionName + SEP + regionCode + SEP + sysName + SEP;
 			regionList.add(entry);
