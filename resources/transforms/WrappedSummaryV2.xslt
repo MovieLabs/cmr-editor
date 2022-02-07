@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="2.0" 
+<xsl:stylesheet version="2.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns:fn="http://www.w3.org/2005/xpath-functions" 
-	xmlns:mdcr="http://www.movielabs.com/schema/mdcr/v1.1" 
+	xmlns:fn="http://www.w3.org/2005/xpath-functions"
+	xmlns:mdcr="http://www.movielabs.com/schema/mdcr/v1.1"
 	xmlns:md="http://www.movielabs.com/schema/md/v2.1/md">
 	<xsl:output method="html" encoding="UTF-8" indent="yes"/>
-	<xsl:include href="MovieLabsWrapper2017.xslt" />
+	<xsl:include href="MovieLabsWrapper2022.xslt" />
 	<xsl:param name="mLabVersion"/>
 		<xsl:template match="/mdcr:RatingSystemSet">
 		<html xmlns="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:mdcr="http://www.movielabs.com/schema/mdcr/v1.1" xmlns:md="http://www.movielabs.com/schema/md/v2.1/md">
@@ -13,18 +13,18 @@
 				<title>Ratings Metadata – MovieLabs</title>
 				<xsl:comment>
 				generated using transform 'WrappedSummaryV2(b).xslt'
-				</xsl:comment>	
+				</xsl:comment>
 				 <xsl:call-template name="stdHeader" />
 				 <style type="text/css">
 				 	tr.summary{font-size: 11px;}
 				 	ul.summaryList {list-style:none; padding:1;}
 				 	td.summaryAutoCell {width:1px;white-space:nowrap;}
 				 	p.summaryTitle {font-size: 12px; text-decoration: underline;}
-				 </style>				 
+				 </style>
 			</head>
 			<body>
-				<xsl:call-template name="topPanel" /> 
-				  <div class="hero" style="background: url(http://movielabs.com/images/interior-hero-bg.jpg); background-size: cover; background-position: center center;">
+				<xsl:call-template name="topPanel" />
+				  <div class="hero-title">
     <div class="page-center">
       <!-- TemplateBeginEditable name="Title" -->
 		<h1><a href="./Summary.html">COMMON METADATA RATINGS</a></h1>
@@ -39,7 +39,7 @@
 									<td>
 										<p class="title">INTRODUCTION</p>
 										<p>This document contains enumeration values and usage constraints for the inclusion of Content Ratings in metadata. </p>
-										<p>This document contains information useful when used in conjunction with MovieLabs Common Metadata (TR-META-CM) and 
+										<p>This document contains information useful when used in conjunction with MovieLabs Common Metadata (TR-META-CM) and
 										derived specifications such as DEG/EMA Metadata and UltraViolet Content Metadata.</p>
 										<p><xsl:value-of select="$disclaimer"/></p>
 										<p class="subtitle">References</p>
@@ -64,10 +64,10 @@
 <!-- 												<th>Ratings</th> -->
 <!-- 												<th>Reasons</th> -->
 												<th>Notes &amp; References</th>
-											</thead>   
-											<xsl:apply-templates select="//mdcr:AdoptiveRegion"> 
+											</thead>
+											<xsl:apply-templates select="//mdcr:AdoptiveRegion">
  												 <xsl:sort select="mdcr:RegionName"/>
-											</xsl:apply-templates>  
+											</xsl:apply-templates>
 										</table>
 										</div>
 									</td>
@@ -76,14 +76,14 @@
 						</td>
 					</tr>
 				</table>
-				<xsl:call-template name="stdFooter" /> 
+				<xsl:call-template name="stdFooter" />
 			</body>
 		</html>
 	</xsl:template>
 	<xsl:template match="mdcr:AdoptiveRegion">
-	<!-- make sure this is NOT an AdoptiveRegion that is part of the <Override> of a specific <Rating> --> 
+	<!-- make sure this is NOT an AdoptiveRegion that is part of the <Override> of a specific <Rating> -->
 		<xsl:if test="../../mdcr:RatingSystem">
-			<!-- <p><xsl:value-of select="./mdcr:RegionName"/> in <xsl:value-of select="../mdcr:RatingSystemID/mdcr:System"/> 
+			<!-- <p><xsl:value-of select="./mdcr:RegionName"/> in <xsl:value-of select="../mdcr:RatingSystemID/mdcr:System"/>
 				</p> -->
 			<xsl:variable name="subregion">
 				<xsl:if test="./mdcr:SubRegion">
@@ -100,7 +100,7 @@
 				<xsl:with-param name="subaoi" select="$subregion" />
 			</xsl:apply-templates>
 		</xsl:if>
-	</xsl:template> 
+	</xsl:template>
 	<xsl:template match="mdcr:RatingSystem">
 		<xsl:param name="aoi"/>
 		<xsl:param name="subaoi"/>
@@ -132,7 +132,7 @@
 				<xsl:value-of select="$aoi"/><xsl:value-of select="$subaoi"/>
 			</td>
 			<td class="summaryOther">
-				<xsl:if test="./mdcr:AdoptiveRegion[mdcr:RegionName=$rName]/mdcr:Usage/mdcr:Media"> 
+				<xsl:if test="./mdcr:AdoptiveRegion[mdcr:RegionName=$rName]/mdcr:Usage/mdcr:Media">
 					<ul class="summaryList">
 						<xsl:for-each select="./mdcr:AdoptiveRegion[mdcr:RegionName=$rName][1]/mdcr:Usage/mdcr:Media">
 							<li>
@@ -142,7 +142,7 @@
 					</ul>
 				</xsl:if>
 				<xsl:if test="not(./mdcr:AdoptiveRegion[mdcr:RegionName=$rName]/mdcr:Usage/mdcr:Media)">
-												 all										 
+												 all
 											</xsl:if>
 			</td>
 			<td class="summaryOther">
@@ -156,11 +156,11 @@
 					</ul>
 				</xsl:if>
 				<xsl:if test="not(./mdcr:AdoptiveRegion[mdcr:RegionName=$rName]/mdcr:Usage/mdcr:Environment)">
-												 all											 
+												 all
 											</xsl:if>
 			</td>
 			<td class="summaryCell">
-					 <a href="./{$filePrefix}_{$fileId}_Ratings.html"><xsl:value-of select="mdcr:RatingSystemID/mdcr:System"/></a> 
+					 <a href="./{$filePrefix}_{$fileId}_Ratings.html"><xsl:value-of select="mdcr:RatingSystemID/mdcr:System"/></a>
 			</td>
 <!-- 			<td class="summaryOther summaryAutoCell"> -->
 <!-- 				<ul class="summaryList"> -->
@@ -200,7 +200,7 @@
 				</xsl:if></li>
 			<li>URI: <xsl:value-of select="./mdcr:URI"/></li>
 			<xsl:if test="./mdcr:LastChecked">
-			<li>Last verified: 
+			<li>Last verified:
 						<xsl:value-of select="./mdcr:LastChecked"/> </li>
 				</xsl:if>
 			</ul>
@@ -211,7 +211,7 @@
 				</div>
 			</xsl:if>
 			</td>
-		</tr>   
-		</div> 
+		</tr>
+		</div>
 	</xsl:template>
 </xsl:stylesheet>

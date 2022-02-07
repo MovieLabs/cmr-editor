@@ -7,7 +7,19 @@
 	provided for general information only, and any reliance upon the material on this site will be at your own risk. We reserve the right to 
 	modify the contents of the site at any time, but we have no obligation to update any information on this site. You agree that it is your 
 	responsibility to monitor changes to the site.</xsl:variable>
-	
+	<xsl:template name="addGoogleTracking">
+				<xsl:variable name="trackid">UA-139301931-1</xsl:variable>
+				<!-- Global site tag (gtag.js) - Google Analytics -->
+				<script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-{$trackid}"><xsl:text> </xsl:text></script>
+				<script>
+				  <xsl:text disable-output-escaping="yes">
+				  window.dataLayer = window.dataLayer || [];
+				  function gtag(){dataLayer.push(arguments);}
+				  gtag('js', new Date());
+				  
+				  gtag('config', '</xsl:text><xsl:value-of select="$trackid"/><xsl:text disable-output-escaping="yes">');</xsl:text>
+				</script>
+	</xsl:template>
 	<xsl:template name="stdHeader">
 				<meta http-equiv="Content-Type" content="text/html;  charset=utf-8"/>
 				<link rel="Shortcut Icon" href="/images/ml_icon.ico"/> 
@@ -16,17 +28,25 @@
 				<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"> </script> 
 				<link xmlns="" href="../../styles/CMRatings.css" rel="stylesheet" type="text/css"/>
 				<style type="text/css"></style>
-				<link href="../style/movielab-2020.css" rel="stylesheet" type="text/css" />
-				<link href="../style/menu_2020.css" rel="stylesheet" type="text/css" />
+				<link href="../../styles/movielab-2020.css" rel="stylesheet" type="text/css" />
+				<link href="../../styles/menu_2020.css" rel="stylesheet" type="text/css" />
+				<!-- Global site tag (gtag.js) - Google Analytics -->
+				<script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-139301931-1"></script>
+				<script>
+				  window.dataLayer = window.dataLayer || [];
+				  function gtag(){dataLayer.push(arguments);}
+				  gtag('js', new Date());
+				  gtag('config', 'UA-139301931-1');
+				</script>
 	</xsl:template>
-	<xsl:template name="topPanel">   
-  
+	<xsl:template name="topPanel">
+
 <div class="site-header">
   <div class="site-header-main">
     <div class="page-center">
       <nav>
-        <div id="logo">MovieLabs</div>
-        <label for="drop" class="toggle burger"><img src="../images/burger.png"></img>img></label>
+        <div id="logo"><a href="/" rel="home"></a></div>
+        <label for="drop" class="toggle burger"><img src="../images/burger.png"></img></label>
         <input type="checkbox" id="drop" />
         <ul class="menu">
           <li class="firstLevel"> 
@@ -134,6 +154,20 @@
 
 							<!--  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
 							 
+	</xsl:template>
+	
+	<xsl:template name = 'breadcrumb'>
+<div class="breadcrumb">
+	<div class="page-center">
+	  <div class="breadcrumbs" itemscope="" itemtype="http://schema.org/BreadcrumbList">
+		  <span itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"><a href="https://movielabs.com/" itemprop="item" class="home"><span itemprop="name">Home</span></a><meta itemprop="position" content="1"></meta></span> 
+		  <!-- InstanceBeginEditable name="Breadcrumb" -->
+		  <span class="sep">›</span><span itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"><a href="https://movielabs.com/md" itemprop="item" class="home"><span itemprop="name">MDDF</span></a><meta itemprop="position" content="2"></meta></span> 
+		  <span class="sep">›</span> <span class="current">Ratings</span> <span class="sep">›</span><xsl:for-each select="//mdcr:RatingSystem"/>
+		  <!-- InstanceEndEditable -->
+		</div>
+	</div>
+</div>
 	</xsl:template>
 	<xsl:template name="stdFooter">
 

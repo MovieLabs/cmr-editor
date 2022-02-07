@@ -7,7 +7,7 @@
 	xmlns:md="http://www.movielabs.com/schema/md/v2.1/md"
 	xmlns:saxon="http://saxon.sf.net/">
 	<xsl:output method="html" encoding="UTF-8" indent="yes" />
-	<xsl:include href="MovieLabsWrapper2020.xslt" />
+	<xsl:include href="MovieLabsWrapper2022.xslt" />
 	<xsl:variable name="tipHPCA">
 		Indicates if the Rating is applicable to usage in an at-home Access
 		Control system. This is intended as a hint for implementors and
@@ -42,9 +42,7 @@
 				</xsl:comment>
 				<xsl:call-template name="topPanel" />
 
-
-				<div class="hero"
-					style="background: url(http://movielabs.com/images/interior-hero-bg.jpg); background-size: cover; background-position: center center;">
+				<div class="hero-title">
 					<div class="page-center">
 						<!-- TemplateBeginEditable name="Title" -->
 						<h1>
@@ -108,7 +106,7 @@
 			<!-- <h2> -->
 			<!-- <xsl:value-of select="mdcr:RatingSystemID/mdcr:System" /> -->
 			<!-- ( -->
-			<!-- <xsl:value-of select="mdcr:RatingSystemID/mdcr:Region/mdcr:RegionName" 
+			<!-- <xsl:value-of select="mdcr:RatingSystemID/mdcr:Region/mdcr:RegionName"
 				/> -->
 			<!-- ) -->
 			<!-- </h2> -->
@@ -135,8 +133,8 @@
 					<xsl:value-of
 						select="./mdcr:RatingsOrg/md:DisplayName" />
 				</li>
-				<!-- <li> Region: <xsl:value-of select="mdcr:RatingSystemID/mdcr:Region/mdcr:RegionName" 
-					/> <xsl:if test="mdcr:RatingSystemID/mdcr:Region/mdcr:SubRegion"> - <xsl:value-of 
+				<!-- <li> Region: <xsl:value-of select="mdcr:RatingSystemID/mdcr:Region/mdcr:RegionName"
+					/> <xsl:if test="mdcr:RatingSystemID/mdcr:Region/mdcr:SubRegion"> - <xsl:value-of
 					select="mdcr:RatingSystemID/mdcr:Region/mdcr:SubRegion" /> </xsl:if> </li> -->
 				<li>
 					Type of Organization:
@@ -250,7 +248,7 @@
 			<div id="ratingsDetails">
 				<!-- +++++++++++++++++++++++++++++ -->
 				<xsl:apply-templates select="mdcr:Rating">
-					<!-- <xsl:sort select="mdcr:Value/@ordinal"/> broken (sorts alphabetically 
+					<!-- <xsl:sort select="mdcr:Value/@ordinal"/> broken (sorts alphabetically
 						instead of numerically ) -->
 				</xsl:apply-templates>
 			</div> <!-- END of ratingDetails -->
